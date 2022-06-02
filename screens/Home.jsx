@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
 import miED from "../assets/logoMI2";
-import fondoPag from "../assets/blue"
+import fondoPag from "../assets/fondoInicio"
 import Boton from "./components/Boton";
 
 
 
-const Home =()=>{
+const Home =({ navigation })=>{
   return (
     
     <View style={styles.container}>
@@ -17,11 +17,15 @@ const Home =()=>{
 
       <Boton 
       text="iniciar como administrador" 
-      onPress={()=>{alert('boooom')}}
+      onPress={ () =>{
+        navigation.navigate('InicioAdmin')
+      }}
       />
-      <Boton 
+     <Boton 
       text="iniciar como inquilino" 
-      onPress={()=>{alert('ratata')}}
+      onPress={ () =>{
+        navigation.navigate('InicioInquilino')
+      }}
       />
     
    
