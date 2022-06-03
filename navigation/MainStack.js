@@ -1,15 +1,19 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import Home from '../screens/Home'
+import { NavigationContainer } from '@react-navigation/native';
+
 import InicioAdmin from '../screens/InicioAdmin'
 import InicioInquilino from '../screens/InicioInquilino'
+import NuevoEdificio from '../screens/NuevoEdifico'
 
 const Stack = createNativeStackNavigator()
 
 const MainStack =()=>{
    
 return(
-<NativagtionContainer>
+<NavigationContainer>
     <Stack.Navigator>
 
         <Stack.Screen
@@ -24,9 +28,13 @@ return(
             name='InicioInquilino'
             component={ InicioInquilino }
         />
+         <Stack.Screen
+            name='NuevoEdificio'
+            component={ NuevoEdificio }
+        />
 
     </Stack.Navigator>
-</NativagtionContainer>
+</NavigationContainer>
 
 
 )
