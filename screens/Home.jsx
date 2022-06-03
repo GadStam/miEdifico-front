@@ -4,7 +4,7 @@ import miED from "../assets/logoMI2.png";
 import fondoPag from "../assets/fondoInicio.jpg"
 import Boton from "../components/Boton";
 import { useNavigation } from '@react-navigation/native';
-import createEdifico from '../services/createEdificio'
+
  
 const Home =({navigation})=>{
   
@@ -28,7 +28,7 @@ const Home =({navigation})=>{
         navigation.navigate('InicioInquilino')
       }}
       />
-   <createEdifico />
+   
       </ImageBackground>
     </View>
     

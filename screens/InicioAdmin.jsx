@@ -18,12 +18,7 @@ const InicioAdmin =({navigation})=>{
 
       <Text style={styles.titulo}>BIENVENIDO VARIABLE</Text>
 
-      <Boton 
-      text="Crear nuevo edificio" 
-      onPress={ () =>{
-        navigation.navigate('NuevoEdificio')
-      }}
-      />
+     
    
       </ImageBackground>
     </View>
