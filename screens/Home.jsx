@@ -10,13 +10,12 @@ const Home =({navigation})=>{
   
   return (
     
-    
     <View>
       <ImageBackground source={fondoPag} style={styles.image}>
       <Image style={styles.logo} source={miED}></Image>
+      <Text style={styles.titulo}>Mi Edificio</Text>
       
-
-      <Boton 
+      <Boton
       text="Iniciar como administrador" 
       onPress={ () =>{
         navigation.navigate('InicioAdmin')
@@ -35,30 +34,24 @@ const Home =({navigation})=>{
   );
 }
 
-
-
-
 export default Home
 
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-
-  },
   logo: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 350,
-    height: 200
+    width: '70%',
+    height: '25%',
+    position: 'absolute',
+    top: '20%',
+    left:'15%'
 },
-image: {
-  justifyContent: "center",
-  resizeMode:"cover",
-  height:'100%'
-}
-
+  image: {
+    height:'100%',
+    alignItems: 'center',
+  },
+  titulo: {
+    position: 'absolute',
+    top: '45%',
+    color: 'blue',
+    fontSize: 20
+  },
 });
