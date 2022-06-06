@@ -1,13 +1,32 @@
 
-  import React from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
+  import React, {useState, useEffect} from 'react';
+import { StyleSheet, Text, View, Image, ImageBackground, FlatList} from 'react-native';
 import miED from "../assets/logoMI2.png";
 import fondoPag from "../assets/fondoInicio.jpg"
 import { useNavigation } from '@react-navigation/native';
 import BotonOne from "../components/BotonOne";
+import EdificiosListItem from "../components/EdificiosListItem"
+
+const EDIFICIOS_LIST = [
+{
+id:1,
+nombre: 'yatay 240'
+},
+{
+  id:2,
+  nombre: 'loyola 71'
+}
+]
+
+
+
 
 const InicioAdmin =({navigation})=>{
   
+  const [edificios, setEdificio] = useState(EDIFICIOS_LIST)
+
+  
+
   return (
     
     <View>
@@ -15,9 +34,16 @@ const InicioAdmin =({navigation})=>{
       <Image style={styles.logo} source={miED}></Image>
 
       <Text style={styles.titulo}>Bienvenido NombreAdmin</Text>
-      <Text style={styles.texto}>Ingresar a un edificio existente:</Text>
-      <Text style={styles.margen}>Dirección del Edificio 1:</Text>
-      <Text style={styles.margen2}>Dirección del Edificio 2:</Text>
+      
+      <FlatList 
+      data={edificios}
+      renderItem={({item}) => <EdificiosListItem edificio={item} />}
+      keyExtractor={item => item.id}
+      />
+      
+      
+      
+      
       <BotonOne
       text="Crear nuevo edificio" 
       onPress={ () =>{
@@ -31,7 +57,20 @@ const InicioAdmin =({navigation})=>{
   );
 }
 
+useEffect(function(){
+  async function fetchData(){
+const response = await fetch("https://pokeapi.co/api/v2/pokemon/ditto")
+const json= await response.json();
+setEdificio(json.ability)
+}
+fetchData();
+}
+)
+
 export default InicioAdmin
+ 
+
+
 
 const styles = StyleSheet.create({
   logo: {
