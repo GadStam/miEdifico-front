@@ -7,30 +7,21 @@ import { useNavigation } from '@react-navigation/native';
 import BotonOne from "../components/BotonOne";
 import EdificiosListItem from "../components/EdificiosListItem"
 
-const EDIFICIOS_LIST = [
-{
-id:1,
-nombre: 'yatay 240'
-},
-{
-  id:2,
-  nombre: 'loyola 71'
-}
-]
+
 
 
 
 
 const InicioAdmin =({navigation})=>{
   
-  const [edificios, setEdificio] = useState(EDIFICIOS_LIST)
+  const [edificios, setEdificio] = useState("https://www.breakingbadapi.com/api/characters/")
 
   useEffect(() => {
     fetchData()
   }, [])
   
   const fetchData = async() => {
-    const response = await fetch("https://www.breakingbadapi.com/api/characters/4")
+    const response = await fetch("https://www.breakingbadapi.com/api/characters/")
     const json= await response.json();
     console.log(json);
     setEdificio(json)
