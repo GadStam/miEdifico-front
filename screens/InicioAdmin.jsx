@@ -25,7 +25,16 @@ const InicioAdmin =({navigation})=>{
   
   const [edificios, setEdificio] = useState(EDIFICIOS_LIST)
 
+  useEffect(() => {
+    fetchData()
+  }, [])
   
+  const fetchData = async() => {
+    const response = await fetch("https://www.breakingbadapi.com/api/characters/4")
+    const json= await response.json();
+    console.log(json);
+    setEdificio(json)
+  }
 
   return (
     
@@ -41,7 +50,7 @@ const InicioAdmin =({navigation})=>{
       keyExtractor={item => item.id}
       />
       
-      
+     
       
       
       <BotonOne
@@ -57,15 +66,7 @@ const InicioAdmin =({navigation})=>{
   );
 }
 
-useEffect(function(){
-  async function fetchData(){
-const response = await fetch("https://pokeapi.co/api/v2/pokemon/ditto")
-const json= await response.json();
-setEdificio(json.ability)
-}
-fetchData();
-}
-)
+
 
 export default InicioAdmin
  
