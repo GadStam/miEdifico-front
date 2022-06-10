@@ -28,7 +28,9 @@ const style = StyleSheet.create({
 
     buttonText: {
         color: 'white',
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: 'Kanit-Medium',
+        fontSize: 15
     },
     button: {
         backgroundColor: '#5207f2',
@@ -36,7 +38,8 @@ const style = StyleSheet.create({
         borderColor: 'lightblue',
         borderRadius: 15,
         padding: 15,
-        marginTop:'135%',
+        marginTop:'10%',
+        marginBottom:'30%',
         width: '80%'
     },
 

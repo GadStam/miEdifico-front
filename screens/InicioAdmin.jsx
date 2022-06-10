@@ -34,21 +34,19 @@ const InicioAdmin =({navigation})=>{
       <Image style={styles.logo} source={miED}></Image>
 
       <Text style={styles.titulo}>Bienvenido NombreAdmin</Text>
+      <Text style={styles.texto}>Entrar a un edificio existente:</Text>
+      <FlatList
       
-      <FlatList 
-      data={edificios}
-      renderItem={({item}) => <EdificiosListItem edificio={item} />}
-      keyExtractor={item => item.id}
+        data={edificios}
+        renderItem={({item}) => <EdificiosListItem edificio={item} />}
+        keyExtractor={item => item.id}
       />
       
-     
-      
-      
       <BotonOne
-      text="Crear nuevo edificio" 
-      onPress={ () =>{
-        navigation.navigate('InicioAdmin')
-      }}
+        text="Crear nuevo edificio" 
+        onPress={ () =>{
+          navigation.navigate('CrearEdificio')
+        }}
       />
 
       </ImageBackground>
@@ -57,20 +55,13 @@ const InicioAdmin =({navigation})=>{
   );
 }
 
-
-
 export default InicioAdmin
- 
-
-
 
 const styles = StyleSheet.create({
   logo: {
     width: '70%',
     height: '25%',
-    position: 'absolute',
-    top: '20%',
-    left:'15%',
+    marginTop:100
   },
   image: {
     alignItems: 'center',
@@ -79,31 +70,16 @@ const styles = StyleSheet.create({
   },
   titulo: {
     textAlign: 'center',
-    position: 'absolute',
-    top: '45%',
-    left:'15%',
-    right: '15%',
+    marginBottom: 20,
     color: 'blue',
-    fontSize:20
+    fontSize:25,
+    fontFamily: 'Kanit-Regular'
   },
   texto: {
-    textAlign: 'left',
-    position: 'absolute',
-    fontSize: 20,
-    left: '15%',
-    top: '50%',
-    color: 'blue',
-  },
-  margen:{
-    position: 'absolute',
-    top: '57%',
-    fontWeight:'bold',
-    left: '15%',
-  },
-  margen2: {
-    position: 'absolute',
-    top: '62%',
-    fontWeight:'bold',
-    left: '15%',
+    fontSize:15,
+    color:'black',
+    marginBottom: 15,
+    alignContent:'flex-end'
+    
   }
 });

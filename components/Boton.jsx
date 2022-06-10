@@ -28,7 +28,9 @@ const style = StyleSheet.create({
 
     buttonText: {
         color: 'white',
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: 'Kanit-Medium',
+        fontSize: 15
     },
     button: {
         backgroundColor: '#5207f2',

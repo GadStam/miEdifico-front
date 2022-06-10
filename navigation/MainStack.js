@@ -6,7 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import InicioAdmin from '../screens/InicioAdmin'
 import InicioInquilino from '../screens/InicioInquilino'
-
+import CrearEdificio from '../screens/CrearEdificio'
 
 const Stack = createNativeStackNavigator()
 
@@ -27,6 +27,10 @@ return(
          <Stack.Screen
             name='InicioInquilino'
             component={ InicioInquilino }
+        />
+         <Stack.Screen
+            name='CrearEdificio'
+            component={ CrearEdificio }
         />
          
 

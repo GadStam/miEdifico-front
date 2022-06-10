@@ -4,16 +4,23 @@ import miED from "../assets/logoMI2.png";
 import fondoPag from "../assets/fondoInicio.jpg"
 import Boton from "../components/Boton";
 import { useNavigation } from '@react-navigation/native';
-
+import {
+  useFonts,
+  Kanit_200ExtraLight,
+} from '@expo-google-fonts/kanit';
  
+let kanitLoaded
+
 const Home =({navigation})=>{
-  
+ kanitLoaded = useFonts({
+    Kanit_200ExtraLight,
+  });
   return (
     
     <View>
       <ImageBackground source={fondoPag} style={styles.image}>
       <Image style={styles.logo} source={miED}></Image>
-      <Text style={styles.titulo}>Mi Edificio</Text>
+      <Text style={styles.titulo}>MI EDIFICIO</Text>
       
       <Boton
       text="Iniciar como administrador" 
@@ -52,6 +59,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '45%',
     color: 'blue',
-    fontSize: 20
+    fontSize: 30,
+    fontFamily: 'Kanit-Regular'
   },
 });
