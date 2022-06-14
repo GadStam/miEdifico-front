@@ -3,18 +3,16 @@ import { Text, View, StyleSheet} from 'react-native';
 
 
 export default function EdificiosListItem ({edificio}){
-    console.log(edificio)
-    return(
-<View>
-
-
-<Text style={styles.lista} >
-    Edificio:{edificio.name}
-
-</Text>
-
-</View>
-)
+    //console.log(edificio.Direccion)
+    return (
+    
+    <View>
+        <Text style={styles.lista} >
+            Edificio:{edificio.Direccion}
+        </Text>
+    </View>
+        
+    )
 }
 
 const styles = StyleSheet.create({

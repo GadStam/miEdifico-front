@@ -6,6 +6,7 @@ import fondoPag from "../assets/fondoInicio.jpg"
 import { useNavigation } from '@react-navigation/native';
 import BotonOne from "../components/BotonOne";
 import EdificiosListItem from "../components/EdificiosListItem"
+import axios from 'axios';
 
 
 
@@ -14,17 +15,18 @@ import EdificiosListItem from "../components/EdificiosListItem"
 
 const InicioAdmin =({navigation})=>{
   
-  const [edificios, setEdificio] = useState("https://www.breakingbadapi.com/api/characters/")
+  const [edificios, setEdificio] = useState([])
 
   useEffect(() => {
     fetchData()
   }, [])
   
   const fetchData = async() => {
-    const response = await fetch("https://www.breakingbadapi.com/api/characters/")
+    const response = await fetch("http://localhost:5000/edificios/?mail=VFiszer&contrase%C3%B1a=Eitan123")
     const json= await response.json();
     console.log(json);
-    setEdificio(json)
+    setEdificio([json])
+    //axios.post('/asdasd', {headers: {Authorization: 'Bearer <TOKEN>'}})
   }
 
   return (
@@ -35,13 +37,14 @@ const InicioAdmin =({navigation})=>{
 
       <Text style={styles.titulo}>Bienvenido NombreAdmin</Text>
       <Text style={styles.texto}>Entrar a un edificio existente:</Text>
+
       <FlatList
-      
         data={edificios}
-        renderItem={({item}) => <EdificiosListItem edificio={item} />}
-        keyExtractor={item => item.id}
+        renderItem={({item}) => <EdificiosListItem key={item.Id_Edificio} edificio={item} />}
+        keyExtractor={item => item.Id_Edificio}
       />
-      
+
+       
       <BotonOne
         text="Crear nuevo edificio" 
         onPress={ () =>{
