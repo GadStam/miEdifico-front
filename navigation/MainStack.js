@@ -7,6 +7,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import InicioAdmin from '../screens/InicioAdmin'
 import InicioInquilino from '../screens/InicioInquilino'
 import CrearEdificio from '../screens/CrearEdificio'
+import LogInAdministrador from '../screens/LogIn/LogInAdministrador'
+
+
 
 const Stack = createNativeStackNavigator()
 
@@ -31,6 +34,10 @@ return(
          <Stack.Screen
             name='CrearEdificio'
             component={ CrearEdificio }
+        />
+         <Stack.Screen
+            name='LogInAdministrador'
+            component={ LogInAdministrador }
         />
          
 
