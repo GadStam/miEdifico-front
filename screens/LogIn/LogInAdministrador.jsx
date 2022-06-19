@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, FlatList, TextInput} from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, FlatList, TextInput, TouchableOpacity} from 'react-native';
 import miED from "../../assets/logoMI2.png";
 import fondoPag from "../../assets/fondoInicio.jpg"
 import { useNavigation } from '@react-navigation/native';
@@ -13,21 +13,14 @@ import axios from 'axios';
 
 const LogInAdministrador =({navigation})=>{
   
-    const [data, setData] = useState({ 
-        usuario: undefined,
-        contrasena: undefined,
-      });
-    
-      const onChangeInput = (e, name) => {
-        setData({
-          ...data,
-          [name]: e.nativeEvent.text,
-        });
-      };
-    
-      const registrar = () => {
-        console.log(data);
-      };
+  constructor(props){
+    super(props);
+    this.state={
+      username='',
+      password=''
+    };
+   }
+   
  
 
   return (
@@ -42,29 +35,37 @@ const LogInAdministrador =({navigation})=>{
           style={styles.textInput}
           placeholder="usuario"
           name="usuario"
-          onChange={(e) => onChangeInput(e, "usuario")}
+         onChangeText={(text)=>{
+            this.setState({email:text});
+         }
+        }
         />
         <TextInput
           style={styles.textInput}
           placeholder="contraseña"
           name="contrasena"
-          onChange={(e) => onChangeInput(e, "contrasena")}
-        />
+          secureTextEntry={true}
+          onChangeText={(text)=>{
+            this.setState({password:text});
+         }
+        }
+        />       
+        <TouchableOpacity
+            text="Crear edificio" 
+            onPress={()=>{
+              axios.post('localhost:5000/login/user', {
+                username: this.state.email,
+                password: this.state.password
+              }).then(response=>{
+                  console.log(response.data);
+              }).catch(error=>{
+                console.log(error);
+            })
+            }}
+          />
 
-
-
-
-
-
-
-       
-<BotonOne
-        text="Crear edificio" 
-        onPress={registrar}
-      />
-
-      </ImageBackground>
-    </View>
+          </ImageBackground>
+        </View>
     
   );
 }
