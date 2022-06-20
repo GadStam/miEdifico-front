@@ -8,8 +8,7 @@ import InicioAdmin from '../screens/InicioAdmin'
 import InicioInquilino from '../screens/InicioInquilino'
 import CrearEdificio from '../screens/CrearEdificio'
 import LogInAdministrador from '../screens/LogIn/LogInAdministrador'
-
-
+import RegistroAdmin from '../screens/LogIn/RegistroAdmin';
 
 const Stack = createNativeStackNavigator()
 
@@ -17,8 +16,11 @@ const MainStack =()=>{
    
 return(
 <NavigationContainer>
-    <Stack.Navigator>
-
+    <Stack.Navigator
+    screenOptions={{
+        headerShown:false
+    }
+    }>
         <Stack.Screen
             name='Home'
             component={ Home }
@@ -35,19 +37,19 @@ return(
             name='CrearEdificio'
             component={ CrearEdificio }
         />
-         <Stack.Screen
+        <Stack.Screen
             name='LogInAdministrador'
             component={ LogInAdministrador }
         />
-         
+        <Stack.Screen
+            name='RegistroAdmin'
+            component={ RegistroAdmin }
+        />
 
     </Stack.Navigator>
 </NavigationContainer>
 
-
-)
-
-}
+)}
 
 export default MainStack
 
@@ -56,13 +58,9 @@ const style = StyleSheet.create({
         backgroundColor: 'green',
         marginBottom: 10,
         paddingHorizontal:20,
-        paddingHorizontal:10,
-
+        paddingHorizontal:10
     },
     buttonText:{
     color:'white'
     }
-
-
-
-    })
+})

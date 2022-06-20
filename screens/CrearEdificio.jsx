@@ -4,6 +4,8 @@ import miED from "../assets/logoMI2.png";
 import fondoPag from "../assets/fondoInicio.jpg"
 import { useNavigation } from '@react-navigation/native';
 import BotonOne from "../components/BotonOne";
+import Teclado from '../components/Teclado';
+import { AntDesign } from '@expo/vector-icons';
 import {
   useFonts,
   Kanit_200ExtraLight,
@@ -34,13 +36,20 @@ const Home =({navigation})=>{
     console.log(data);
   };
 
-
   return (
-    
-    <View>
+    <Teclado>
+    <View style={{height:900}}>
+   
       <ImageBackground source={fondoPag} style={styles.image}>
+      <AntDesign style={styles.flecha} name="left" size={15}/>
+      <Text style={styles.atras}
+          onPress={ () =>{
+            navigation.navigate('InicioAdmin')
+          }}> 
+          Volver atrás
+      </Text>
       <Image style={styles.logo} source={miED}></Image>
-      <Text style={styles.titulo}>MI EDIFICIO</Text>
+      <Text style={styles.titulo}>Nuevo Edificio</Text>
       
       <TextInput
           style={styles.textInput}
@@ -56,28 +65,26 @@ const Home =({navigation})=>{
         />
         <TextInput
           style={styles.textInput}
-          placeholder="ingrese el CUIT"
+          placeholder="Ingrese el CUIT"
           name="cuit"
           onChange={(e) => onChangeInput(e, "cuit")}
         />
         <TextInput
           style={styles.textInput}
-          placeholder="ingrese la clave Suterh"
+          placeholder="Ingrese la clave Suterh"
           name="claveSuterh"
           onChange={(e) => onChangeInput(e, "claveSuterh")}
         />
 
-
-     
         <BotonOne
         text="Crear edificio" 
         onPress={registrar}
-      />
-      
+        />
 
       </ImageBackground>
+      
     </View>
-    
+    </Teclado>
   );
 }
 
@@ -86,13 +93,12 @@ export default Home
 const styles = StyleSheet.create({
   logo: {
     width: '70%',
-    height: '25%',
-    marginTop:100
+    height: '22%',
+    marginTop:200
   },
   image: {
-    alignItems: 'center',
-    resizeMode:"cover",
-    height:'100%'
+    flex:1,
+    alignItems: 'center', 
   },
   titulo: {
     textAlign: 'center',
@@ -106,8 +112,20 @@ const styles = StyleSheet.create({
     padding: 15,
     width: "80%",
     borderRadius: 8,
-    backgroundColor: "#fff",
-    marginTop: 8,
-  
+    backgroundColor: "white",
+    marginTop: 10
   },
+  atras:{
+    position: 'absolute',
+    top:'7%',
+    left:'15%',
+    color: 'blue',
+    textDecorationLine:'underline'
+  },
+  flecha:{
+    position: 'absolute',
+    top:'7.3%',
+    left:'10%',
+    color:"blue"
+  }
 });
