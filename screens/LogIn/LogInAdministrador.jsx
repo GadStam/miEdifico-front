@@ -8,12 +8,12 @@ import axios from 'axios';
 import Teclado from '../../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
 
-const token = "http://localhost:5000/token"
+//llave
 
 const axiosClient = axios.create({
   baseURL: "http://localhost:5000/",
   headers: {
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer `
   }
 });
 
