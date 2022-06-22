@@ -8,6 +8,25 @@ import axios from 'axios';
 import Teclado from '../../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
 
+const token = "http://localhost:5000/token"
+
+const axiosClient = axios.create({
+  baseURL: "http://localhost:5000/",
+  headers: {
+      Authorization: `Bearer ${token}`
+  }
+});
+
+export const postUser = async (email, password) => {
+  return axiosClient.post('login/',  {email, password})
+      .then(res => {
+          if (res.status < 300) return res.data;
+          else console.log(`Response with status code ${res.status}`);
+      })
+      .catch(err => {
+          console.log(err);
+      })
+}
 
 const LogInAdministrador =({navigation})=>{
 
@@ -35,7 +54,7 @@ const LogInAdministrador =({navigation})=>{
             placeholder="Usuario"
             name="usuario"
             onChangeText={(text)=>{
-                this.setState({email:text});
+                this.setState({...user, email:text});
             }
           }
           />
@@ -46,7 +65,7 @@ const LogInAdministrador =({navigation})=>{
             name="contrasena"
             secureTextEntry={true}
             onChangeText={(text)=>{
-              this.setState({password:text});
+              this.setState({...user,password:text});
           }
           }
           />   
@@ -55,14 +74,7 @@ const LogInAdministrador =({navigation})=>{
             text="Iniciar Sesion" 
             onPress={ () =>{
               navigation.navigate('InicioAdmin')
-              /*axios.post('localhost:5000/login/user', {
-                username: this.state.email,
-                password: this.state.password
-              }).then(response=>{
-                  console.log(response.data);
-              }).catch(error=>{
-                console.log(error);
-            })*/
+              postUser(email, password);
             }}
             />
             
