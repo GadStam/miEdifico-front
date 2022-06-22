@@ -29,6 +29,7 @@ export const getUser = async (email, password) => {
 }
 
 const LogInAdministrador =({navigation})=>{
+  const [user, setUser] = useState(0);
 
   return (
     <Teclado>
@@ -54,7 +55,7 @@ const LogInAdministrador =({navigation})=>{
             placeholder="Usuario"
             name="usuario"
             onChangeText={(text)=>{
-                this.setState({...user, email:text});
+              setUser({...user, email:text});
             }
           }
           />
@@ -65,7 +66,7 @@ const LogInAdministrador =({navigation})=>{
             name="contrasena"
             secureTextEntry={true}
             onChangeText={(text)=>{
-              this.setState({...user,password:text});
+              setUser({...user, password:text});
           }
           }
           />   
@@ -73,8 +74,9 @@ const LogInAdministrador =({navigation})=>{
           <BotonOne
             text="Iniciar Sesion" 
             onPress={ () =>{
-              navigation.navigate('InicioAdmin')
-              getUser(email, password);
+             
+
+              getUser(user.email, user.password);
             }}
             />
             
