@@ -8,17 +8,17 @@ import axios from 'axios';
 import Teclado from '../../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
 
-//llave
+const token = "auth/logIn"
 
 const axiosClient = axios.create({
   baseURL: "http://localhost:5000/",
   headers: {
-      Authorization: `Bearer `
+      Authorization: `Bearer ${token}`
   }
 });
 
-export const postUser = async (email, password) => {
-  return axiosClient.post('login/',  {email, password})
+export const getUser = async (email, password) => {
+  return axiosClient.get(`edifcios/?mail=${email}&contraseña=${password}`)
       .then(res => {
           if (res.status < 300) return res.data;
           else console.log(`Response with status code ${res.status}`);
@@ -74,7 +74,7 @@ const LogInAdministrador =({navigation})=>{
             text="Iniciar Sesion" 
             onPress={ () =>{
               navigation.navigate('InicioAdmin')
-              postUser(email, password);
+              getUser(email, password);
             }}
             />
             
