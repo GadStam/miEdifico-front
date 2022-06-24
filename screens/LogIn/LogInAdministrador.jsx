@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, FlatList, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 import miED from "../../assets/logoMI2.png";
 import fondoPag from "../../assets/fondoInicio.jpg"
@@ -7,34 +7,22 @@ import BotonOne from "../../components/BotonOne";
 import axios from 'axios';
 import Teclado from '../../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
+import { AuthContext } from '../../context/AuthContext';
 
-const token = "auth/logIn"
 
-const axiosClient = axios.create({
-  baseURL: "http://localhost:5000/",
-  headers: {
-      Authorization: `Bearer ${token}`
-  }
-});
-
-export const getUser = async (email, password) => {
-  return axiosClient.get(`edifcios/?mail=${email}&contraseña=${password}`)
-      .then(res => {
-          if (res.status < 300) return res.data;
-          else console.log(`Response with status code ${res.status}`);
-      })
-      .catch(err => {
-          console.log(err);
-      })
-}
 
 const LogInAdministrador =({navigation})=>{
-  const [user, setUser] = useState(0);
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+  const {isLoading, login}= useContext(AuthContext);
+
+
+
 
   return (
     <Teclado>
     <View style={{height:900}}>
-    
+    <Spinner visible= {isLoading}/>
         <ImageBackground source={fondoPag} style={styles.image}>
         <AntDesign style={styles.flecha} name="left" size={15}/>
         <Text style={styles.atras}
@@ -49,35 +37,32 @@ const LogInAdministrador =({navigation})=>{
   
         <Text style={styles.titulo}>Inicio de sesión</Text>
         
+        <Text>{val} </Text>
+
+
+
         <TextInput
             style={styles.textInput}
             
             placeholder="Usuario"
             name="usuario"
-            onChangeText={(text)=>{
-              setUser({...user, email:text});
-            }
-          }
+            value={email}
+            onChangeText={text => setEmail(text) }
+          
           />
           
           <TextInput
             style={styles.textInput}
             placeholder="Contraseña"
             name="contrasena"
+            value={password}
             secureTextEntry={true}
-            onChangeText={(text)=>{
-              setUser({...user, password:text});
-          }
-          }
+            onChangeText={text => setPassword(text) }
           />   
           
           <BotonOne
             text="Iniciar Sesion" 
-            onPress={ () =>{
-             
-
-              getUser(user.email, user.password);
-            }}
+            onPress={ () =>{login(email, password)}}
             />
             
             <Text style={styles.texto}
