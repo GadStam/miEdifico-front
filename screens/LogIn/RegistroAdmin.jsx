@@ -38,7 +38,6 @@ const RegistroAdmin =({navigation})=>{
             placeholder="Nombre"
             name="Nombre"
             value={nombre}
-            secureTextEntry={true}
             onChangeText={text => setNombre(text) }
           />   
 

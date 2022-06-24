@@ -30,7 +30,7 @@ const style = StyleSheet.create({
         color: 'white',
         textAlign: 'center',
         fontFamily: 'Kanit-Medium',
-        fontSize: 15
+        fontSize: 18
     },
     button: {
         backgroundColor: '#5207f2',

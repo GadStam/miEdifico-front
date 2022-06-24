@@ -86,16 +86,17 @@ const styles = StyleSheet.create({
   },
   titulo: {
     textAlign: 'center',
-    marginBottom: 20,
+    marginBottom: 15,
     color: 'blue',
     fontSize:25,
     fontFamily: 'Kanit-Regular'
   },
   texto: {
-    fontSize:15,
-    color:'black',
+    fontSize:18,
+    color:'blue',
     marginBottom: 15,
-    alignContent:'flex-end'
+    alignContent:'flex-end',
+    fontFamily: 'Kanit-Regular'
   },
   atras:{
     position: 'absolute',
