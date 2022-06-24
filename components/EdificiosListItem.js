@@ -1,14 +1,13 @@
 import React from 'react';
 import { Text, View, StyleSheet} from 'react-native';
 
-
 export default function EdificiosListItem ({edificio}){
     //console.log(edificio.Direccion)
     return (
     
     <View>
         <Text style={styles.lista} >
-            Edificio:{edificio.Direccion}
+            Edificio: {edificio.name}
         </Text>
     </View>
         
@@ -17,9 +16,14 @@ export default function EdificiosListItem ({edificio}){
 
 const styles = StyleSheet.create({
     lista: {
-        color:'black',
-        marginTop: 30,
-        justifyContent:'center'
-
+        color:'white',
+        justifyContent:'center',
+        fontFamily: 'Kanit-Regular',
+        borderWidth: 1,
+        borderColor: "lightblue",
+        padding: 10,
+        backgroundColor: "#5207f2",
+        marginTop: 15,
+        marginBottom: -5
     }
     });

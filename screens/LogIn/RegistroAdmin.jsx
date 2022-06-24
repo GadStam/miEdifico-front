@@ -11,21 +11,15 @@ import { AuthContext } from '../../context/AuthContext';
 import { registerAsset } from 'react-native-web/dist/cjs/modules/AssetRegistry';
 import Spinner from 'react-native-loading-spinner-overlay/lib';
 
-
-
 const RegistroAdmin =({navigation})=>{
   const [nombre, setNombre] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
-  const {isLoading, register}= useContext(AuthContext);
-
-
-
 
   return (
     <Teclado>
     <View style={{height:900}}>
-    <Spinner visible= {isLoading}/>
+
         <ImageBackground source={fondoPag} style={styles.image}>
         <AntDesign style={styles.flecha} name="left" size={15}/>
         <Text style={styles.atras}
@@ -36,13 +30,9 @@ const RegistroAdmin =({navigation})=>{
         </Text>
         
         <Image style={styles.logo} source={miED}></Image>
-        
   
-        <Text style={styles.titulo}>Inicio de sesión</Text>
+        <Text style={styles.titulo}>Registro</Text>
         
-        <Text>{val} </Text>
-
-
         <TextInput
             style={styles.textInput}
             placeholder="Nombre"
@@ -74,11 +64,8 @@ const RegistroAdmin =({navigation})=>{
           <BotonOne
             text="Registrarse" 
             title="register"
-            onPress={ () =>{register(nombre, email, password)}}
             />
-            
-            
-            
+                
             </ImageBackground>
            
         </View>

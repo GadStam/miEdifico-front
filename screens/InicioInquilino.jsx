@@ -27,6 +27,7 @@ const InicioInquilino =({navigation})=>{
             style={styles.textInput}
             placeholder="Ingrese el código de un departamento"
             name="codigo"
+            keyboardType= "numeric"
           />
           
       <BotonOne

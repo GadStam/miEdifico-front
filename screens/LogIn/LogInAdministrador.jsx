@@ -9,20 +9,14 @@ import Teclado from '../../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
 import { AuthContext } from '../../context/AuthContext';
 
-
-
 const LogInAdministrador =({navigation})=>{
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
-  const {isLoading, login}= useContext(AuthContext);
-
-
-
 
   return (
     <Teclado>
     <View style={{height:900}}>
-    <Spinner visible= {isLoading}/>
+  
         <ImageBackground source={fondoPag} style={styles.image}>
         <AntDesign style={styles.flecha} name="left" size={15}/>
         <Text style={styles.atras}
@@ -34,13 +28,8 @@ const LogInAdministrador =({navigation})=>{
         
         <Image style={styles.logo} source={miED}></Image>
         
-  
         <Text style={styles.titulo}>Inicio de sesión</Text>
         
-        <Text>{val} </Text>
-
-
-
         <TextInput
             style={styles.textInput}
             
@@ -62,7 +51,9 @@ const LogInAdministrador =({navigation})=>{
           
           <BotonOne
             text="Iniciar Sesion" 
-            onPress={ () =>{login(email, password)}}
+            onPress={ () =>{
+              navigation.navigate('InicioAdmin')
+            }}
             />
             
             <Text style={styles.texto}

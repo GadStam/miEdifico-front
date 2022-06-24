@@ -12,6 +12,7 @@ const InicioAdmin =({navigation})=>{
   
   const [edificio, setEdificio] = useState();
   const [text, setText] = useState("")
+  const [nombreAdmin, setNombreAdmin] = useState("");
 
     //axios.post('/asdasd', {headers: {Authorization: 'Bearer <TOKEN>'}})
 
@@ -21,13 +22,20 @@ const InicioAdmin =({navigation})=>{
 
     useEffect(() => {
       axios
-          .get("http://localhost:5000/edificios/?mail=VFiszer&contrase%C3%B1a=Eitan123")
+          .get("https://www.breakingbadapi.com/api/characters/")
           .then((response) => {
-            console.log(response.data)
+            //console.log(response.data)
               setEdificio(response.data);
           });
     }, [])
-
+    useEffect(() => {
+      axios
+          .get("https://www.breakingbadapi.com/api/characters/1")
+          .then((response) => {
+            console.log(response.data[0].name)
+              setNombreAdmin(response.data[0].name);
+          });
+    }, [])
   return (
     
     <View>
@@ -41,14 +49,16 @@ const InicioAdmin =({navigation})=>{
       </Text>
       <Image style={styles.logo} source={miED}></Image>
 
-      <Text style={styles.titulo}>Bienvenido NombreAdmin</Text>
+      <Text style={styles.titulo}>Bienvenido {nombreAdmin}</Text>
       <Text style={styles.texto}>Entrar a un edificio existente:</Text>
-      {
-        edificio &&
-        edificio.map(edi => {
-          return <Text key={edi.Id_Edificio}>{edi.Direccion}</Text>
-        })
-      }     
+      
+      <FlatList
+        data={edificio}
+        renderItem={({item}) => <EdificiosListItem key={item.Id_Edificio} edificio={item} />}
+        keyExtractor={item => item.name}
+      />
+
+  
       <BotonOne
         text="Crear nuevo edificio" 
         onPress={ () =>{

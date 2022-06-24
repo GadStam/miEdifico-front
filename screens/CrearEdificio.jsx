@@ -62,18 +62,21 @@ const Home =({navigation})=>{
           placeholder="Ingrese año de construccion"
           name="añoConstruccion"
           onChange={(e) => onChangeInput(e, "añoConstruccion")}
+          keyboardType= "numeric"
         />
         <TextInput
           style={styles.textInput}
           placeholder="Ingrese el CUIT"
           name="cuit"
           onChange={(e) => onChangeInput(e, "cuit")}
+          keyboardType= "numeric"
         />
         <TextInput
           style={styles.textInput}
           placeholder="Ingrese la clave Suterh"
           name="claveSuterh"
           onChange={(e) => onChangeInput(e, "claveSuterh")}
+          keyboardType= "numeric"
         />
 
         <BotonOne
