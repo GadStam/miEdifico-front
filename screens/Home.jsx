@@ -17,7 +17,7 @@ const Home =({navigation})=>{
   });
   return (
     
-    <View style>
+    <View>
       
       <ImageBackground source={fondoPag} style={styles.image}>
       <Image style={styles.logo} source={miED}></Image>

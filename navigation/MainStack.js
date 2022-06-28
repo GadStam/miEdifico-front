@@ -12,7 +12,8 @@ import RegistroAdmin from '../screens/LogIn/RegistroAdmin';
 
 const Stack = createNativeStackNavigator()
 
-const MainStack =()=>{
+const MainStack =(props)=>{
+    const {foo, gola, chau} = props
    
 return(
 <NavigationContainer>

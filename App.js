@@ -30,7 +30,7 @@ export default function App() {
   return (
     
    
-    <MainStack />
+    <MainStack foo="string" hola="" chau={{asdasd}} />
  
   );
 }

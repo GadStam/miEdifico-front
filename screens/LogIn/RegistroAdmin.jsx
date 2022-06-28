@@ -11,8 +11,12 @@ import { AuthContext } from '../../context/AuthContext';
 import { registerAsset } from 'react-native-web/dist/cjs/modules/AssetRegistry';
 import Spinner from 'react-native-loading-spinner-overlay/lib';
 
-const RegistroAdmin =({navigation})=>{
+
+
+const RegistroAdmin =(props)=>{
+  const {navigation, register, value, user} = props
   const [nombre, setNombre] = useState(null);
+  const [apellido, setApellido] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
 
@@ -40,6 +44,13 @@ const RegistroAdmin =({navigation})=>{
             value={nombre}
             onChangeText={text => setNombre(text) }
           />   
+          <TextInput
+            style={styles.textInput}
+            placeholder="Apellido"
+            name="Apellido"
+            value={apellido}
+            onChangeText={text => setApellido(text) }
+          /> 
 
         <TextInput
             style={styles.textInput}
