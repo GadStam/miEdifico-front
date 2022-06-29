@@ -7,7 +7,7 @@ import BotonOne from "../../components/BotonOne";
 import axios from 'axios';
 import Teclado from '../../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
-import { AuthContext } from '../../context/AuthContext';
+
 import { registerAsset } from 'react-native-web/dist/cjs/modules/AssetRegistry';
 import Spinner from 'react-native-loading-spinner-overlay/lib';
 
@@ -53,14 +53,14 @@ const RegistroAdmin =(props)=>{
             style={styles.textInput}
             placeholder="Nombre"
             name="Nombre"
-            value={nombre}
+            value={userState.nombre}
             onChangeText={text => setUser({...userState, nombre: text}) }
           />   
           <TextInput
             style={styles.textInput}
             placeholder="Apellido"
             name="Apellido"
-            value={apellido}
+            value={userState.apellido}
             onChangeText={text => setUser({...userState, apellido: text}) }
           /> 
 
@@ -68,7 +68,7 @@ const RegistroAdmin =(props)=>{
             style={styles.textInput}
             placeholder="Usuario"
             name="usuario"
-            value={email}
+            value={userState.email}
             onChangeText={text => setUser({...userState, email: text}) }
           
           />
@@ -77,7 +77,7 @@ const RegistroAdmin =(props)=>{
             style={styles.textInput}
             placeholder="Contraseña"
             name="contrasena"
-            value={contraseña}
+            value={userState.contraseña}
             secureTextEntry={true}
             onChangeText={text => setUser({...userState, contraseña: text}) }
           />   

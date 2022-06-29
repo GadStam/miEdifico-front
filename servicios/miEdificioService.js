@@ -1,6 +1,6 @@
 import AxiosClient from './miEdificioClient';
 import React, {useState, useEffect, useContext} from 'react';
-import { AuthContext } from '../../context/AuthContext';
+
 import { registerAsset } from 'react-native-web/dist/cjs/modules/AssetRegistry';
 import Spinner from 'react-native-loading-spinner-overlay/lib';
 

@@ -7,7 +7,7 @@ import BotonOne from "../../components/BotonOne";
 import axios from 'axios';
 import Teclado from '../../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
-import { AuthContext } from '../../context/AuthContext';
+
 import {register, login} from '../../servicios/miEdificioService.js';
 
 const LogInAdministrador =({navigation})=>{
@@ -52,7 +52,7 @@ const LogInAdministrador =({navigation})=>{
             
             placeholder="Usuario"
             name="usuario"
-            value={email}
+            value={userState.email}
             onChangeText={text => setUser({...userState, email: text}) }
           
           />
@@ -61,7 +61,7 @@ const LogInAdministrador =({navigation})=>{
             style={styles.textInput}
             placeholder="Contraseña"
             name="contrasena"
-            value={contraseña}
+            value={userState.contraseña}
             secureTextEntry={true}
             onChangeText={text => setUser({...userState, contraseña: text})}
           />   
