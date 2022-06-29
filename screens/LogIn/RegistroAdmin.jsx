@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, FlatList, TextInput, TouchableOpacity, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, FlatList, TextInput, TouchableOpacity, ScrollView, Alert} from 'react-native';
 import miED from "../../assets/logoMI2.png";
 import fondoPag from "../../assets/fondoInicio.jpg"
 import { useNavigation } from '@react-navigation/native';
@@ -11,19 +11,26 @@ import { AuthContext } from '../../context/AuthContext';
 import { registerAsset } from 'react-native-web/dist/cjs/modules/AssetRegistry';
 import Spinner from 'react-native-loading-spinner-overlay/lib';
 
-import {register, login} from '../servicios/auth.js';
-
-
+import {register, login} from '../../servicios/miEdificioService.js';
 
 const RegistroAdmin =(props)=>{
-  const {navigation, register, value, user} = props
+  const {navigation, value, user} = props
 
-  const [userState, setUser] = useState({
+  const [userState] = useState({
     nombre: '',
     apellido: '',
     email: '',
-    password: '',
+    contraseña: '',
+    telefono: null,
   });
+
+  const onRegisterPress = async (e) => {
+    if (!userState.nombre || !userState.apellido || !userState.email|| !userState.contraseña || !userState.telefono){
+      Alert.alert("Por favor ingresar todos los datos")
+    } else {
+      await register(userState)
+    }
+  }
 
   return (
     <Teclado>
@@ -59,7 +66,6 @@ const RegistroAdmin =(props)=>{
 
         <TextInput
             style={styles.textInput}
-            
             placeholder="Usuario"
             name="usuario"
             value={email}
@@ -71,15 +77,15 @@ const RegistroAdmin =(props)=>{
             style={styles.textInput}
             placeholder="Contraseña"
             name="contrasena"
-            value={password}
+            value={contraseña}
             secureTextEntry={true}
-            onChangeText={text => setUser({...userState, password: text}) }
+            onChangeText={text => setUser({...userState, contraseña: text}) }
           />   
           
           <BotonOne
             text="Registrarse" 
             title="register"
-            onPress={async (e) => await register(userState, setUserState)}
+            onPress={onRegisterPress}
             />
                 
             </ImageBackground>

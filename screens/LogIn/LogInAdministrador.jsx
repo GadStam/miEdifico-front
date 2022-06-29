@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, FlatList, TextInput, TouchableOpacity, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, FlatList, TextInput, TouchableOpacity, ScrollView, Alert} from 'react-native';
 import miED from "../../assets/logoMI2.png";
 import fondoPag from "../../assets/fondoInicio.jpg"
 import { useNavigation } from '@react-navigation/native';
@@ -8,10 +8,27 @@ import axios from 'axios';
 import Teclado from '../../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
 import { AuthContext } from '../../context/AuthContext';
+import {register, login} from '../../servicios/miEdificioService.js';
 
 const LogInAdministrador =({navigation})=>{
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  
+  const [userState] = useState({
+    email: '',
+    contraseña: '',
+  });
+
+  const onLogInPress = async (e) => {
+    if (!userState.email|| !userState.contraseña){
+      Alert.alert("Por favor ingresar todos los datos")
+    } else {
+      login(userState).then(() => {
+        navigation.navigate('InicioAdmin')
+      })
+      .catch(() => {
+      Alert.alert("Datos incorrectos")
+      });
+    }
+  }
 
   return (
     <Teclado>
@@ -36,7 +53,7 @@ const LogInAdministrador =({navigation})=>{
             placeholder="Usuario"
             name="usuario"
             value={email}
-            onChangeText={text => setEmail(text) }
+            onChangeText={text => setUser({...userState, email: text}) }
           
           />
           
@@ -44,16 +61,15 @@ const LogInAdministrador =({navigation})=>{
             style={styles.textInput}
             placeholder="Contraseña"
             name="contrasena"
-            value={password}
+            value={contraseña}
             secureTextEntry={true}
-            onChangeText={text => setPassword(text) }
+            onChangeText={text => setUser({...userState, contraseña: text})}
           />   
           
           <BotonOne
-            text="Iniciar Sesion" 
-            onPress={ () =>{
-              navigation.navigate('InicioAdmin')
-            }}
+            text="Iniciar Sesion"
+            title="Iniciar Sesion"
+            onPress={onLogInPress}
             />
             
             <Text style={styles.texto}
