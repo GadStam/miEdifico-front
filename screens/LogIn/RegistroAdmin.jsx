@@ -11,14 +11,19 @@ import { AuthContext } from '../../context/AuthContext';
 import { registerAsset } from 'react-native-web/dist/cjs/modules/AssetRegistry';
 import Spinner from 'react-native-loading-spinner-overlay/lib';
 
+import {register, login} from '../servicios/auth.js';
+
 
 
 const RegistroAdmin =(props)=>{
   const {navigation, register, value, user} = props
-  const [nombre, setNombre] = useState(null);
-  const [apellido, setApellido] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+
+  const [userState, setUser] = useState({
+    nombre: '',
+    apellido: '',
+    email: '',
+    password: '',
+  });
 
   return (
     <Teclado>
@@ -42,14 +47,14 @@ const RegistroAdmin =(props)=>{
             placeholder="Nombre"
             name="Nombre"
             value={nombre}
-            onChangeText={text => setNombre(text) }
+            onChangeText={text => setUser({...userState, nombre: text}) }
           />   
           <TextInput
             style={styles.textInput}
             placeholder="Apellido"
             name="Apellido"
             value={apellido}
-            onChangeText={text => setApellido(text) }
+            onChangeText={text => setUser({...userState, apellido: text}) }
           /> 
 
         <TextInput
@@ -58,7 +63,7 @@ const RegistroAdmin =(props)=>{
             placeholder="Usuario"
             name="usuario"
             value={email}
-            onChangeText={text => setEmail(text) }
+            onChangeText={text => setUser({...userState, email: text}) }
           
           />
           
@@ -68,12 +73,13 @@ const RegistroAdmin =(props)=>{
             name="contrasena"
             value={password}
             secureTextEntry={true}
-            onChangeText={text => setPassword(text) }
+            onChangeText={text => setUser({...userState, password: text}) }
           />   
           
           <BotonOne
             text="Registrarse" 
             title="register"
+            onPress={async (e) => await register(userState, setUserState)}
             />
                 
             </ImageBackground>

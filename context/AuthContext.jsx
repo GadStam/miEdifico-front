@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const register = (nombre, apellido, email, password) => {
+/*   const register = (nombre, apellido, email, password) => {
     setIsLoading(true);
     axios
       .post(`${BASE_URL}/administradores`, {
@@ -55,7 +55,9 @@ export const AuthProvider = ({ children }) => {
         console.log(`logIn error ${e}`);
         setIsLoading(false);
       });
-  };
+  }; */
+
+
 
   const childProps = {
     login,
