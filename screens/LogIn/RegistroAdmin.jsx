@@ -16,7 +16,7 @@ import {register, login} from '../../servicios/miEdificioService.js';
 const RegistroAdmin =(props)=>{
   const {navigation, value, user} = props
 
-  const [userState] = useState({
+  const [userState, setUseState] = useState({
     nombre: '',
     apellido: '',
     email: '',
@@ -54,14 +54,14 @@ const RegistroAdmin =(props)=>{
             placeholder="Nombre"
             name="Nombre"
             value={userState.nombre}
-            onChangeText={text => setUser({...userState, nombre: text}) }
+            onChangeText={text => setUseState({...userState, nombre: text}) }
           />   
           <TextInput
             style={styles.textInput}
             placeholder="Apellido"
             name="Apellido"
             value={userState.apellido}
-            onChangeText={text => setUser({...userState, apellido: text}) }
+            onChangeText={text => setUseState({...userState, apellido: text}) }
           /> 
 
         <TextInput
@@ -69,7 +69,16 @@ const RegistroAdmin =(props)=>{
             placeholder="Usuario"
             name="usuario"
             value={userState.email}
-            onChangeText={text => setUser({...userState, email: text}) }
+            onChangeText={text => setUseState({...userState, email: text}) }
+          
+          />
+
+        <TextInput
+            style={styles.textInput}
+            placeholder="Telefono"
+            name="telefono"
+            value={userState.telefono}
+            onChangeText={text => setUseState({...userState, telefono: text}) }
           
           />
           
@@ -79,7 +88,7 @@ const RegistroAdmin =(props)=>{
             name="contrasena"
             value={userState.contraseña}
             secureTextEntry={true}
-            onChangeText={text => setUser({...userState, contraseña: text}) }
+            onChangeText={text => setUseState({...userState, contraseña: text}) }
           />   
           
           <BotonOne
