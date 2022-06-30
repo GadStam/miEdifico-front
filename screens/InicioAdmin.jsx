@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, FlatList} from 'react-native';
-import miED from "../assets/logoMI2.png";
+import miED from "../assets/logoMI.png";
 import fondoPag from "../assets/fondoInicio.jpg"
 import { useNavigation } from '@react-navigation/native';
 import BotonOne from "../components/BotonOne";

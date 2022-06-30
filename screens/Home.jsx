@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
-import miED from "../assets/logoMI2.png";
+import miED from "../assets/logoMI.png";
 import fondoPag from "../assets/fondoInicio.jpg"
 import Boton from "../components/BotonDoble";
 import { useNavigation } from '@react-navigation/native';

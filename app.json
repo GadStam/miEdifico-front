@@ -4,10 +4,10 @@
     "slug": "myapp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logoMI2.png",
+    "icon": "./assets/logoMI.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/logoMI2.png",
+      "image": "./assets/logoMI.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,12 +22,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logoMI2.png",
+        "foregroundImage": "./assets/logoMI.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/logoMI2.png"
+      "favicon": "./assets/logoMI.png"
     }
   }
 }

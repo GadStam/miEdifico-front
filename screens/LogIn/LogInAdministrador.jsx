@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, FlatList, TextInput, TouchableOpacity, ScrollView, Alert} from 'react-native';
-import miED from "../../assets/logoMI2.png";
+import miED from "../../assets/logoMI.png";
 import fondoPag from "../../assets/fondoInicio.jpg"
 import { useNavigation } from '@react-navigation/native';
 import BotonOne from "../../components/BotonOne";
@@ -50,7 +50,7 @@ const LogInAdministrador =({navigation})=>{
         <TextInput
             style={styles.textInput}
             
-            placeholder="Usuario"
+            placeholder="Ingrese su usuario"
             name="usuario"
             value={userState.email}
             onChangeText={text => setUser({...userState, email: text}) }
@@ -59,7 +59,7 @@ const LogInAdministrador =({navigation})=>{
           
           <TextInput
             style={styles.textInput}
-            placeholder="Contraseña"
+            placeholder="Ingrese su contraseña"
             name="contrasena"
             value={userState.contraseña}
             secureTextEntry={true}

@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, TextInput} from 'react-native';
-import miED from "../assets/logoMI2.png";
+import miED from "../assets/logoMI.png";
 import fondoPag from "../assets/fondoInicio.jpg"
 import { useNavigation } from '@react-navigation/native';
 import BotonOne from "../components/BotonOne";
@@ -78,7 +78,7 @@ const Home =({navigation})=>{
           onChange={(e) => onChangeInput(e, "claveSuterh")}
           keyboardType= "numeric"
         />
-
+        <Text style={styles.titulo}>¿Qué espacios comúnes tiene el edificio?</Text>
         <BotonOne
         text="Crear edificio" 
         onPress={registrar}
