@@ -57,7 +57,6 @@ const InicioAdmin =({navigation})=>{
         renderItem={({item}) => <EdificiosListItem key={item.Id_Edificio} edificio={item} />}
         keyExtractor={item => item.name}
       />
-
   
       <BotonOne
         text="Crear nuevo edificio" 

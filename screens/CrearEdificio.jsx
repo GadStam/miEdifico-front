@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import BotonOne from "../components/BotonOne";
 import Teclado from '../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
+import SelectList from 'react-native-dropdown-select-list'
 import {
   useFonts,
   Kanit_200ExtraLight,
@@ -36,9 +37,15 @@ const Home =({navigation})=>{
     console.log(data);
   };
 
+  const [selected, setSelected] = React.useState("");
+  const prueba = [
+    {key:'1',value:'Jammu & Kashmir'},
+    {key:'2',value:'Himachal Pradesh'},
+    {key:'3',value:'West Bengal'},
+    ];
   return (
     <Teclado>
-    <View style={{height:900}}>
+    <View style={{height:1000}}>
    
       <ImageBackground source={fondoPag} style={styles.image}>
       <AntDesign style={styles.flecha} name="left" size={15}/>
@@ -78,7 +85,36 @@ const Home =({navigation})=>{
           onChange={(e) => onChangeInput(e, "claveSuterh")}
           keyboardType= "numeric"
         />
-        <Text style={styles.titulo}>¿Qué espacios comúnes tiene el edificio?</Text>
+          <View style={{width:"80%"}}>
+          <SelectList
+            data={prueba}
+            setSelected={setSelected} 
+            placeholder="¿Qué espacios comúnes tiene el edificio?"
+            boxStyles={{
+              borderWidth: 1,
+              borderColor: "black",
+              padding: 15,
+              borderRadius: 8,
+              backgroundColor: "white",
+              marginTop: 10,
+              alignItems:"center"
+            }}
+            
+            inputStyles={{
+              marginTop:5,
+              marginBottom:5
+            }}
+            dropdownStyles={{
+              borderWidth: 1,
+              borderRadius: 8,
+              backgroundColor: "white",
+              marginTop: 10,
+              borderColor: "black",
+            }}
+            
+            maxHeight={150}
+            />
+          </View>
         <BotonOne
         text="Crear edificio" 
         onPress={registrar}
@@ -97,7 +133,7 @@ const styles = StyleSheet.create({
   logo: {
     width: '70%',
     height: '22%',
-    marginTop:200
+    marginTop:115
   },
   image: {
     flex:1,
@@ -130,5 +166,5 @@ const styles = StyleSheet.create({
     top:'7.3%',
     left:'10%',
     color:"blue"
-  }
+  },
 });

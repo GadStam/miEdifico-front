@@ -22,13 +22,13 @@ const RegistroAdmin =(props)=>{
     Nombre: '',
     Apellido: '',
     Mail: '',
-    //Telefono: null,
+    Telefono: null,
     Contraseña: '',
    
   });
 
   const onRegisterPress = async (e) => {
-    if (!userState.Nombre || !userState.Apellido || !userState.Mail|| !userState.Contraseña || !useContraConf.confirmarContraseña /*|| !userState.Telefono*/){
+    if (!userState.Nombre || !userState.Apellido || !userState.Mail|| !userState.Contraseña || !useContraConf.confirmarContraseña || !userState.Telefono){
       Alert.alert("Por favor ingresar todos los datos")
     } else if (userState.Contraseña != useContraConf.confirmarContraseña) {
       Alert.alert("Las contraseñas no coinciden")
@@ -41,7 +41,7 @@ const RegistroAdmin =(props)=>{
 
   return (
     <Teclado>
-    <View style={{height:950}}>
+    <View style={{height:900}}>
 
         <ImageBackground source={fondoPag} style={styles.image}>
         <AntDesign style={styles.flecha} name="left" size={15}/>
@@ -58,29 +58,37 @@ const RegistroAdmin =(props)=>{
         
         <TextInput
             style={styles.textInput}
-            placeholder="Ingrese su Nombre"
+            placeholder="Ingrese su nombre"
             name="Nombre"
             value={userState.Nombre}
             onChangeText={text => setUserState({...userState, Nombre: text}) }
           />   
           <TextInput
             style={styles.textInput}
-            placeholder="Ingrese su Apellido"
+            placeholder="Ingrese su apellido"
             name="Apellido"
             value={userState.Apellido}
             onChangeText={text => setUserState({...userState, Apellido: text}) }
           /> 
           <TextInput
             style={styles.textInput}
-            placeholder="Ingrese su Mail"
+            placeholder="Ingrese su mail"
             name="Mail"
             value={userState.Mail}
             onChangeText={text => setUserState({...userState, Mail: text}) }
           />
-         
           <TextInput
             style={styles.textInput}
-            placeholder="Ingrese su Contraseña"
+            placeholder="Ingrese su telefono"
+            name="Telefono"
+            value={userState.Telefono}
+            keyboardType= "numeric"
+            onChangeText={number => setUserState({...userState, Telefono: number}) }
+          
+          />
+          <TextInput
+            style={styles.textInput}
+            placeholder="Ingrese su contraseña"
             name="Contraseña"
             value={userState.Contraseña}
             secureTextEntry={true}
@@ -98,7 +106,11 @@ const RegistroAdmin =(props)=>{
           <BotonOne
             text="Registrarse" 
             title="register"
-            onPress={onRegisterPress}
+            /*onPress={onRegisterPress}*/
+          
+            onPress={ () =>{
+              navigation.navigate('CrearEdificio')
+            }}
             />
             </ImageBackground>
            
@@ -113,7 +125,7 @@ const styles = StyleSheet.create({
   logo: {
     width: '70%',
     height: '22%',
-    marginTop: 130
+    marginTop: 115
   },
   image: {
     alignItems: 'center',
