@@ -15,30 +15,33 @@ import {register, login} from '../../servicios/miEdificioService.js';
 
 const RegistroAdmin =(props)=>{
   const {navigation, value, user} = props
-
-  const [userState] = useState({
-    nombre: '',
-    apellido: '',
-    email: '',
-    telefono: null,
-    contraseña: '',
-    confirmarContraseña: ''
+  const [useContraConf, setContraConf] = useState({
+    confirmarContraseña: '',
+  });
+  const [userState, setUserState] = useState({
+    Nombre: '',
+    Apellido: '',
+    Mail: '',
+    //Telefono: null,
+    Contraseña: '',
+   
   });
 
   const onRegisterPress = async (e) => {
-    if (!userState.nombre || !userState.apellido || !userState.email|| !userState.contraseña || !userState.confirmarContraseña || !userState.telefono){
+    if (!userState.Nombre || !userState.Apellido || !userState.Mail|| !userState.Contraseña || !useContraConf.confirmarContraseña /*|| !userState.Telefono*/){
       Alert.alert("Por favor ingresar todos los datos")
-    } else if (userState.contraseña != userState.confirmarContraseña) {
+    } else if (userState.Contraseña != useContraConf.confirmarContraseña) {
       Alert.alert("Las contraseñas no coinciden")
     }
     else {
+      console.log(userState)
       await register(userState)
     }
   }
 
   return (
     <Teclado>
-    <View style={{height:900}}>
+    <View style={{height:950}}>
 
         <ImageBackground source={fondoPag} style={styles.image}>
         <AntDesign style={styles.flecha} name="left" size={15}/>
@@ -55,49 +58,41 @@ const RegistroAdmin =(props)=>{
         
         <TextInput
             style={styles.textInput}
-            placeholder="Ingrese su nombre"
+            placeholder="Ingrese su Nombre"
             name="Nombre"
-            value={userState.nombre}
-            onChangeText={text => setUser({...userState, nombre: text}) }
+            value={userState.Nombre}
+            onChangeText={text => setUserState({...userState, Nombre: text}) }
           />   
           <TextInput
             style={styles.textInput}
-            placeholder="Ingrese su apellido"
+            placeholder="Ingrese su Apellido"
             name="Apellido"
-            value={userState.apellido}
-            onChangeText={text => setUser({...userState, apellido: text}) }
+            value={userState.Apellido}
+            onChangeText={text => setUserState({...userState, Apellido: text}) }
           /> 
           <TextInput
             style={styles.textInput}
-            placeholder="Ingrese su email"
-            name="email"
-            value={userState.email}
-            onChangeText={text => setUser({...userState, email: text}) }
+            placeholder="Ingrese su Mail"
+            name="Mail"
+            value={userState.Mail}
+            onChangeText={text => setUserState({...userState, Mail: text}) }
           />
+         
           <TextInput
             style={styles.textInput}
-            placeholder="Ingrese su telefono"
-            name="telefono"
-            value={userState.email}
-            keyboardType= "numeric"
-            onChangeText={number => setUser({...userState, telefono: number}) }
-          
-          />
-          <TextInput
-            style={styles.textInput}
-            placeholder="Ingrese su contraseña"
-            name="contrasena"
-            value={userState.contraseña}
+            placeholder="Ingrese su Contraseña"
+            name="Contraseña"
+            value={userState.Contraseña}
             secureTextEntry={true}
-            onChangeText={text => setUser({...userState, contraseña: text}) }
+            onChangeText={text => setUserState({...userState, Contraseña: text}) }
           />   
           <TextInput
             style={styles.textInput}
             placeholder="Ingrese nuevamente la contraseña"
             name="confirmarContrasena"
-            value={userState.confirmarContraseña}
+            value={useContraConf.confirmarContraseña}
             secureTextEntry={true}
-            onChangeText={text => setUser({...userState, confirmarContraseña: text}) }
+            onChangeText={text => setContraConf({...useContraConf, confirmarContraseña: text}) }
           />  
           
           <BotonOne
@@ -105,7 +100,6 @@ const RegistroAdmin =(props)=>{
             title="register"
             onPress={onRegisterPress}
             />
-                
             </ImageBackground>
            
         </View>
@@ -119,7 +113,7 @@ const styles = StyleSheet.create({
   logo: {
     width: '70%',
     height: '22%',
-    marginTop: 200
+    marginTop: 130
   },
   image: {
     alignItems: 'center',

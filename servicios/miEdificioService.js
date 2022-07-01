@@ -5,24 +5,21 @@ import { registerAsset } from 'react-native-web/dist/cjs/modules/AssetRegistry';
 import Spinner from 'react-native-loading-spinner-overlay/lib';
 
 export const register = async (userState) => {
-    setLoading(true);
-    AxiosClient
+  console.log(userState);  
+  AxiosClient
       .post(`/administradores`, {
         ...userState
       })
       .then((res) => {
         let userInfo = res.status;
-        setLoading(false);
         console.log(userInfo);
       })
       .catch((e) => {
-        console.log(`register error ${e}`);
-        setLoading(false);
+        console.log(`register error`, e.response);
       });
   };
 
   export const login = (userState) => {
-    setLoading(true);
     AxiosClient
       .post(`/logIn`, {
         ...userState
@@ -31,11 +28,9 @@ export const register = async (userState) => {
         let token = res.data.token;
         setUserInfo(userInfo);
         AsyncStorage.setItem("userInfo", JSON.stringify(userInfo));
-        setLoading(false);
         console.log(userInfo);
       })
       .catch((e) => {
         console.log(`logIn error ${e}`);
-        setLoading(false);
       });
   };

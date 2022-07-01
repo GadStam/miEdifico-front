@@ -12,13 +12,13 @@ import {register, login} from '../../servicios/miEdificioService.js';
 
 const LogInAdministrador =({navigation})=>{
   
-  const [userState] = useState({
-    email: '',
-    contraseña: '',
+  const [userState, setUserState] = useState({
+    Mail: '',
+    Contraseña: '',
   });
 
   const onLogInPress = async (e) => {
-    if (!userState.email|| !userState.contraseña){
+    if (!userState.Mail|| !userState.Contraseña){
       Alert.alert("Por favor ingresar todos los datos")
     } else {
       login(userState).then(() => {
@@ -52,18 +52,18 @@ const LogInAdministrador =({navigation})=>{
             
             placeholder="Ingrese su usuario"
             name="usuario"
-            value={userState.email}
-            onChangeText={text => setUser({...userState, email: text}) }
+            value={userState.Mail}
+            onChangeText={text => setUserState({...userState, Mail: text}) }
           
           />
           
           <TextInput
             style={styles.textInput}
-            placeholder="Ingrese su contraseña"
+            placeholder="Ingrese su Contraseña"
             name="contrasena"
-            value={userState.contraseña}
+            value={userState.Contraseña}
             secureTextEntry={true}
-            onChangeText={text => setUser({...userState, contraseña: text})}
+            onChangeText={text => setUserState({...userState, Contraseña: text})}
           />   
           
           <BotonOne
