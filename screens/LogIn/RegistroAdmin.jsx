@@ -106,7 +106,11 @@ const RegistroAdmin =(props)=>{
           <BotonOne
             text="Registrarse" 
             title="register"
-            /*onPress={onRegisterPress}*/
+            onPress={onRegisterPress}
+            />
+            <BotonOne
+            text="Registrarse" 
+            title="register"
           
             onPress={ () =>{
               navigation.navigate('CrearEdificio')
