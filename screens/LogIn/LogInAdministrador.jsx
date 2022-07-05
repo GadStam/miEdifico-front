@@ -18,9 +18,12 @@ const LogInAdministrador =({navigation})=>{
   });
 
   const onLogInPress = async (e) => {
+    console.log("hola")
     if (!userState.Mail|| !userState.Contraseña){
+      console.log("hhh")
       Alert.alert("Por favor ingresar todos los datos")
     } else {
+      console.log("a")
       login(userState).then(() => {
         navigation.navigate('InicioAdmin')
       })
