@@ -11,12 +11,12 @@ import { AntDesign } from '@expo/vector-icons';
 const InicioAdmin =({navigation})=>{
   
   const [edificio, setEdificio] = useState();
-  const [text, setText] = useState("")
+  /*/const [text, setText] = useState("")/*/
   const [nombreAdmin, setNombreAdmin] = useState("");
 
     //axios.post('/asdasd', {headers: {Authorization: 'Bearer <TOKEN>'}})
 
-    useEffect(() => {
+    /*/useEffect(() => {
       console.log('text', text)
     },[text])
 
@@ -35,7 +35,7 @@ const InicioAdmin =({navigation})=>{
             console.log(response.data[0].name)
               setNombreAdmin(response.data[0].name);
           });
-    }, [])
+    }, [])/*/
   return (
     
     <View>

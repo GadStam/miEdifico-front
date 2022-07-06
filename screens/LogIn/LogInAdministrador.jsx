@@ -18,16 +18,17 @@ const LogInAdministrador =({navigation})=>{
   });
 
   const onLogInPress = async (e) => {
-    console.log("hola")
+    
     if (!userState.Mail|| !userState.Contraseña){
       console.log("hhh")
       Alert.alert("Por favor ingresar todos los datos")
     } else {
-      console.log("a")
-      login(userState).then(() => {
+      await login(userState).then(() => {
+        console.log("entro")
         navigation.navigate('InicioAdmin')
       })
       .catch(() => {
+        console.log("no entro")
       Alert.alert("Datos incorrectos")
       });
     }

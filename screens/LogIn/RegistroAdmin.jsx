@@ -39,6 +39,7 @@ const RegistroAdmin =(props)=>{
         navigation.navigate('LogInAdministrador')
       })
       .catch(() => {
+      
       Alert.alert("Datos incorrectos")
       });
     }
