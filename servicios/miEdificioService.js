@@ -12,7 +12,6 @@ export const register = async (userState) => {
       })
       .then((res) => {
         let userInfo = res.status;
-        navigation.navigate('/screens/LogIn/LogInAdministrador')
       })
       .catch((e) => {
         console.log(`register error`, e.response);

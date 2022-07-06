@@ -35,9 +35,16 @@ const RegistroAdmin =(props)=>{
     }
     else {
       console.log(userState)
-      await register(userState)
+      await register(userState).then(() => {
+        navigation.navigate('LogInAdministrador')
+      })
+      .catch(() => {
+      Alert.alert("Datos incorrectos")
+      });
     }
   }
+
+  
 
   return (
     <Teclado>
