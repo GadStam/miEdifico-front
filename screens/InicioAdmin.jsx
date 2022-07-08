@@ -8,34 +8,29 @@ import EdificiosListItem from "../components/EdificiosListItem"
 import axios from 'axios';
 import { AntDesign } from '@expo/vector-icons';
 
+import {register, traerEdficios} from '../../servicios/miEdificioService.js';
+
+
 const InicioAdmin =({navigation})=>{
   
   const [edificio, setEdificio] = useState();
   /*/const [text, setText] = useState("")/*/
   const [nombreAdmin, setNombreAdmin] = useState("");
+  const [nombreEdificio, setNombreEdificio] = useState("");
 
-    //axios.post('/asdasd', {headers: {Authorization: 'Bearer <TOKEN>'}})
+  const getNombreAdmin = async (e) => {
+    await traerNombre().then(() => {
+      setNombreAdmin(response.data);
+}
+}
 
-    /*/useEffect(() => {
-      console.log('text', text)
-    },[text])
 
-    useEffect(() => {
-      axios
-          .get("https://www.breakingbadapi.com/api/characters/")
-          .then((response) => {
-            //console.log(response.data)
-              setEdificio(response.data);
-          });
-    }, [])
-    useEffect(() => {
-      axios
-          .get("https://www.breakingbadapi.com/api/characters/1")
-          .then((response) => {
-            console.log(response.data[0].name)
-              setNombreAdmin(response.data[0].name);
-          });
-    }, [])/*/
+  const getEdificioAdmin = async (e) => {
+      await traerEdficios().then(() => {
+        setNombreEdificio(response.data);
+  }
+  }
+
   return (
     
     <View>
@@ -55,7 +50,7 @@ const InicioAdmin =({navigation})=>{
       <FlatList
         data={edificio}
         renderItem={({item}) => <EdificiosListItem key={item.Id_Edificio} edificio={item} />}
-        keyExtractor={item => item.name}
+        keyExtractor={item => item.Direccion}
       />
   
       <BotonOne

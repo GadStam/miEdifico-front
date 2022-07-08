@@ -8,6 +8,7 @@ import axios from 'axios';
 import Teclado from '../../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
 
+
 import {register, login} from '../../servicios/miEdificioService.js';
 
 const LogInAdministrador =({navigation})=>{
@@ -24,7 +25,7 @@ const LogInAdministrador =({navigation})=>{
       Alert.alert("Por favor ingresar todos los datos")
     } else {
       await login(userState).then(() => {
-        console.log("entro")
+        
         navigation.navigate('InicioAdmin')
       })
       .catch(() => {
