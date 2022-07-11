@@ -31,7 +31,7 @@ export const login = async (userState) => {
     .post(`/administradores/logIn`, {
       ...userState
     })
-    .then((res) => {
+    .then(async(res) => {
       console.log(res.data);
       let userToken = res.data.token; // poner punto (nombe que viene del back)
       let userId = res.data.id

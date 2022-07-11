@@ -7,29 +7,39 @@ import BotonOne from "../components/BotonOne";
 import EdificiosListItem from "../components/EdificiosListItem"
 import axios from 'axios';
 import { AntDesign } from '@expo/vector-icons';
-
-import {register, traerEdficios} from '../../servicios/miEdificioService.js';
-
+import {traerNombre, traerEdficios} from '../servicios/misDepartamentosService.js';
+import AxiosClient from '../servicios/miEdificioClient'
 
 const InicioAdmin =({navigation})=>{
   
+
+
   const [edificio, setEdificio] = useState();
-  /*/const [text, setText] = useState("")/*/
   const [nombreAdmin, setNombreAdmin] = useState("");
-  const [nombreEdificio, setNombreEdificio] = useState("");
+  
+
+
 
   const getNombreAdmin = async (e) => {
-    await traerNombre().then(() => {
-      setNombreAdmin(response.data);
-}
+    await traerNombre().then((response) => {
+      setNombreAdmin(response.data[0].name);
+      
+})
 }
 
 
-  const getEdificioAdmin = async (e) => {
-      await traerEdficios().then(() => {
-        setNombreEdificio(response.data);
+  const getEdificioAdmin = async () => {
+      await traerEdficios().then((response) => {
+        setEdificio(response.data.direccion);
+  })
   }
-  }
+
+  useEffect(() => {
+    (async() =>{
+      await getEdificioAdmin()
+      await getNombreAdmin()
+    })()
+  },[])
 
   return (
     
@@ -44,13 +54,13 @@ const InicioAdmin =({navigation})=>{
       </Text>
       <Image style={styles.logo} source={miED}></Image>
 
-      <Text style={styles.titulo}>Bienvenido {nombreAdmin}</Text>
+      <Text style={styles.titulo}>{nombreAdmin && `Bienvenido ${nombreAdmin}`}</Text>
       <Text style={styles.texto}>Entrar a un edificio existente:</Text>
       
       <FlatList
         data={edificio}
         renderItem={({item}) => <EdificiosListItem key={item.Id_Edificio} edificio={item} />}
-        keyExtractor={item => item.Direccion}
+        keyExtractor={item => item.direccion}
       />
   
       <BotonOne

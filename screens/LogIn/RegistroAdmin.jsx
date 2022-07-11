@@ -19,18 +19,18 @@ const RegistroAdmin =(props)=>{
     confirmarContraseña: '',
   });
   const [userState, setUserState] = useState({
-    Nombre: '',
-    Apellido: '',
-    Mail: '',
-    Telefono: null,
-    Contraseña: '',
+    nombre: '',
+    apellido: '',
+    mail: '',
+    telefono: null,
+    contraseña: '',
    
   });
 
   const onRegisterPress = async (e) => {
-    if (!userState.Nombre || !userState.Apellido || !userState.Mail|| !userState.Contraseña || !useContraConf.confirmarContraseña || !userState.Telefono){
+    if (!userState.nombre || !userState.apellido || !userState.mail|| !userState.contraseña || !useContraConf.confirmarContraseña || !userState.telefono){
       Alert.alert("Por favor ingresar todos los datos")
-    } else if (userState.Contraseña != useContraConf.confirmarContraseña) {
+    } else if (userState.contraseña != useContraConf.confirmarContraseña) {
       Alert.alert("Las contraseñas no coinciden")
     }
     else {
@@ -69,21 +69,21 @@ const RegistroAdmin =(props)=>{
             placeholder="Ingrese su nombre"
             name="Nombre"
             value={userState.Nombre}
-            onChangeText={text => setUserState({...userState, Nombre: text}) }
+            onChangeText={text => setUserState({...userState, nombre: text}) }
           />   
           <TextInput
             style={styles.textInput}
             placeholder="Ingrese su apellido"
             name="Apellido"
             value={userState.Apellido}
-            onChangeText={text => setUserState({...userState, Apellido: text}) }
+            onChangeText={text => setUserState({...userState, apellido: text}) }
           /> 
           <TextInput
             style={styles.textInput}
             placeholder="Ingrese su mail"
             name="Mail"
             value={userState.Mail}
-            onChangeText={text => setUserState({...userState, Mail: text}) }
+            onChangeText={text => setUserState({...userState, mail: text}) }
           />
           <TextInput
             style={styles.textInput}
@@ -91,7 +91,7 @@ const RegistroAdmin =(props)=>{
             name="Telefono"
             value={userState.Telefono}
             keyboardType= "numeric"
-            onChangeText={number => setUserState({...userState, Telefono: number}) }
+            onChangeText={number => setUserState({...userState, telefono: number}) }
           
           />
           <TextInput
@@ -100,7 +100,7 @@ const RegistroAdmin =(props)=>{
             name="Contraseña"
             value={userState.Contraseña}
             secureTextEntry={true}
-            onChangeText={text => setUserState({...userState, Contraseña: text}) }
+            onChangeText={text => setUserState({...userState, contraseña: text}) }
           />   
           <TextInput
             style={styles.textInput}

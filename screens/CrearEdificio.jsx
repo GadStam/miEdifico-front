@@ -14,28 +14,20 @@ import {
  
 let kanitLoaded
 
-const Home =({navigation})=>{
+const CrearEdificio =({navigation})=>{
  kanitLoaded = useFonts({
     Kanit_200ExtraLight,
   });
 
-  const [data, setData] = useState({ 
+  
+  const [userState, setUserState] = useState({
     direccion: undefined,
     añoConstruccion: undefined,
     cuit: undefined,
     claveSuterh: undefined,
   });
 
-  const onChangeInput = (e, name) => {
-    setData({
-      ...data,
-      [name]: e.nativeEvent.text,
-    });
-  };
 
-  const registrar = () => {
-    console.log(data);
-  };
 
   const [selected, setSelected] = React.useState("");
   const prueba = [
@@ -62,27 +54,34 @@ const Home =({navigation})=>{
           style={styles.textInput}
           placeholder="Ingrese la direccion"
           name="direccion"
-          onChange={(e) => onChangeInput(e, "direccion")}
+          value={userState.direccion}
+          onChangeText={text => setUserState({...userState, direccion: text}) }
         />
+
+
         <TextInput
           style={styles.textInput}
           placeholder="Ingrese año de construccion"
           name="añoConstruccion"
-          onChange={(e) => onChangeInput(e, "añoConstruccion")}
+          value={userState.añoConstruccion}
+          onChangeText={text => setUserState({...userState, añoConstruccion: number}) }
           keyboardType= "numeric"
         />
+
         <TextInput
           style={styles.textInput}
           placeholder="Ingrese el CUIT"
           name="cuit"
-          onChange={(e) => onChangeInput(e, "cuit")}
+          value={userState.cuit}
+          onChangeText={text => setUserState({...userState, cuit: number}) }
           keyboardType= "numeric"
         />
         <TextInput
           style={styles.textInput}
           placeholder="Ingrese la clave Suterh"
           name="claveSuterh"
-          onChange={(e) => onChangeInput(e, "claveSuterh")}
+          value={userState.claveSuterh}
+          onChangeText={text => setUserState({...userState, claveSuterh: number}) }
           keyboardType= "numeric"
         />
           <View style={{width:"80%"}}>
@@ -114,7 +113,9 @@ const Home =({navigation})=>{
             
             maxHeight={150}
             />
+
           </View>
+
         <BotonOne
         text="Crear edificio" 
         onPress={registrar}
@@ -127,7 +128,7 @@ const Home =({navigation})=>{
   );
 }
 
-export default Home
+export default CrearEdificio
 
 const styles = StyleSheet.create({
   logo: {
