@@ -18,7 +18,7 @@ export const traerEdficios = async () => {
     console.log(tokenId)
     return AxiosClient
       .get(`/edificios/${id}`, {
-        headers: {'Authorization': 'Bearer: ' + tokenId}
+        headers: {'Authorization': 'Bearer ' + tokenId}
       })
       .then((res) => {
         let userInfo = res.data.Direccion;
@@ -35,7 +35,7 @@ export const traerEdficios = async () => {
     const id = await AsyncStorage.getItem('id')
     return AxiosClient
       .get(`/administradores/${id}`, {
-        headers: {'Authorization': 'Bearer: ' + tokenId}
+        headers: {'Authorization': 'Bearer ' + tokenId}
       })
       .then((res) => {
         let userInfo = res.data.Nombre;
