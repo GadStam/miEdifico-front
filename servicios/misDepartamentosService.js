@@ -14,6 +14,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const traerEdficios = async () => {
     const tokenId = await AsyncStorage.getItem('token') // trae del stoateg e l  token 
+    const id = await AsyncStorage.getItem('id')
+    console.log(tokenId)
     return AxiosClient
       .get(`/edificios/${id}`, {
         headers: {'Authorization': 'Bearer: ' + tokenId}
@@ -30,8 +32,9 @@ export const traerEdficios = async () => {
 
   export const traerNombre = async () => {
     const tokenId = await AsyncStorage.getItem('token') // trae del stoateg e l  token 
+    const id = await AsyncStorage.getItem('id')
     return AxiosClient
-      .get(`/edificios/${id}`, {
+      .get(`/administradores/${id}`, {
         headers: {'Authorization': 'Bearer: ' + tokenId}
       })
       .then((res) => {

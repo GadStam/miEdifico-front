@@ -24,14 +24,20 @@ const InicioAdmin =({navigation})=>{
     await traerNombre().then((response) => {
       setNombreAdmin(response.data[0].name);
       
-})
-}
+    }).catch(() => {
+      console.log("no hay nombre")
+      
+    });
+    }
 
 
   const getEdificioAdmin = async () => {
       await traerEdficios().then((response) => {
         setEdificio(response.data.direccion);
-  })
+  }).catch(() => {
+    console.log("no hay edificios")
+    
+  });
   }
 
   useEffect(() => {
@@ -39,7 +45,7 @@ const InicioAdmin =({navigation})=>{
       await getEdificioAdmin()
       await getNombreAdmin()
     })()
-  },[])
+  },[edificio])
 
   return (
     
