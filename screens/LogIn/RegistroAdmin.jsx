@@ -41,7 +41,12 @@ const RegistroAdmin =(props)=>{
       .catch(() => {
       
       Alert.alert("Datos incorrectos")
-      });
+      }); // Promise<String> Exception
+
+      /*
+        Register es una promesa propagada
+        Response va a ser del tipo de dato que se retorne en el response propagado
+      */
     }
   }
 

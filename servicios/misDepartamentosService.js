@@ -19,15 +19,30 @@ export const traerEdficios = async () => {
     return AxiosClient
       .get(`/edificios/${id}`, {
         headers: {'Authorization': 'Bearer ' + tokenId}
+      }).then((res) => { // si status code entre 200 y 299
+        const userInfo = res.data.Direccion;
+        return userInfo
       })
-      .then((res) => {
-        let userInfo = res.data.Direccion;
-      })
-      .catch((e) => {
-        console.log(`register error`, e.response);
-        throw "error" //propagar error
-      });
+      .catch((err) => { // status >= 300
+        console.log(`register error`, err.response);
+       
+        throw err //propagar error
+      }); // => Promise<AxiosResponse>
   };
+
+  /* response => AxiosResponse: {
+    status: number 200 y 299
+    data: any => el json del back
+  }
+    e => AxiosError: {
+      request: respuesta de error del back
+      status: number > 300
+    } 
+  
+    class BaseException: Exception {
+      messageCode: string //USER_NOT_FOUND
+    }
+  */
 
 
   export const traerNombre = async () => {
@@ -38,7 +53,8 @@ export const traerEdficios = async () => {
         headers: {'Authorization': 'Bearer ' + tokenId}
       })
       .then((res) => {
-        let userInfo = res.data.Nombre;
+        const userInfo = res.data.Nombre;
+        return userInfo
       })
       .catch((e) => {
         console.log(`register error`, e.response);

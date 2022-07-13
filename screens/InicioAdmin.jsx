@@ -22,8 +22,8 @@ const InicioAdmin =({navigation})=>{
 
   const getNombreAdmin = async (e) => {
     await traerNombre().then((response) => {
-      setNombreAdmin(response.data[0].name);
-      
+      setNombreAdmin(response);
+      console.log("hola", response)
     }).catch(() => {
       console.log("no hay nombre")
       
@@ -33,10 +33,10 @@ const InicioAdmin =({navigation})=>{
 
   const getEdificioAdmin = async () => {
       await traerEdficios().then((response) => {
-        setEdificio(response.data.direccion);
-  }).catch(() => {
+        setEdificio(response);
+  }).catch((error) => {
     console.log("no hay edificios")
-    
+    console.log(error)
   });
   }
 

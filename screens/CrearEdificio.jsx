@@ -28,6 +28,24 @@ const CrearEdificio =({navigation})=>{
   });
 
 
+  const onCreatePress = async (e) => {
+    if (!userState.direccion || !userState.añoConstruccion || !userState.cuit|| !userState.claveSuterh){
+      Alert.alert("Por favor ingresar todos los datos")
+    } else if (userState.contraseña != useContraConf.confirmarContraseña) {
+      Alert.alert("Las contraseñas no coinciden")
+    }
+    else {
+      console.log(userState)
+      await register(userState).then(() => {
+        navigation.navigate('LogInAdministrador')
+      })
+      .catch(() => {
+      
+      Alert.alert("Datos incorrectos")
+      });
+    }
+  }
+
 
   const [selected, setSelected] = React.useState("");
   const prueba = [
