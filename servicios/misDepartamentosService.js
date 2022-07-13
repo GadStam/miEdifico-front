@@ -20,7 +20,9 @@ export const traerEdficios = async () => {
       .get(`/edificios/${id}`, {
         headers: {'Authorization': 'Bearer ' + tokenId}
       }).then((res) => { // si status code entre 200 y 299
-        const userInfo = res.data.Direccion;
+
+        const userInfo = res.data;
+        console.log(res.data)
         return userInfo
       })
       .catch((err) => { // status >= 300
@@ -53,7 +55,9 @@ export const traerEdficios = async () => {
         headers: {'Authorization': 'Bearer ' + tokenId}
       })
       .then((res) => {
-        const userInfo = res.data.Nombre;
+        const userInfo = res.data[0].nombre;
+        console.log("hoda",res.data[0].nombre)
+        console.log(res.data)
         return userInfo
       })
       .catch((e) => {

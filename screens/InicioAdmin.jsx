@@ -23,7 +23,7 @@ const InicioAdmin =({navigation})=>{
   const getNombreAdmin = async (e) => {
     await traerNombre().then((response) => {
       setNombreAdmin(response);
-      console.log("hola", response)
+      console.log("la respuesta es", response)
     }).catch(() => {
       console.log("no hay nombre")
       
@@ -63,12 +63,21 @@ const InicioAdmin =({navigation})=>{
       <Text style={styles.titulo}>{nombreAdmin && `Bienvenido ${nombreAdmin}`}</Text>
       <Text style={styles.texto}>Entrar a un edificio existente:</Text>
       
+      {/*
       <FlatList
         data={edificio}
         renderItem={({item}) => <EdificiosListItem key={item.Id_Edificio} edificio={item} />}
         keyExtractor={item => item.direccion}
       />
-  
+      */}
+
+      <FlatList
+        keyExtractor={(item) => item.id}
+        data={edificio}
+        renderItem={({item}) =>(
+        <Text style={styles.lista}>{item.direccion}</Text>
+      )}
+      />
       <BotonOne
         text="Crear nuevo edificio" 
         onPress={ () =>{
