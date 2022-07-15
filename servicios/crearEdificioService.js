@@ -34,14 +34,12 @@ export const crearEdficiosAdmin = async (userState) => {
 
   export const traerEspcios = async () => {
     const tokenId = await AsyncStorage.getItem('token') // trae del stoateg e l  token 
-    const id = await AsyncStorage.getItem('id')
-    console.log(tokenId)
     return AxiosClient
-      .get(`/edificios/${id}`, {
+      .get(`/espacios`, {
         headers: {'Authorization': 'Bearer ' + tokenId}
       }).then((res) => { // si status code entre 200 y 299
 
-        const userInfo = res.data;
+        const userInfo = res.data.tipo_espacio;
         console.log(res.data)
         return userInfo
       })

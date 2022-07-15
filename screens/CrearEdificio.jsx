@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, TextInput} from 'react-native';
 import miED from "../assets/logoMI.png";
 import fondoPag from "../assets/fondoInicio.jpg"
@@ -7,7 +7,7 @@ import BotonOne from "../components/BotonOne";
 import Teclado from '../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
 import SelectList from 'react-native-dropdown-select-list'
-import {crearEdficiosAdmin} from '../servicios/crearEdificioService'
+import {crearEdficiosAdmin, traerEspcios} from '../servicios/crearEdificioService'
 import {
   useFonts,
   Kanit_200ExtraLight,
@@ -23,14 +23,39 @@ const CrearEdificio =({navigation})=>{
   
   const [userState, setUserState] = useState({
     direccion: undefined,
-    añoConstruccion: undefined,
+    año_construccion: undefined,
     cuit: undefined,
-    claveSuterh: undefined,
+    clave_suterh: undefined,
+    nro_encargado: undefined,
+    nro_emergencia: undefined,
+    id_espaciocc:undefined, 
   });
+
+  const [useOpciones, setOpciones] = useState({
+    espacios: []
+  });
+
+  useEffect(() => {
+    (async() =>{
+      await getEspaciosComunes()
+    })()
+  },[useOpciones])
+
+  const getEspaciosComunes = async (e) => {
+    await traerEspcios().then((response) => {
+      setOpciones(response);
+    }).catch(() => {
+      console.log("no hay nombre")
+    });
+    }
+
+
+
+
 
 
   const onCreatePress = async (e) => {
-    if (!userState.direccion || !userState.añoConstruccion || !userState.cuit|| !userState.claveSuterh){
+    if (!userState.direccion || !userState.año_construccion || !userState.cuit|| !userState.clave_suterh){
       Alert.alert("Por favor ingresar todos los datos")
     } 
     else {
@@ -45,11 +70,8 @@ const CrearEdificio =({navigation})=>{
   }
 
 
-  const [useOpciones, setOpciones] = useState({
-    espacios: []
-  });
 
-  
+
   return (
     <Teclado>
     <View style={{height:1000}}>
@@ -79,7 +101,7 @@ const CrearEdificio =({navigation})=>{
           placeholder="Ingrese año de construccion"
           name="añoConstruccion"
           value={userState.añoConstruccion}
-          onChangeText={text => setUserState({...userState, añoConstruccion: number}) }
+          onChangeText={text => setUserState({...userState, año_construccion: number}) }
           keyboardType= "numeric"
         />
 
@@ -96,16 +118,33 @@ const CrearEdificio =({navigation})=>{
           placeholder="Ingrese la clave Suterh"
           name="claveSuterh"
           value={userState.claveSuterh}
-          onChangeText={text => setUserState({...userState, claveSuterh: number}) }
+          onChangeText={text => setUserState({...userState, clave_suterh: number}) }
           keyboardType= "numeric"
         />
-          
-          
+
+        <TextInput
+          style={styles.textInput}
+          placeholder="Ingrese el numero de encargado"
+          name="nro_encargado"
+          value={userState.nro_encargado}
+          onChangeText={text => setUserState({...userState, nro_encargado: number}) }
+          keyboardType= "numeric"
+        />
+
+        <TextInput
+          style={styles.textInput}
+          placeholder="Ingrese el numero de emergencia"
+          name="nro_emergencia"
+          value={userState.nro_emergencia}
+          onChangeText={text => setUserState({...userState, nro_emergencia: number}) }
+          keyboardType= "numeric"
+        />
+
+        
           
           <View style={{width:"80%"}}>
           <SelectList
-            data={prueba}
-            setSelected={setSelected} 
+           
             placeholder="¿Qué espacios comúnes tiene el edificio?"
             boxStyles={{
               borderWidth: 1,
@@ -130,7 +169,11 @@ const CrearEdificio =({navigation})=>{
             }}
             
             maxHeight={150}
-            />
+            >
+                
+              {useOpciones.espacios.map(espacios => <option>{espacios.tipo_espacio}</option>)}
+      
+              </SelectList>
 
           </View>
 
