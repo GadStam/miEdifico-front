@@ -7,7 +7,7 @@ export default function EdificiosListItem ({edificio}){
     
     <View>
         <Text style={styles.lista} >
-            Edificio: {edificio.name}
+            {edificio.direccion}
         </Text>
     </View>
         
@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: "#5207f2",
         marginTop: 15,
-        marginBottom: -5
+        marginBottom: -5,
+        width: 250
     }
     });

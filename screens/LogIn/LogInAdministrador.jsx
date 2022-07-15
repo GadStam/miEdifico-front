@@ -7,12 +7,17 @@ import BotonOne from "../../components/BotonOne";
 import axios from 'axios';
 import Teclado from '../../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
-
+import Girador from '../../components/girador';
 
 import {register, login} from '../../servicios/miEdificioService.js';
+import { isLoaded } from 'expo-font';
+
+
+
+
 
 const LogInAdministrador =({navigation})=>{
-  
+  const [loaded, setLoaded] = useState(true)
   const [userState, setUserState] = useState({
     mail: '',
     contraseña: '',
@@ -24,8 +29,9 @@ const LogInAdministrador =({navigation})=>{
       console.log("hhh")
       Alert.alert("Por favor ingresar todos los datos")
     } else {
+      setLoaded(true)
       await login(userState).then(() => {
-        
+        setLoaded(false)
         navigation.navigate('InicioAdmin')
       })
       .catch(() => {
@@ -36,6 +42,8 @@ const LogInAdministrador =({navigation})=>{
   }
 
   return (
+    <>
+    {!loaded?  <Girador/>:
     <Teclado>
     <View style={{height:900}}>
   
@@ -87,6 +95,9 @@ const LogInAdministrador =({navigation})=>{
            
         </View>
         </Teclado>
+        }
+       </>
+        
   );
 }
 

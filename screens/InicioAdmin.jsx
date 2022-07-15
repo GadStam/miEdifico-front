@@ -63,21 +63,14 @@ const InicioAdmin =({navigation})=>{
       <Text style={styles.titulo}>{nombreAdmin && `Bienvenido ${nombreAdmin}`}</Text>
       <Text style={styles.texto}>Entrar a un edificio existente:</Text>
       
-      {/*
+      
       <FlatList
         data={edificio}
-        renderItem={({item}) => <EdificiosListItem key={item.Id_Edificio} edificio={item} />}
+        renderItem={({item}) => <EdificiosListItem key={item.direccion} edificio={item} />}
         keyExtractor={item => item.direccion}
       />
-      */}
+      
 
-      <FlatList
-        keyExtractor={(item) => item.id}
-        data={edificio}
-        renderItem={({item}) =>(
-        <Text style={styles.lista}>{item.direccion}</Text>
-      )}
-      />
       <BotonOne
         text="Crear nuevo edificio" 
         onPress={ () =>{

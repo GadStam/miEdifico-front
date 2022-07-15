@@ -7,6 +7,7 @@ import BotonOne from "../components/BotonOne";
 import Teclado from '../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
 import SelectList from 'react-native-dropdown-select-list'
+import {crearEdficiosAdmin} from '../servicios/crearEdificioService'
 import {
   useFonts,
   Kanit_200ExtraLight,
@@ -31,28 +32,24 @@ const CrearEdificio =({navigation})=>{
   const onCreatePress = async (e) => {
     if (!userState.direccion || !userState.añoConstruccion || !userState.cuit|| !userState.claveSuterh){
       Alert.alert("Por favor ingresar todos los datos")
-    } else if (userState.contraseña != useContraConf.confirmarContraseña) {
-      Alert.alert("Las contraseñas no coinciden")
-    }
+    } 
     else {
-      console.log(userState)
-      await register(userState).then(() => {
+      await crearEdficiosAdmin(userState).then(() => {
         navigation.navigate('LogInAdministrador')
       })
       .catch(() => {
       
-      Alert.alert("Datos incorrectos")
+      Alert.alert("Datos repetidos")
       });
     }
   }
 
 
-  const [selected, setSelected] = React.useState("");
-  const prueba = [
-    {key:'1',value:'Jammu & Kashmir'},
-    {key:'2',value:'Himachal Pradesh'},
-    {key:'3',value:'West Bengal'},
-    ];
+  const [useOpciones, setOpciones] = useState({
+    espacios: []
+  });
+
+  
   return (
     <Teclado>
     <View style={{height:1000}}>
@@ -102,6 +99,9 @@ const CrearEdificio =({navigation})=>{
           onChangeText={text => setUserState({...userState, claveSuterh: number}) }
           keyboardType= "numeric"
         />
+          
+          
+          
           <View style={{width:"80%"}}>
           <SelectList
             data={prueba}
@@ -136,7 +136,7 @@ const CrearEdificio =({navigation})=>{
 
         <BotonOne
         text="Crear edificio" 
-        onPress={registrar}
+        onPress={onCreatePress}
         />
 
       </ImageBackground>
