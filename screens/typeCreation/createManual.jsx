@@ -1,15 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, TextInput, Checkbox} from 'react-native';
-import miED from "../assets/logoMI.png";
-import SelectBox from 'react-native-multi-selectbox'
-import { xorBy } from 'lodash'
-import fondoPag from "../assets/fondoInicio.jpg"
+import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, TextInput} from 'react-native';
+import miED from "../../assets/logoMI.png";
+import fondoPag from "../../assets/fondoInicio.jpg"
 import { useNavigation } from '@react-navigation/native';
-import BotonOne from "../components/BotonOne";
-import Teclado from '../components/Teclado';
+import BotonOne from "../../components/BotonOne";
+import Teclado from '../../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
 import SelectList from 'react-native-dropdown-select-list'
-import {crearEdficiosAdmin, traerEspcios} from '../servicios/crearEdificioService'
+import {crearEdficiosAdmin, traerEspcios} from '../../servicios/crearEdificioService'
 import {
   useFonts,
   Kanit_200ExtraLight,
@@ -22,8 +20,7 @@ const CrearEdificio =({navigation})=>{
     Kanit_200ExtraLight,
   });
 
- 
-
+  
   const [userState, setUserState] = useState({
     direccion: '',
     año_construccion: '',
@@ -37,85 +34,6 @@ const CrearEdificio =({navigation})=>{
   const [useOpciones, setOpciones] = useState({
     espacios: []
   });
-
-
-
-
-
-  const K_OPTIONS = [
-    {
-      item: 'Juventus',
-      id: 'JUVE',
-    },
-    {
-      item: 'Real Madrid',
-      id: 'RM',
-    },
-    {
-      item: 'Barcelona',
-      id: 'BR',
-    },
-    {
-      item: 'PSG',
-      id: 'PSG',
-    },
-    {
-      item: 'FC Bayern Munich',
-      id: 'FBM',
-    },
-    {
-      item: 'Manchester United FC',
-      id: 'MUN',
-    },
-    {
-      item: 'Manchester City FC',
-      id: 'MCI',
-    },
-    {
-      item: 'Everton FC',
-      id: 'EVE',
-    },
-    {
-      item: 'Tottenham Hotspur FC',
-      id: 'TOT',
-    },
-    {
-      item: 'Chelsea FC',
-      id: 'CHE',
-    },
-    {
-      item: 'Liverpool FC',
-      id: 'LIV',
-    },
-    {
-      item: 'Arsenal FC',
-      id: 'ARS',
-    },
-  
-    {
-      item: 'Leicester City FC',
-      id: 'LEI',
-    },
-  ]
-
-  
-  const [selectedTeams, setSelectedTeams] = useState([])
-  
-
-  function onMultiChange() {
-    return (item) => setSelectedTeams(xorBy(selectedTeams, [item], 'id'))
-  }
-
-  
-
-
-
-
-
-
-
-
-
 
   useEffect(() => {
     (async() =>{
@@ -162,7 +80,7 @@ const CrearEdificio =({navigation})=>{
       <AntDesign style={styles.flecha} name="left" size={15}/>
       <Text style={styles.atras}
           onPress={ () =>{
-            navigation.navigate('Home')
+            navigation.navigate('InicioAdmin')
           }}> 
           Volver atrás
       </Text>
@@ -222,20 +140,7 @@ const CrearEdificio =({navigation})=>{
           keyboardType= "numeric"
         />
 
-        
-        
-          
-      <View style={{ height: 40 }} />
-      <Text style={{ fontSize: 20, paddingBottom: 10 }}>MultiSelect Demo</Text>
-      <SelectBox
-        label="Select multiple"
-        options={K_OPTIONS}
-        selectedValues={selectedTeams}
-        onMultiSelect={onMultiChange()}
-        onTapClose={onMultiChange()}
-        isMulti
-      />
-     
+
 
         <BotonOne
         text="Crear edificio" 

@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
 import miED from "../assets/logoMI.png";
 import fondoPag from "../assets/fondoInicio.jpg"
-import MultiSelect from 'react-native-multiple-select';
 import Boton from "../components/BotonDoble";
 import { useNavigation } from '@react-navigation/native';
 import {
@@ -22,16 +21,16 @@ const Home =({navigation})=>{
       
       <ImageBackground source={fondoPag} style={styles.image}>
       <Image style={styles.logo} source={miED}></Image>
-      <Text style={styles.titulo}>MI EDIFICIO</Text>
+      <Text style={styles.titulo}>CREAR EDIFICIO DE FORMA:</Text>
       
       <Boton
-      text="Ingresar como administrador" 
+      text="MANUAL" 
       onPress={ () =>{
         navigation.navigate('LogInAdministrador')
       }}
       />
      <Boton 
-      text="Ingresar como inquilino" 
+      text="AUTOMATICO" 
       onPress={ () =>{
         navigation.navigate('InicioInquilino')
       }}
