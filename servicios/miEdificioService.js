@@ -32,7 +32,6 @@ export const login = async (userState) => {
       ...userState
     })
     .then(async(res) => {
-      console.log(res.data);
       let userToken = res.data.token; // poner punto (nombe que viene del back)
       let userId = res.data.id
       const idValue = JSON.stringify(userId) // lo pasa a string

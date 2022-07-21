@@ -7,7 +7,7 @@ import BotonOne from "../../components/BotonOne";
 import Teclado from '../../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
 import SelectList from 'react-native-dropdown-select-list'
-import {crearEdficiosAdmin, traerEspcios} from '../../servicios/crearEdificioService'
+import {crearDepartamentos} from '../../servicios/createDepartamentos'
 import {
   useFonts,
   Kanit_200ExtraLight,
@@ -15,51 +15,27 @@ import {
  
 let kanitLoaded
 
-const CrearEdificio =({navigation})=>{
+const createAutomatic =({navigation})=>{
  kanitLoaded = useFonts({
     Kanit_200ExtraLight,
   });
 
   
   const [userState, setUserState] = useState({
-    direccion: '',
-    año_construccion: '',
-    cuit: null,
-    clave_suterh: null,
-    nro_encargado: null,
-    nro_emergencia: null,
-    id_espaciocc:1, 
+   
+    cant_pisos: null,
+    departamentosXpiso: null,
+
   });
 
-  const [useOpciones, setOpciones] = useState({
-    espacios: []
-  });
-
-  useEffect(() => {
-    (async() =>{
-      await getEspaciosComunes()
-    })()
-  },[])
-
-  const getEspaciosComunes = async (e) => {
-    await traerEspcios().then((response) => {
-      setOpciones(response);
-    }).catch(() => {
-      console.log("no hay nombre")
-    });
-    }
-
-
-
-
-
+ 
 
   const onCreatePress = async (e) => {
-    if (!userState.direccion || !userState.año_construccion || !userState.cuit|| !userState.clave_suterh){
+    if (!userState.cant_pisos || !userState.departamentosXpiso){
       Alert.alert("Por favor ingresar todos los datos")
     } 
     else {
-      await crearEdficiosAdmin(userState).then(() => {
+      await crearDepartamentos(userState).then(() => {
         navigation.navigate('selectAutoManual')
       })
       .catch(() => {
@@ -85,65 +61,32 @@ const CrearEdificio =({navigation})=>{
           Volver atrás
       </Text>
       <Image style={styles.logo} source={miED}></Image>
-      <Text style={styles.titulo}>Nuevo Edificio</Text>
+      <Text style={styles.titulo}>CREAR EDIFICIO AUTOMATICO</Text>
       
-      <TextInput
-          style={styles.textInput}
-          placeholder="Ingrese la direccion"
-          name="direccion"
-          value={userState.direccion}
-          onChangeText={text => setUserState({...userState, direccion: text}) }
-        />
-
 
         <TextInput
           style={styles.textInput}
-          placeholder="Ingrese año de construccion"
-          name="añoConstruccion"
-          value={userState.añoConstruccion}
-          onChangeText={number => setUserState({...userState, año_construccion: number}) }
+          placeholder="Ingrese la canstidad de pisos"
+          name="cant_pisos"
+          value={userState.cant_pisos}
+          onChangeText={number => setUserState({...userState, cant_pisos: number}) }
           keyboardType= "numeric"
         />
 
         <TextInput
           style={styles.textInput}
-          placeholder="Ingrese el CUIT"
-          name="cuit"
-          value={userState.cuit}
-          onChangeText={number => setUserState({...userState, cuit: number}) }
+          placeholder="Ingrese la cantidad de departamentos por piso"
+          name="departamentosXpiso"
+          value={userState.departamentosXpiso}
+          onChangeText={number => setUserState({...userState, departamentosXpiso: number}) }
           keyboardType= "numeric"
         />
-        <TextInput
-          style={styles.textInput}
-          placeholder="Ingrese la clave Suterh"
-          name="claveSuterh"
-          value={userState.claveSuterh}
-          onChangeText={number => setUserState({...userState, clave_suterh: number}) }
-          keyboardType= "numeric"
-        />
-
-        <TextInput
-          style={styles.textInput}
-          placeholder="Ingrese el numero de encargado"
-          name="nro_encargado"
-          value={userState.nro_encargado}
-          onChangeText={number => setUserState({...userState, nro_encargado: number}) }
-          keyboardType= "numeric"
-        />
-
-        <TextInput
-          style={styles.textInput}
-          placeholder="Ingrese el numero de emergencia"
-          name="nro_emergencia"
-          value={userState.nro_emergencia}
-          onChangeText={number => setUserState({...userState, nro_emergencia: number}) }
-          keyboardType= "numeric"
-        />
+       
 
 
 
         <BotonOne
-        text="Crear edificio" 
+        text="Siguiente" 
         onPress={onCreatePress}
         />
 
@@ -154,7 +97,7 @@ const CrearEdificio =({navigation})=>{
   );
 }
 
-export default CrearEdificio
+export default createAutomatic
 
 const styles = StyleSheet.create({
   logo: {

@@ -22,7 +22,7 @@ export const traerEdficios = async () => {
       }).then((res) => { // si status code entre 200 y 299
 
         const userInfo = res.data;
-        console.log(res.data)
+        
         return userInfo
       })
       .catch((err) => { // status >= 300

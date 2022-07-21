@@ -31,7 +31,7 @@ const CrearEdificio =({navigation})=>{
     clave_suterh: null,
     nro_encargado: null,
     nro_emergencia: null,
-    id_espaciocc:1, 
+    id_espaciocc:[1,2,3] 
   });
 
   const [useOpciones, setOpciones] = useState({
@@ -141,6 +141,7 @@ const CrearEdificio =({navigation})=>{
       Alert.alert("Por favor ingresar todos los datos")
     } 
     else {
+      console.log(userState)
       await crearEdficiosAdmin(userState).then(() => {
         navigation.navigate('selectAutoManual')
       })
