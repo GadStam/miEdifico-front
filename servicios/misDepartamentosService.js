@@ -56,7 +56,7 @@ export const traerEdficios = async () => {
       })
       .then((res) => {
         const userInfo = res.data[0].nombre;
-        console.log("hoda",res.data[0].nombre)
+        console.log("hola",res.data[0].nombre)
         console.log(res.data)
         return userInfo
       })

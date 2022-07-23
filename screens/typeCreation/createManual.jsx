@@ -15,7 +15,7 @@ import {
  
 let kanitLoaded
 
-const CrearEdificio =({navigation})=>{
+const CrearManual =({navigation})=>{
  kanitLoaded = useFonts({
     Kanit_200ExtraLight,
   });
@@ -154,7 +154,7 @@ const CrearEdificio =({navigation})=>{
   );
 }
 
-export default CrearEdificio
+export default CrearManual
 
 const styles = StyleSheet.create({
   logo: {

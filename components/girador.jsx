@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, ActivityIndicator } from 'react-native';
 
-const girador = () => {
+const Girador = () => {
 
 
     return (
@@ -13,7 +13,7 @@ const girador = () => {
     )
 }
 
-export default girador
+export default Girador
 
 
 const styles = StyleSheet.create({

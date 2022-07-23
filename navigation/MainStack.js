@@ -9,9 +9,9 @@ import InicioInquilino from '../screens/InicioInquilino'
 import CrearEdificio from '../screens/CrearEdificio'
 import LogInAdministrador from '../screens/LogIn/LogInAdministrador'
 import RegistroAdmin from '../screens/LogIn/RegistroAdmin';
-import selectAutoManual from '../screens/selectAutoManual'
-import createManual from '../screens/typeCreation/createManual'
-import createAutomatic from '../screens/typeCreation/createAutomatic'
+import selectAutoManual from '../screens/SelectAutoManual'
+import createManual from '../screens/typeCreation/CreateManual'
+import createAutomatic from '../screens/typeCreation/CreateAutomatic'
 const Stack = createNativeStackNavigator()
 
 const MainStack =()=>{

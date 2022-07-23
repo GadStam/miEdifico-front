@@ -11,7 +11,7 @@ import {
  
 let kanitLoaded
 
-const Home =({navigation})=>{
+const SelectAutoManual =({navigation})=>{
  kanitLoaded = useFonts({
     Kanit_200ExtraLight,
   });
@@ -42,7 +42,7 @@ const Home =({navigation})=>{
   );
 }
 
-export default Home
+export default SelectAutoManual
 
 const styles = StyleSheet.create({
   logo: {

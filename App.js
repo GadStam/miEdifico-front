@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
-import Girador from "./components/girador.jsx"
+import Girador from "./components/Girador.jsx"
 import MainStack from './navigation/MainStack';
 import * as Font from 'expo-font';
 

@@ -9,7 +9,8 @@ import BotonOne from "../components/BotonOne";
 import Teclado from '../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
 import SelectList from 'react-native-dropdown-select-list'
-import {crearEdficiosAdmin, traerEspcios} from '../servicios/crearEdificioService'
+import {crearEdficiosAdmin, traerEspacios} from '../servicios/crearEdificioService'
+import EspaciosListItem from "../components/EspaciosListItem"
 import {
   useFonts,
   Kanit_200ExtraLight,
@@ -22,6 +23,13 @@ const CrearEdificio =({navigation})=>{
     Kanit_200ExtraLight,
   });
 
+  const [selected, setSelected] = React.useState("");
+
+  const prueba = [
+    {key:'1',value:'Jammu & Kashmir'},
+    {key:'2',value:'Himachal Pradesh'},
+    {key:'3',value:'West Bengal'},
+    ];
  
 
   const [userState, setUserState] = useState({
@@ -31,18 +39,15 @@ const CrearEdificio =({navigation})=>{
     clave_suterh: null,
     nro_encargado: null,
     nro_emergencia: null,
-    id_espaciocc:[1,2,3] 
+    id_espaciocc:[] 
   });
 
-  const [useOpciones, setOpciones] = useState({
-    espacios: []
-  });
+  const [useOpciones, setOpciones] = useState();
 
+  //const [selected, setSelected] = React.useState("");
+ {/* 
 
-
-
-
-  const K_OPTIONS = [
+const K_OPTIONS = [
     {
       item: 'Juventus',
       id: 'JUVE',
@@ -97,6 +102,8 @@ const CrearEdificio =({navigation})=>{
       id: 'LEI',
     },
   ]
+*/}
+  
 
   
   const [selectedTeams, setSelectedTeams] = useState([])
@@ -107,16 +114,6 @@ const CrearEdificio =({navigation})=>{
   }
 
   
-
-
-
-
-
-
-
-
-
-
   useEffect(() => {
     (async() =>{
       await getEspaciosComunes()
@@ -124,14 +121,12 @@ const CrearEdificio =({navigation})=>{
   },[])
 
   const getEspaciosComunes = async (e) => {
-    await traerEspcios().then((response) => {
+    await traerEspacios().then((response) => {
       setOpciones(response);
     }).catch(() => {
       console.log("no hay nombre")
     });
     }
-
-
 
 
 
@@ -154,10 +149,9 @@ const CrearEdificio =({navigation})=>{
 
 
 
-
   return (
     <Teclado>
-    <View style={{height:1000}}>
+    <View style={{height:1200}}>
    
       <ImageBackground source={fondoPag} style={styles.image}>
       <AntDesign style={styles.flecha} name="left" size={15}/>
@@ -224,7 +218,7 @@ const CrearEdificio =({navigation})=>{
         />
 
         
-        
+       {/* 
           
       <View style={{ height: 40 }} />
       <Text style={{ fontSize: 20, paddingBottom: 10 }}>MultiSelect Demo</Text>
@@ -236,7 +230,40 @@ const CrearEdificio =({navigation})=>{
         onTapClose={onMultiChange()}
         isMulti
       />
-     
+        */}
+
+<View style={{width:"80%"}}>
+          <SelectList
+            data={useOpciones}
+            renderItem={({item}) => <EspaciosListItem key={item.tipo_espacio} useOpciones={item} />}
+            keyExtractor={item => item.tipo_espacio}
+            setSelected={selected} 
+            placeholder="¿Qué espacios comúnes tiene el edificio?"
+            boxStyles={{
+              borderWidth: 1,
+              borderColor: "black",
+              padding: 15,
+              borderRadius: 8,
+              backgroundColor: "white",
+              marginTop: 10,
+              alignItems:"center"
+            }}
+
+            inputStyles={{
+              marginTop:5,
+              marginBottom:5
+            }}
+            dropdownStyles={{
+              borderWidth: 1,
+              borderRadius: 8,
+              backgroundColor: "white",
+              marginTop: 10,
+              borderColor: "black",
+            }}
+
+            maxHeight={150}
+            />
+          </View>
 
         <BotonOne
         text="Crear edificio" 

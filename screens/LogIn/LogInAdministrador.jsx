@@ -7,13 +7,10 @@ import BotonOne from "../../components/BotonOne";
 import axios from 'axios';
 import Teclado from '../../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
-import Girador from '../../components/girador';
+import Girador from '../../components/Girador';
 
 import {register, login} from '../../servicios/miEdificioService.js';
 import { isLoaded } from 'expo-font';
-
-
-
 
 
 const LogInAdministrador =({navigation})=>{
@@ -65,7 +62,7 @@ const LogInAdministrador =({navigation})=>{
             
             placeholder="Ingrese su usuario"
             name="usuario"
-            value={userState.Mail}
+            value={userState.mail}
             onChangeText={text => setUserState({...userState, mail: text}) }
           
           />
@@ -74,7 +71,7 @@ const LogInAdministrador =({navigation})=>{
             style={styles.textInput}
             placeholder="Ingrese su Contraseña"
             name="contrasena"
-            value={userState.Contraseña}
+            value={userState.contraseña}
             secureTextEntry={true}
             onChangeText={text => setUserState({...userState, contraseña: text})}
           />   

@@ -73,28 +73,28 @@ const RegistroAdmin =(props)=>{
             style={styles.textInput}
             placeholder="Ingrese su nombre"
             name="Nombre"
-            value={userState.Nombre}
+            value={userState.nombre}
             onChangeText={text => setUserState({...userState, nombre: text}) }
           />   
           <TextInput
             style={styles.textInput}
             placeholder="Ingrese su apellido"
             name="Apellido"
-            value={userState.Apellido}
+            value={userState.apellido}
             onChangeText={text => setUserState({...userState, apellido: text}) }
           /> 
           <TextInput
             style={styles.textInput}
             placeholder="Ingrese su mail"
             name="Mail"
-            value={userState.Mail}
+            value={userState.mail}
             onChangeText={text => setUserState({...userState, mail: text}) }
           />
           <TextInput
             style={styles.textInput}
             placeholder="Ingrese su telefono"
             name="Telefono"
-            value={userState.Telefono}
+            value={userState.telefono}
             keyboardType= "numeric"
             onChangeText={number => setUserState({...userState, telefono: number}) }
           
@@ -103,7 +103,7 @@ const RegistroAdmin =(props)=>{
             style={styles.textInput}
             placeholder="Ingrese su contraseña"
             name="Contraseña"
-            value={userState.Contraseña}
+            value={userState.contraseña}
             secureTextEntry={true}
             onChangeText={text => setUserState({...userState, contraseña: text}) }
           />   
