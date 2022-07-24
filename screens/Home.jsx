@@ -17,9 +17,7 @@ const Home =({navigation})=>{
     Kanit_200ExtraLight,
   });
   return (
-    
-    <View>
-      
+
       <ImageBackground source={fondoPag} style={styles.image}>
       <Image style={styles.logo} source={miED}></Image>
       <Text style={styles.titulo}>MI EDIFICIO</Text>
@@ -27,7 +25,7 @@ const Home =({navigation})=>{
       <Boton
       text="Ingresar como administrador" 
       onPress={ () =>{
-        navigation.navigate('LogInAdministrador')
+        navigation.navigate('SelectAutoManual')
       }}
       />
      <Boton 
@@ -38,7 +36,7 @@ const Home =({navigation})=>{
       />
    
       </ImageBackground>
-    </View>
+
     
   );
 }
@@ -54,7 +52,6 @@ const styles = StyleSheet.create({
   image: {
     height:'100%',
     alignItems: 'center',
- 
   },
   titulo: {
     position: 'absolute',

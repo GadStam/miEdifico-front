@@ -4,6 +4,7 @@ import miED from "../assets/logoMI.png";
 import fondoPag from "../assets/fondoInicio.jpg"
 import Boton from "../components/BotonDoble";
 import { useNavigation } from '@react-navigation/native';
+import { AntDesign } from '@expo/vector-icons';
 import {
   useFonts,
   Kanit_200ExtraLight,
@@ -16,28 +17,32 @@ const SelectAutoManual =({navigation})=>{
     Kanit_200ExtraLight,
   });
   return (
-    
-    <View>
-      
+
       <ImageBackground source={fondoPag} style={styles.image}>
+      <AntDesign style={styles.flecha} name="left" size={15}/>
+        <Text style={styles.atras}
+          onPress={ () =>{
+            navigation.navigate('CrearEdificio')
+          }}> 
+          Volver atrás
+        </Text>
       <Image style={styles.logo} source={miED}></Image>
-      <Text style={styles.titulo}>CREAR EDIFICIO DE FORMA:</Text>
+      <Text style={styles.titulo}>Crear el edificio:</Text>
       
       <Boton
-      text="MANUAL" 
+      text="De forma manual" 
       onPress={ () =>{
-        navigation.navigate('LogInAdministrador')
+        navigation.navigate('CreateManual')
       }}
       />
      <Boton 
-      text="AUTOMATICO" 
+      text="De forma automatica" 
       onPress={ () =>{
-        navigation.navigate('InicioInquilino')
+        navigation.navigate('CreateAutomatic')
       }}
       />
    
       </ImageBackground>
-    </View>
     
   );
 }
@@ -53,13 +58,26 @@ const styles = StyleSheet.create({
   image: {
     height:'100%',
     alignItems: 'center',
- 
   },
   titulo: {
     position: 'absolute',
     top: '45%',
     color: 'blue',
     fontSize: 30,
-    fontFamily: 'Kanit-Regular'
+    fontFamily: 'Kanit-Regular',
+    textAlign: "center"
   },
+  atras:{
+    position: 'absolute',
+    top:'7%',
+    left:'15%',
+    color: 'blue',
+    textDecorationLine:'underline'
+  },
+  flecha:{
+    position: 'absolute',
+    top:'7.3%',
+    left:'10%',
+    color:"blue"
+  }
 });

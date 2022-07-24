@@ -1,4 +1,6 @@
 import React from "react";
+import fondoPag from "../assets/fondoInicio.jpg"
+import { StyleSheet, ImageBackground } from 'react-native';
 
 import { KeyboardAvoidingView, ScrollView, TouchableWithoutFeedback, Keyboard} from 'react-native';
 
@@ -13,5 +15,4 @@ const Teclado = ({children}) => {
         </KeyboardAvoidingView>
     );
 }
-
 export default Teclado;

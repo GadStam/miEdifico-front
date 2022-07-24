@@ -41,10 +41,8 @@ const LogInAdministrador =({navigation})=>{
   return (
     <>
     {!loaded?  <Girador/>:
-    <Teclado>
-    <View style={{height:900}}>
+    <ImageBackground source={fondoPag} style={styles.image}>
   
-        <ImageBackground source={fondoPag} style={styles.image}>
         <AntDesign style={styles.flecha} name="left" size={15}/>
         <Text style={styles.atras}
           onPress={ () =>{
@@ -87,11 +85,8 @@ const LogInAdministrador =({navigation})=>{
               navigation.navigate('RegistroAdmin')
             }}
             >No tenes una cuenta? Registrate</Text>
-            
-            </ImageBackground>
-           
-        </View>
-        </Teclado>
+ 
+        </ImageBackground>
         }
        </>
         
@@ -104,12 +99,11 @@ const styles = StyleSheet.create({
   logo: {
     width: '70%',
     height: '22%',
-    marginTop: 200
+    marginTop: 200,
   },
   image: {
-    alignItems: 'center',
-    resizeMode:"cover",
     height:'100%',
+    alignItems: 'center',
   },
   titulo: {
     textAlign: 'center',

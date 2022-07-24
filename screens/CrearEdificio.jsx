@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, TextInput, Checkbox} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, TextInput, Checkbox } from 'react-native';
 import miED from "../assets/logoMI.png";
 import SelectBox from 'react-native-multi-selectbox'
 import { xorBy } from 'lodash'
@@ -9,28 +9,28 @@ import BotonOne from "../components/BotonOne";
 import Teclado from '../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
 import SelectList from 'react-native-dropdown-select-list'
-import {crearEdficiosAdmin, traerEspacios} from '../servicios/crearEdificioService'
+import { crearEdficiosAdmin, traerEspacios } from '../servicios/crearEdificioService'
 import EspaciosListItem from "../components/EspaciosListItem"
 import {
   useFonts,
   Kanit_200ExtraLight,
 } from '@expo-google-fonts/kanit';
- 
+
 let kanitLoaded
 
-const CrearEdificio =({navigation})=>{
- kanitLoaded = useFonts({
+const CrearEdificio = ({ navigation }) => {
+  kanitLoaded = useFonts({
     Kanit_200ExtraLight,
   });
 
   const [selected, setSelected] = React.useState("");
 
   const prueba = [
-    {key:'1',value:'Jammu & Kashmir'},
-    {key:'2',value:'Himachal Pradesh'},
-    {key:'3',value:'West Bengal'},
-    ];
- 
+    { key: '1', value: 'Jammu & Kashmir' },
+    { key: '2', value: 'Himachal Pradesh' },
+    { key: '3', value: 'West Bengal' },
+  ];
+
 
   const [userState, setUserState] = useState({
     direccion: '',
@@ -39,13 +39,13 @@ const CrearEdificio =({navigation})=>{
     clave_suterh: null,
     nro_encargado: null,
     nro_emergencia: null,
-    id_espaciocc:[] 
+    id_espaciocc: []
   });
 
   const [useOpciones, setOpciones] = useState();
 
   //const [selected, setSelected] = React.useState("");
- {/* 
+  {/* 
 
 const K_OPTIONS = [
     {
@@ -103,22 +103,18 @@ const K_OPTIONS = [
     },
   ]
 */}
-  
 
-  
   const [selectedTeams, setSelectedTeams] = useState([])
-  
 
   function onMultiChange() {
     return (item) => setSelectedTeams(xorBy(selectedTeams, [item], 'id'))
   }
 
-  
   useEffect(() => {
-    (async() =>{
+    (async () => {
       await getEspaciosComunes()
     })()
-  },[])
+  }, [])
 
   const getEspaciosComunes = async (e) => {
     await traerEspacios().then((response) => {
@@ -126,99 +122,92 @@ const K_OPTIONS = [
     }).catch(() => {
       console.log("no hay nombre")
     });
-    }
-
-
-
+  }
 
   const onCreatePress = async (e) => {
-    if (!userState.direccion || !userState.año_construccion || !userState.cuit|| !userState.clave_suterh){
+    if (!userState.direccion || !userState.año_construccion || !userState.cuit || !userState.clave_suterh) {
       Alert.alert("Por favor ingresar todos los datos")
-    } 
+    }
     else {
       console.log(userState)
       await crearEdficiosAdmin(userState).then(() => {
-        navigation.navigate('selectAutoManual')
+        navigation.navigate('SelectAutoManual')
       })
-      .catch(() => {
-      
-      Alert.alert("Datos repetidos")
-      });
+        .catch(() => {
+
+          Alert.alert("Datos repetidos")
+        });
     }
   }
 
-
-
   return (
-    <Teclado>
-    <View style={{height:1200}}>
-   
-      <ImageBackground source={fondoPag} style={styles.image}>
-      <AntDesign style={styles.flecha} name="left" size={15}/>
-      <Text style={styles.atras}
-          onPress={ () =>{
-            navigation.navigate('Home')
-          }}> 
-          Volver atrás
-      </Text>
-      <Image style={styles.logo} source={miED}></Image>
-      <Text style={styles.titulo}>Nuevo Edificio</Text>
-      
-      <TextInput
-          style={styles.textInput}
-          placeholder="Ingrese la direccion"
-          name="direccion"
-          value={userState.direccion}
-          onChangeText={text => setUserState({...userState, direccion: text}) }
-        />
+    <ImageBackground source={fondoPag}>
+      <Teclado>
+        <View style={styles.vista}>
+          <AntDesign style={styles.flecha} name="left" size={15} />
+          <Text style={styles.atras}
+            onPress={() => {
+              navigation.navigate('Home')
+            }}>
+            Volver atrás
+          </Text>
+          <Image style={styles.logo} source={miED}></Image>
+          <Text style={styles.titulo}>Nuevo Edificio</Text>
+
+          <TextInput
+            style={styles.textInput}
+            placeholder="Ingrese la direccion"
+            name="direccion"
+            value={userState.direccion}
+            onChangeText={text => setUserState({ ...userState, direccion: text })}
+          />
+
+          <TextInput
+            style={styles.textInput}
+            placeholder="Ingrese año de construccion"
+            name="añoConstruccion"
+            value={userState.añoConstruccion}
+            onChangeText={number => setUserState({ ...userState, año_construccion: number })}
+            keyboardType="numeric"
+          />
+
+          <TextInput
+            style={styles.textInput}
+            placeholder="Ingrese el CUIT"
+            name="cuit"
+            value={userState.cuit}
+            onChangeText={number => setUserState({ ...userState, cuit: number })}
+            keyboardType="numeric"
+          />
+          <TextInput
+            style={styles.textInput}
+            placeholder="Ingrese la clave Suterh"
+            name="claveSuterh"
+            value={userState.claveSuterh}
+            onChangeText={number => setUserState({ ...userState, clave_suterh: number })}
+            keyboardType="numeric"
+          />
+
+          <TextInput
+            style={styles.textInput}
+            placeholder="Ingrese el numero de encargado"
+            name="nro_encargado"
+            value={userState.nro_encargado}
+            onChangeText={number => setUserState({ ...userState, nro_encargado: number })}
+            keyboardType="numeric"
+          />
+
+          <TextInput
+            style={styles.textInput}
+            placeholder="Ingrese el numero de emergencia"
+            name="nro_emergencia"
+            value={userState.nro_emergencia}
+            onChangeText={number => setUserState({ ...userState, nro_emergencia: number })}
+            keyboardType="numeric"
+          />
 
 
-        <TextInput
-          style={styles.textInput}
-          placeholder="Ingrese año de construccion"
-          name="añoConstruccion"
-          value={userState.añoConstruccion}
-          onChangeText={number => setUserState({...userState, año_construccion: number}) }
-          keyboardType= "numeric"
-        />
-
-        <TextInput
-          style={styles.textInput}
-          placeholder="Ingrese el CUIT"
-          name="cuit"
-          value={userState.cuit}
-          onChangeText={number => setUserState({...userState, cuit: number}) }
-          keyboardType= "numeric"
-        />
-        <TextInput
-          style={styles.textInput}
-          placeholder="Ingrese la clave Suterh"
-          name="claveSuterh"
-          value={userState.claveSuterh}
-          onChangeText={number => setUserState({...userState, clave_suterh: number}) }
-          keyboardType= "numeric"
-        />
-
-        <TextInput
-          style={styles.textInput}
-          placeholder="Ingrese el numero de encargado"
-          name="nro_encargado"
-          value={userState.nro_encargado}
-          onChangeText={number => setUserState({...userState, nro_encargado: number}) }
-          keyboardType= "numeric"
-        />
-
-        <TextInput
-          style={styles.textInput}
-          placeholder="Ingrese el numero de emergencia"
-          name="nro_emergencia"
-          value={userState.nro_emergencia}
-          onChangeText={number => setUserState({...userState, nro_emergencia: number}) }
-          keyboardType= "numeric"
-        />
-
-        
-       {/* 
+          {/* 
           
       <View style={{ height: 40 }} />
       <Text style={{ fontSize: 20, paddingBottom: 10 }}>MultiSelect Demo</Text>
@@ -232,48 +221,46 @@ const K_OPTIONS = [
       />
         */}
 
-<View style={{width:"80%"}}>
-          <SelectList
-            data={useOpciones}
-            renderItem={({item}) => <EspaciosListItem key={item.tipo_espacio} useOpciones={item} />}
-            keyExtractor={item => item.tipo_espacio}
-            setSelected={selected} 
-            placeholder="¿Qué espacios comúnes tiene el edificio?"
-            boxStyles={{
-              borderWidth: 1,
-              borderColor: "black",
-              padding: 15,
-              borderRadius: 8,
-              backgroundColor: "white",
-              marginTop: 10,
-              alignItems:"center"
-            }}
+          <View style={{ width: "80%" }}>
+            <SelectList
+              data={useOpciones}
+              renderItem={({ item }) => <EspaciosListItem key={item.tipo_espacio} useOpciones={item} />}
+              keyExtractor={item => item.tipo_espacio}
+              setSelected={selected}
+              placeholder="¿Qué espacios comúnes tiene el edificio?"
+              boxStyles={{
+                borderWidth: 1,
+                borderColor: "black",
+                padding: 15,
+                borderRadius: 8,
+                backgroundColor: "white",
+                marginTop: 10,
+                alignItems: "center"
+              }}
 
-            inputStyles={{
-              marginTop:5,
-              marginBottom:5
-            }}
-            dropdownStyles={{
-              borderWidth: 1,
-              borderRadius: 8,
-              backgroundColor: "white",
-              marginTop: 10,
-              borderColor: "black",
-            }}
+              inputStyles={{
+                marginTop: 5,
+                marginBottom: 5
+              }}
+              dropdownStyles={{
+                borderWidth: 1,
+                borderRadius: 8,
+                backgroundColor: "white",
+                marginTop: 10,
+                borderColor: "black",
+              }}
 
-            maxHeight={150}
+              maxHeight={150}
             />
           </View>
 
-        <BotonOne
-        text="Crear edificio" 
-        onPress={onCreatePress}
-        />
-
-      </ImageBackground>
-      
-    </View>
-    </Teclado>
+          <BotonOne
+            text="Crear edificio"
+            onPress={onCreatePress}
+          />
+        </View>
+      </Teclado>
+    </ImageBackground>
   );
 }
 
@@ -283,17 +270,17 @@ const styles = StyleSheet.create({
   logo: {
     width: '70%',
     height: '22%',
-    marginTop:115
+    marginTop: 115
   },
-  image: {
-    flex:1,
-    alignItems: 'center', 
+  vista: {
+    height: 900,
+    alignItems: 'center',
   },
   titulo: {
     textAlign: 'center',
     marginBottom: 20,
     color: 'blue',
-    fontSize:25,
+    fontSize: 25,
     fontFamily: 'Kanit-Regular'
   },
   textInput: {
@@ -304,17 +291,17 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     marginTop: 10
   },
-  atras:{
+  atras: {
     position: 'absolute',
-    top:'7%',
-    left:'15%',
+    top: '7%',
+    left: '15%',
     color: 'blue',
-    textDecorationLine:'underline'
+    textDecorationLine: 'underline'
   },
-  flecha:{
+  flecha: {
     position: 'absolute',
-    top:'7.3%',
-    left:'10%',
-    color:"blue"
+    top: '7.3%',
+    left: '10%',
+    color: "blue"
   },
 });

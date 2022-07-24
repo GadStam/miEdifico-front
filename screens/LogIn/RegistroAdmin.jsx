@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useContext} from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, FlatList, TextInput, TouchableOpacity, ScrollView, Alert} from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import { StyleSheet, Text, View, Image, ImageBackground, FlatList, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import miED from "../../assets/logoMI.png";
 import fondoPag from "../../assets/fondoInicio.jpg"
 import { useNavigation } from '@react-navigation/native';
@@ -11,10 +11,10 @@ import { AntDesign } from '@expo/vector-icons';
 import { registerAsset } from 'react-native-web/dist/cjs/modules/AssetRegistry';
 import Spinner from 'react-native-loading-spinner-overlay/lib';
 
-import {register, login} from '../../servicios/miEdificioService.js';
+import { register, login } from '../../servicios/miEdificioService.js';
 
-const RegistroAdmin =(props)=>{
-  const {navigation, value, user} = props
+const RegistroAdmin = (props) => {
+  const { navigation, value, user } = props
   const [useContraConf, setContraConf] = useState({
     confirmarContraseña: '',
   });
@@ -24,11 +24,11 @@ const RegistroAdmin =(props)=>{
     mail: '',
     telefono: null,
     contraseña: '',
-   
+
   });
 
   const onRegisterPress = async (e) => {
-    if (!userState.nombre || !userState.apellido || !userState.mail|| !userState.contraseña || !useContraConf.confirmarContraseña || !userState.telefono){
+    if (!userState.nombre || !userState.apellido || !userState.mail || !userState.contraseña || !useContraConf.confirmarContraseña || !userState.telefono) {
       Alert.alert("Por favor ingresar todos los datos")
     } else if (userState.contraseña != useContraConf.confirmarContraseña) {
       Alert.alert("Las contraseñas no coinciden")
@@ -38,10 +38,10 @@ const RegistroAdmin =(props)=>{
       await register(userState).then(() => {
         navigation.navigate('LogInAdministrador')
       })
-      .catch(() => {
-      
-      Alert.alert("Datos incorrectos")
-      }); // Promise<String> Exception
+        .catch(() => {
+
+          Alert.alert("Datos incorrectos")
+        }); // Promise<String> Exception
 
       /*
         Register es una promesa propagada
@@ -50,54 +50,52 @@ const RegistroAdmin =(props)=>{
     }
   }
 
-  
-
   return (
-    <Teclado>
-    <View style={{height:900}}>
+    <ImageBackground source={fondoPag}>
+      <Teclado>
+        <View style={styles.vista}>
 
-        <ImageBackground source={fondoPag} style={styles.image}>
-        <AntDesign style={styles.flecha} name="left" size={15}/>
-        <Text style={styles.atras}
-          onPress={ () =>{
-            navigation.navigate('Home')
-          }}> 
-          Volver atrás
-        </Text>
-        
-        <Image style={styles.logo} source={miED}></Image>
-  
-        <Text style={styles.titulo}>Registro</Text>
-        
-        <TextInput
+          <AntDesign style={styles.flecha} name="left" size={15} />
+          <Text style={styles.atras}
+            onPress={() => {
+              navigation.navigate('Home')
+            }}>
+            Volver atrás
+          </Text>
+
+          <Image style={styles.logo} source={miED}></Image>
+
+          <Text style={styles.titulo}>Registro</Text>
+
+          <TextInput
             style={styles.textInput}
             placeholder="Ingrese su nombre"
             name="Nombre"
             value={userState.nombre}
-            onChangeText={text => setUserState({...userState, nombre: text}) }
-          />   
+            onChangeText={text => setUserState({ ...userState, nombre: text })}
+          />
           <TextInput
             style={styles.textInput}
             placeholder="Ingrese su apellido"
             name="Apellido"
             value={userState.apellido}
-            onChangeText={text => setUserState({...userState, apellido: text}) }
-          /> 
+            onChangeText={text => setUserState({ ...userState, apellido: text })}
+          />
           <TextInput
             style={styles.textInput}
             placeholder="Ingrese su mail"
             name="Mail"
             value={userState.mail}
-            onChangeText={text => setUserState({...userState, mail: text}) }
+            onChangeText={text => setUserState({ ...userState, mail: text })}
           />
           <TextInput
             style={styles.textInput}
             placeholder="Ingrese su telefono"
             name="Telefono"
             value={userState.telefono}
-            keyboardType= "numeric"
-            onChangeText={number => setUserState({...userState, telefono: number}) }
-          
+            keyboardType="numeric"
+            onChangeText={number => setUserState({ ...userState, telefono: number })}
+
           />
           <TextInput
             style={styles.textInput}
@@ -105,34 +103,33 @@ const RegistroAdmin =(props)=>{
             name="Contraseña"
             value={userState.contraseña}
             secureTextEntry={true}
-            onChangeText={text => setUserState({...userState, contraseña: text}) }
-          />   
+            onChangeText={text => setUserState({ ...userState, contraseña: text })}
+          />
           <TextInput
             style={styles.textInput}
             placeholder="Ingrese nuevamente la contraseña"
             name="confirmarContrasena"
             value={useContraConf.confirmarContraseña}
             secureTextEntry={true}
-            onChangeText={text => setContraConf({...useContraConf, confirmarContraseña: text}) }
-          />  
-          
+            onChangeText={text => setContraConf({ ...useContraConf, confirmarContraseña: text })}
+          />
+
           <BotonOne
-            text="Registrarse" 
+            text="Registrarse"
             title="register"
             onPress={onRegisterPress}
-            />
-            <BotonOne
-            text="Registrarse" 
+          />
+          <BotonOne
+            text="Registrarse"
             title="register"
-          
-            onPress={ () =>{
+
+            onPress={() => {
               navigation.navigate('CrearEdificio')
             }}
-            />
-            </ImageBackground>
-           
+          />
         </View>
-        </Teclado>
+      </Teclado>
+    </ImageBackground>
   );
 }
 
@@ -144,20 +141,19 @@ const styles = StyleSheet.create({
     height: '22%',
     marginTop: 115
   },
-  image: {
-    alignItems: 'center',
-    resizeMode:"cover",
-    height:'100%',
+  vista:{
+    height:900,
+    alignItems: 'center', 
   },
   titulo: {
     textAlign: 'center',
     marginBottom: 20,
     color: 'blue',
-    fontSize:25,
+    fontSize: 25,
     fontFamily: 'Kanit-Regular'
   },
-  texto:{
-    marginTop:'-25%',
+  texto: {
+    marginTop: '-25%',
     color: 'white'
   },
   textInput: {
@@ -169,17 +165,17 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginBottom: -5
   },
-  atras:{
+  atras: {
     position: 'absolute',
-    top:'7%',
-    left:'15%',
+    top: '7%',
+    left: '15%',
     color: 'blue',
-    textDecorationLine:'underline'
+    textDecorationLine: 'underline'
   },
-  flecha:{
+  flecha: {
     position: 'absolute',
-    top:'7.3%',
-    left:'10%',
-    color:"blue"
+    top: '7.3%',
+    left: '10%',
+    color: "blue"
   }
 });
