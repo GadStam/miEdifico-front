@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, TextInput } from 'react-native';
 import miED from "../../assets/logoMI.png";
 import fondoPag from "../../assets/fondoInicio.jpg"
+import chec from "../../assets/fondoInicio.jpg"
 import { useNavigation } from '@react-navigation/native';
 import BotonOne from "../../components/BotonOne";
 import Teclado from '../../components/Teclado';
+import BotonRadio from '../../components/BotonRadio';
+import BotonRadio1 from '../../components/BotonRadio1';
 import { AntDesign } from '@expo/vector-icons';
 import SelectList from 'react-native-dropdown-select-list'
-import { crearEdficiosAdmin, traerEspcios } from '../../servicios/crearEdificioService'
+import { crearDepartamentos } from '../../servicios/createDepartamentos'
 import {
   useFonts,
   Kanit_200ExtraLight,
@@ -15,46 +18,24 @@ import {
 
 let kanitLoaded
 
-const CrearManual = ({ navigation }) => {
+const CreateAutomatic = ({ navigation }) => {
   kanitLoaded = useFonts({
     Kanit_200ExtraLight,
   });
 
   const [userState, setUserState] = useState({
-    direccion: '',
-    año_construccion: '',
-    cuit: null,
-    clave_suterh: null,
-    nro_encargado: null,
-    nro_emergencia: null,
-    id_espaciocc: 1,
+
+    cant_pisos: null,
+    departamentosXpiso: null,
+
   });
-
-  const [useOpciones, setOpciones] = useState({
-    espacios: []
-  });
-
-  useEffect(() => {
-    (async () => {
-      await getEspaciosComunes()
-    })()
-  }, [])
-
-  const getEspaciosComunes = async (e) => {
-    await traerEspcios().then((response) => {
-      setOpciones(response);
-    }).catch(() => {
-      console.log("no hay nombre")
-    });
-  }
-
 
   const onCreatePress = async (e) => {
-    if (!userState.direccion || !userState.año_construccion || !userState.cuit || !userState.clave_suterh) {
+    if (!userState.cant_pisos || !userState.departamentosXpiso) {
       Alert.alert("Por favor ingresar todos los datos")
     }
     else {
-      await crearEdficiosAdmin(userState).then(() => {
+      await crearDepartamentos(userState).then(() => {
         navigation.navigate('selectAutoManual')
       })
         .catch(() => {
@@ -68,7 +49,6 @@ const CrearManual = ({ navigation }) => {
     <ImageBackground source={fondoPag}>
       <Teclado>
         <View style={styles.vista}>
-
           <AntDesign style={styles.flecha} name="left" size={15} />
           <Text style={styles.atras}
             onPress={() => {
@@ -77,89 +57,73 @@ const CrearManual = ({ navigation }) => {
             Volver atrás
           </Text>
           <Image style={styles.logo} source={miED}></Image>
-          <Text style={styles.titulo}>Nuevo Edificio</Text>
+          <Text style={styles.titulo}>Crear edificio manual</Text>
 
           <TextInput
             style={styles.textInput}
-            placeholder="Ingrese la direccion"
-            name="direccion"
-            value={userState.direccion}
-            onChangeText={text => setUserState({ ...userState, direccion: text })}
-          />
-
-          <TextInput
-            style={styles.textInput}
-            placeholder="Ingrese año de construccion"
-            name="añoConstruccion"
-            value={userState.añoConstruccion}
-            onChangeText={number => setUserState({ ...userState, año_construccion: number })}
+            placeholder="Ingrese la cantidad de pisos"
+            name="cant_pisos"
+            value={userState.cant_pisos}
+            onChangeText={number => setUserState({ ...userState, cant_pisos: number })}
             keyboardType="numeric"
           />
+          {/*  var cantPisos = {userState.cant_pisos};
+        
+            for (let i = 0; i < cantPisos; i++){
+              <TextInput
+                style={styles.textInput}
+                placeholder={`Ingrese la cantidad de departamentos del piso ${i+1}`}
+                name="departamentosXpiso"
+                value={userState.departamentosXpiso}
+                onChangeText={number => setUserState({ ...userState, departamentosXpiso: number })}
+                keyboardType="numeric"
+              />
+            }
+          */}
 
-          <TextInput
-            style={styles.textInput}
-            placeholder="Ingrese el CUIT"
-            name="cuit"
-            value={userState.cuit}
-            onChangeText={number => setUserState({ ...userState, cuit: number })}
-            keyboardType="numeric"
-          />
-          <TextInput
-            style={styles.textInput}
-            placeholder="Ingrese la clave Suterh"
-            name="claveSuterh"
-            value={userState.claveSuterh}
-            onChangeText={number => setUserState({ ...userState, clave_suterh: number })}
-            keyboardType="numeric"
-          />
-
-          <TextInput
-            style={styles.textInput}
-            placeholder="Ingrese el numero de encargado"
-            name="nro_encargado"
-            value={userState.nro_encargado}
-            onChangeText={number => setUserState({ ...userState, nro_encargado: number })}
-            keyboardType="numeric"
-          />
-
-          <TextInput
-            style={styles.textInput}
-            placeholder="Ingrese el numero de emergencia"
-            name="nro_emergencia"
-            value={userState.nro_emergencia}
-            onChangeText={number => setUserState({ ...userState, nro_emergencia: number })}
-            keyboardType="numeric"
-          />
-
-
-
+          <Text style={styles.text}>Elija el tipo de numeración de los departamentos: </Text>
+          <BotonRadio />
+          <Text style={styles.text}>La numeración de los departamentos: </Text>
+          <BotonRadio1 />
           <BotonOne
-            text="Crear edificio"
+            text="Siguiente"
             onPress={onCreatePress}
           />
+
         </View>
       </Teclado>
     </ImageBackground>
   );
 }
 
-export default CrearManual
+export default CreateAutomatic
 
 const styles = StyleSheet.create({
   logo: {
     width: '70%',
     height: '22%',
-    marginTop: 115
+    marginTop: 115,
   },
   vista: {
     height: 900,
     alignItems: 'center',
   },
   titulo: {
-    marginBottom: 20,
+    paddingHorizontal: 20,
+    textAlign: "center",
     color: 'blue',
     fontSize: 25,
-    fontFamily: 'Kanit-Regular'
+    fontFamily: 'Kanit-Regular',
+    marginBottom: 20
+  },
+  text: {
+    width: "75%",
+    textAlign: "justify",
+    color: 'blue',
+    fontSize: 18,
+    fontFamily: 'Kanit-Regular',
+    marginBottom: 20,
+    marginTop: 20
   },
   textInput: {
     borderWidth: 1,

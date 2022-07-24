@@ -25,7 +25,7 @@ const Home =({navigation})=>{
       <Boton
       text="Ingresar como administrador" 
       onPress={ () =>{
-        navigation.navigate('SelectAutoManual')
+        navigation.navigate('LogInAdministrador')
       }}
       />
      <Boton 

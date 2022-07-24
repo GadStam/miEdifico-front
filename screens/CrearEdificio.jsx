@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
     marginTop: 115
   },
   vista: {
-    height: 900,
+    height: 1000,
     alignItems: 'center',
   },
   titulo: {

@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '45%',
     color: 'blue',
-    fontSize: 30,
+    fontSize: 25,
     fontFamily: 'Kanit-Regular',
     textAlign: "center"
   },

@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, TextInput } from 'react-native';
 import miED from "../../assets/logoMI.png";
 import fondoPag from "../../assets/fondoInicio.jpg"
+import chec from "../../assets/fondoInicio.jpg"
 import { useNavigation } from '@react-navigation/native';
 import BotonOne from "../../components/BotonOne";
 import Teclado from '../../components/Teclado';
+import BotonRadio from '../../components/BotonRadio';
+import BotonRadio1 from '../../components/BotonRadio1';
 import { AntDesign } from '@expo/vector-icons';
 import SelectList from 'react-native-dropdown-select-list'
 import { crearDepartamentos } from '../../servicios/createDepartamentos'
@@ -54,7 +57,7 @@ const CreateAutomatic = ({ navigation }) => {
             Volver atrás
           </Text>
           <Image style={styles.logo} source={miED}></Image>
-          <Text style={styles.titulo}>CREAR EDIFICIO AUTOMATICO</Text>
+          <Text style={styles.titulo}>Crear edificio automatico</Text>
 
           <TextInput
             style={styles.textInput}
@@ -73,7 +76,10 @@ const CreateAutomatic = ({ navigation }) => {
             onChangeText={number => setUserState({ ...userState, departamentosXpiso: number })}
             keyboardType="numeric"
           />
-
+          <Text style={styles.text}>Elija el tipo de numeración de los departamentos: </Text>
+          <BotonRadio />
+          <Text style={styles.text}>La numeración de los departamentos: </Text>
+          <BotonRadio1 />
           <BotonOne
             text="Siguiente"
             onPress={onCreatePress}
@@ -91,10 +97,10 @@ const styles = StyleSheet.create({
   logo: {
     width: '70%',
     height: '22%',
-    marginTop: 200,
+    marginTop: 115,
   },
   vista: {
-    height: 1000,
+    height: 900,
     alignItems: 'center',
   },
   titulo: {
@@ -104,6 +110,15 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontFamily: 'Kanit-Regular',
     marginBottom: 20
+  },
+  text: {
+    width: "75%",
+    textAlign: "justify",
+    color: 'blue',
+    fontSize: 18,
+    fontFamily: 'Kanit-Regular',
+    marginBottom: 20,
+    marginTop: 20
   },
   textInput: {
     borderWidth: 1,

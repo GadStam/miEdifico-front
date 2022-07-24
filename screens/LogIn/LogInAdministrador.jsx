@@ -41,7 +41,9 @@ const LogInAdministrador =({navigation})=>{
   return (
     <>
     {!loaded?  <Girador/>:
-    <ImageBackground source={fondoPag} style={styles.image}>
+        <ImageBackground source={fondoPag}>
+        <Teclado>
+          <View style={styles.vista}>
   
         <AntDesign style={styles.flecha} name="left" size={15}/>
         <Text style={styles.atras}
@@ -86,7 +88,9 @@ const LogInAdministrador =({navigation})=>{
             }}
             >No tenes una cuenta? Registrate</Text>
  
-        </ImageBackground>
+ </View>
+      </Teclado>
+    </ImageBackground>
         }
        </>
         
@@ -101,8 +105,8 @@ const styles = StyleSheet.create({
     height: '22%',
     marginTop: 200,
   },
-  image: {
-    height:'100%',
+  vista: {
+    height: 900,
     alignItems: 'center',
   },
   titulo: {
