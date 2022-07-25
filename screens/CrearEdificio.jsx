@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, TextInput, Checkbox } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, TextInput, Checkbox, Alert } from 'react-native';
 import miED from "../assets/logoMI.png";
 import SelectBox from 'react-native-multi-selectbox'
 import { xorBy } from 'lodash'
@@ -39,7 +39,7 @@ const CrearEdificio = ({ navigation }) => {
     clave_suterh: null,
     nro_encargado: null,
     nro_emergencia: null,
-    id_espaciocc: []
+    id_espaciocc: [1]
   });
 
   const [useOpciones, setOpciones] = useState();
@@ -165,8 +165,8 @@ const K_OPTIONS = [
           <TextInput
             style={styles.textInput}
             placeholder="Ingrese año de construccion"
-            name="añoConstruccion"
-            value={userState.añoConstruccion}
+            name="año_construccion"
+            value={userState.año_construccion}
             onChangeText={number => setUserState({ ...userState, año_construccion: number })}
             keyboardType="numeric"
           />

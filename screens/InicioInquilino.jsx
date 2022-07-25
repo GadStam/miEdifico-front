@@ -1,14 +1,44 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, TextInput} from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, TextInput, Alert} from 'react-native';
 import miED from "../assets/logoMI.png";
 import fondoPag from "../assets/fondoInicio.jpg"
 import { useNavigation } from '@react-navigation/native';
 import BotonOne from "../components/BotonOne";
 import { AntDesign } from '@expo/vector-icons';
 import Teclado from '../components/Teclado';
+import {departamentologin} from '../servicios/miEdificioService'
+
 
 const InicioInquilino =({navigation})=>{
   
+
+
+
+  const [userState, setUserState] = useState({
+  
+    codigo: '',
+   
+  });
+  
+  
+  const onEnterPress = async (e) => {
+    if (!userState.codigo) {
+      Alert.alert("Por favor ingresar todos los datos")
+    }
+    else {
+      console.log(userState)
+      await departamentologin (userState).then(() => {
+        navigation.navigate('Firstscreendepto')
+      })
+        .catch(() => {
+  
+          Alert.alert("Su departamento no existe")
+        });
+    }
+  }
+  
+
+
   return (
     <Teclado>
     <View style={{height:900}}>
@@ -27,14 +57,14 @@ const InicioInquilino =({navigation})=>{
             style={styles.textInput}
             placeholder="Ingrese el código de un departamento"
             name="codigo"
-            keyboardType= "numeric"
+            
+            value={userState.codigo}
+            onChangeText={text => setUserState({ ...userState, codigo: text })}
           />
           
       <BotonOne
         text="Ingresar" 
-        onPress={ () =>{
-          navigation.navigate('Home')
-        }}
+        onPress={onEnterPress}
       />
       </ImageBackground>
     </View>

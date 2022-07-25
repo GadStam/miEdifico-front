@@ -44,6 +44,24 @@ export const login = async (userState) => {
     });
 };
 
+export const departamentologin = async (userState) => {
+  console.log(userState.codigo);
+  const codigodepto = userState.codigo
+  return AxiosClient
+    .get(`/departamentos/${codigodepto}`, {
+     
+    })
+    .then(async(res) => {
+      let departamentoToken = res.data.token; // poner punto (nombe que viene del back)
+      await AsyncStorage.setItem('deptotoke', departamentoToken) // guarda en el storage con el nombre token 
+    })
+    .catch((e) => {
+      console.log(`register error`, e.response);
+      throw "error" //propagar error
+    });
+};
+
+
 
 
 

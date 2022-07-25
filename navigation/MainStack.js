@@ -9,9 +9,10 @@ import InicioInquilino from '../screens/InicioInquilino'
 import CrearEdificio from '../screens/CrearEdificio'
 import LogInAdministrador from '../screens/LogIn/LogInAdministrador'
 import RegistroAdmin from '../screens/LogIn/RegistroAdmin';
-import SelectAutoManual from '../screens/SelectAutoManual'
-import CreateManual from '../screens/typeCreation/CreateManual'
-import CreateAutomatic from '../screens/typeCreation/CreateAutomatic'
+import selectAutoManual from '../screens/selectAutoManual'
+import createManual from '../screens/typeCreation/createManual'
+import createAutomatic from '../screens/typeCreation/createAutomatic'
+import Firstscreendepto from '../screens/mainscreensdepartamento/Firstscreendepto'
 const Stack = createNativeStackNavigator()
 
 const MainStack =()=>{
@@ -48,19 +49,25 @@ return(
             component={ RegistroAdmin }
         />
         <Stack.Screen
-            name='SelectAutoManual'
-            component={ SelectAutoManual }
+            name='selectAutoManual'
+            component={ selectAutoManual }
         />
 
         <Stack.Screen
-            name='CreateAutomatic'
-            component={ CreateAutomatic }
+            name='createAutomatic'
+            component={ createAutomatic }
         />
 
         <Stack.Screen
-            name='CreateManual'
-            component={ CreateManual }
+            name='createManual'
+            component={ createManual }
         />
+
+        <Stack.Screen
+            name='Firstscreendepto'
+            component={ Firstscreendepto }
+        />
+
     </Stack.Navigator>
 </NavigationContainer>
 
