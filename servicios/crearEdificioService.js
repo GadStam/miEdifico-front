@@ -39,8 +39,9 @@ export const crearEdficiosAdmin = async (userState) => {
         headers: {'Authorization': 'Bearer ' + tokenId}
       }).then((res) => { // si status code entre 200 y 299
 
-        const userInfo = res.data[0].tipo_espacio;
-        console.log(res.data[0].tipo_espacio , "cualq cosa")
+        const userInfo = res.data;
+        
+        console.log(userInfo , "cualq cosa")
         return userInfo
       })
       .catch((err) => { // status >= 300

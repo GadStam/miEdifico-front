@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, TextInput, Checkbox, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, TextInput, Checkbox, Alert, FlatList } from 'react-native';
 import miED from "../assets/logoMI.png";
+import Laseleccion from '../components/multiselectespa'
 import SelectBox from 'react-native-multi-selectbox'
 import { xorBy } from 'lodash'
 import fondoPag from "../assets/fondoInicio.jpg"
@@ -10,6 +11,7 @@ import Teclado from '../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
 import SelectList from 'react-native-dropdown-select-list'
 import { crearEdficiosAdmin, traerEspacios } from '../servicios/crearEdificioService'
+import MultiSelect from 'react-native-multiple-select';
 import EspaciosListItem from "../components/EspaciosListItem"
 import {
   useFonts,
@@ -42,73 +44,14 @@ const CrearEdificio = ({ navigation }) => {
     id_espaciocc: [1]
   });
 
-  const [useOpciones, setOpciones] = useState();
+  const [Opciones, setOpciones] = useState();
 
-  //const [selected, setSelected] = React.useState("");
-  {/* 
-
-const K_OPTIONS = [
-    {
-      item: 'Juventus',
-      id: 'JUVE',
-    },
-    {
-      item: 'Real Madrid',
-      id: 'RM',
-    },
-    {
-      item: 'Barcelona',
-      id: 'BR',
-    },
-    {
-      item: 'PSG',
-      id: 'PSG',
-    },
-    {
-      item: 'FC Bayern Munich',
-      id: 'FBM',
-    },
-    {
-      item: 'Manchester United FC',
-      id: 'MUN',
-    },
-    {
-      item: 'Manchester City FC',
-      id: 'MCI',
-    },
-    {
-      item: 'Everton FC',
-      id: 'EVE',
-    },
-    {
-      item: 'Tottenham Hotspur FC',
-      id: 'TOT',
-    },
-    {
-      item: 'Chelsea FC',
-      id: 'CHE',
-    },
-    {
-      item: 'Liverpool FC',
-      id: 'LIV',
-    },
-    {
-      item: 'Arsenal FC',
-      id: 'ARS',
-    },
   
-    {
-      item: 'Leicester City FC',
-      id: 'LEI',
-    },
-  ]
-*/}
+  
 
-  const [selectedTeams, setSelectedTeams] = useState([])
 
-  function onMultiChange() {
-    return (item) => setSelectedTeams(xorBy(selectedTeams, [item], 'id'))
-  }
+
+ 
 
   useEffect(() => {
     (async () => {
@@ -119,8 +62,9 @@ const K_OPTIONS = [
   const getEspaciosComunes = async (e) => {
     await traerEspacios().then((response) => {
       setOpciones(response);
+      
     }).catch(() => {
-      console.log("no hay nombre")
+      console.log("error en espacios comunes")
     });
   }
 
@@ -154,6 +98,8 @@ const K_OPTIONS = [
           <Image style={styles.logo} source={miED}></Image>
           <Text style={styles.titulo}>Nuevo Edificio</Text>
 
+          
+
           <TextInput
             style={styles.textInput}
             placeholder="Ingrese la direccion"
@@ -182,8 +128,8 @@ const K_OPTIONS = [
           <TextInput
             style={styles.textInput}
             placeholder="Ingrese la clave Suterh"
-            name="claveSuterh"
-            value={userState.claveSuterh}
+            name="clave_suterh"
+            value={userState.clave_suterh}
             onChangeText={number => setUserState({ ...userState, clave_suterh: number })}
             keyboardType="numeric"
           />
@@ -206,7 +152,9 @@ const K_OPTIONS = [
             keyboardType="numeric"
           />
 
+        <Text>{Opciones && `Bienvenido ${Opciones[1].tipo_espacio}`}</Text>
 
+        
           {/* 
           
       <View style={{ height: 40 }} />
@@ -223,9 +171,9 @@ const K_OPTIONS = [
 
           <View style={{ width: "80%" }}>
             <SelectList
-              data={useOpciones}
-              renderItem={({ item }) => <EspaciosListItem key={item.tipo_espacio} useOpciones={item} />}
-              keyExtractor={item => item.tipo_espacio}
+              data={Opciones}
+              //renderItem={({ item }) => <EspaciosListItem key={item.tipo_espacio} useOpciones={item} />}
+              keyExtractor={Opciones => Opciones.tipo_espacio}
               setSelected={selected}
               placeholder="¿Qué espacios comúnes tiene el edificio?"
               boxStyles={{
@@ -262,6 +210,9 @@ const K_OPTIONS = [
       </Teclado>
     </ImageBackground>
   );
+
+  
+  
 }
 
 export default CrearEdificio
