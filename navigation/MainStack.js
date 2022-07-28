@@ -13,6 +13,7 @@ import selectAutoManual from '../screens/selectAutoManual'
 import createManual from '../screens/typeCreation/createManual'
 import createAutomatic from '../screens/typeCreation/createAutomatic'
 import Firstscreendepto from '../screens/mainscreensdepartamento/Firstscreendepto'
+import EdificiosListItem from '../components/EdificiosListItem'
 const Stack = createNativeStackNavigator()
 
 const MainStack =()=>{
@@ -66,6 +67,11 @@ return(
         <Stack.Screen
             name='Firstscreendepto'
             component={ Firstscreendepto }
+        />
+
+        <Stack.Screen
+            name='EdificiosListItem'
+            component={ EdificiosListItem }
         />
 
     </Stack.Navigator>

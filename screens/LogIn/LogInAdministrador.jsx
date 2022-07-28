@@ -7,7 +7,7 @@ import BotonOne from "../../components/BotonOne";
 import axios from 'axios';
 import Teclado from '../../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
-import Girador from '../../components/Girador';
+import Girador from '../../components/girador';
 
 import {register, login} from '../../servicios/miEdificioService.js';
 import { isLoaded } from 'expo-font';

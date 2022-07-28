@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacit
 import miED from "../../assets/logoMI.png";
 import fondoPag from "../../assets/fondoInicio.jpg"
 import MultiSelect from 'react-native-multiple-select';
-import Girador from '../../components/Girador'
+import Girador from '../../components/girador'
 
 import { useNavigation } from '@react-navigation/native';
 import {

@@ -1,15 +1,22 @@
 import React from 'react';
-import { Text, View, StyleSheet} from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-export default function EdificiosListItem ({edificio}){
+export default function EdificiosListItem ({edificio, navigation}){
     //console.log(edificio.Direccion)
     return (
     
+    <TouchableOpacity onPress={ () =>{
+        navigation.navigate('Firstscreendepto')
+      }}>
+        
     <View>
         <Text style={styles.lista} >
             {edificio.direccion}
         </Text>
     </View>
+
+    </TouchableOpacity>
         
     )
 }
