@@ -8,15 +8,19 @@ import EdificiosListItem from "../components/EdificiosListItem"
 import axios from 'axios';
 import { AntDesign } from '@expo/vector-icons';
 import { traerNombre, traerEdficios } from '../servicios/misDepartamentosService.js';
+import Girador from '../components/girador'
 import AxiosClient from '../servicios/miEdificioClient'
 
 const InicioAdmin = ({ navigation }) => {
 
   const [edificio, setEdificio] = useState();
   const [nombreAdmin, setNombreAdmin] = useState("");
+  const [loaded, setLoaded] = useState(false)
 
   const getNombreAdmin = async (e) => {
+      setLoaded(true)
     await traerNombre().then((response) => {
+      setLoaded(false)
       setNombreAdmin(response);
       console.log("la respuesta es", response)
     }).catch(() => {
@@ -26,7 +30,9 @@ const InicioAdmin = ({ navigation }) => {
   }
 
   const getEdificioAdmin = async () => {
+    setLoaded(true)
     await traerEdficios().then((response) => {
+      setLoaded(false)
       setEdificio(response);
     }).catch((error) => {
       console.log("no hay edificios")
@@ -42,7 +48,8 @@ const InicioAdmin = ({ navigation }) => {
   }, [edificio])
 
   return (
-
+    <>
+    {!loaded?  <Girador/>:
     <View>
       <ImageBackground source={fondoPag} style={styles.image}>
         <AntDesign style={styles.flecha} name="left" size={15} />
@@ -73,6 +80,8 @@ const InicioAdmin = ({ navigation }) => {
         />
       </ImageBackground>
     </View>
+    }
+    </>
 
   );
 }

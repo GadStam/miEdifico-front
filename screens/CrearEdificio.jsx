@@ -7,6 +7,7 @@ import { xorBy } from 'lodash'
 import fondoPag from "../assets/fondoInicio.jpg"
 import { useNavigation } from '@react-navigation/native';
 import BotonOne from "../components/BotonOne";
+
 import Teclado from '../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
 import SelectList from 'react-native-dropdown-select-list'
@@ -25,7 +26,7 @@ const CrearEdificio = ({ navigation }) => {
     Kanit_200ExtraLight,
   });
 
-  const [selected, setSelected] = React.useState("");
+  
 
   const prueba = [
     { key: '1', value: 'Jammu & Kashmir' },
@@ -44,8 +45,18 @@ const CrearEdificio = ({ navigation }) => {
     id_espaciocc: [1]
   });
 
-  const [Opciones, setOpciones] = useState();
+  const [Opciones, setOpciones] = useState({
+    lista: []
+  });
 
+  
+  useEffect(() => {
+    console.log('Opciones', Opciones.lista);
+  }, [Opciones])
+
+
+
+ 
 
   useEffect(() => {
     (async () => {
@@ -55,8 +66,8 @@ const CrearEdificio = ({ navigation }) => {
 
   const getEspaciosComunes = async (e) => {
     await traerEspacios().then((response) => {
-      setOpciones(response);
-      
+      console.log(response)
+      setOpciones({lista: response.map(esp => esp.tipo_espacio)});
     }).catch(() => {
       console.log("error en espacios comunes")
     });
@@ -69,7 +80,7 @@ const CrearEdificio = ({ navigation }) => {
     else {
       console.log(userState)
       await crearEdficiosAdmin(userState).then(() => {
-        navigation.navigate('SelectAutoManual')
+        navigation.navigate('Firstscreendepto')
       })
         .catch(() => {
 
@@ -83,12 +94,6 @@ const CrearEdificio = ({ navigation }) => {
       <Teclado>
         <View style={styles.vista}>
           <AntDesign style={styles.flecha} name="left" size={15} />
-          <Text style={styles.atras}
-            onPress={() => {
-              navigation.navigate('Home')
-            }}>
-            Volver atrás
-          </Text>
           <Image style={styles.logo} source={miED}></Image>
           <Text style={styles.titulo}>Nuevo Edificio</Text>
 
@@ -146,7 +151,7 @@ const CrearEdificio = ({ navigation }) => {
             keyboardType="numeric"
           />
 
-        <Text>{Opciones && `Bienvenido ${Opciones[1].tipo_espacio}`}</Text>
+        
 
         
           {/* 
@@ -163,8 +168,8 @@ const CrearEdificio = ({ navigation }) => {
       />
         */}
 
-          <View style={{ width: "80%" }}>
-            {/*<SelectList
+          {/*<View style={{ width: "80%" }}>
+            <SelectList
               data={Opciones}
               //renderItem={({ item }) => <EspaciosListItem key={item.tipo_espacio} useOpciones={item} />}
               keyExtractor={Opciones => Opciones.tipo_espacio}
@@ -194,8 +199,22 @@ const CrearEdificio = ({ navigation }) => {
 
               maxHeight={150}
             />
-            */}
-          </View>
+            </View>*/}
+
+        {/*<View style={{ marginTop: 15 }}>
+            <Text style={styles.text}>Elija los dias que abre</Text>
+
+            {dias.map((dia) => (
+              <Checkbox2
+                dia={dia}
+                diasSeleccionados={diasSeleccionados}
+                setDiasSeleccionados={setDiasSeleccionados}
+                key={dia}
+                handleCheck={handleCheck}
+                dataTiming={dataTiming}
+              />
+            ))}
+            </View>*/}
 
           <BotonOne
             text="Crear edificio"
