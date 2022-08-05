@@ -21,7 +21,7 @@ export const crearEdficiosAdmin = async (userState) => {
       }).then((res) => { // si status code entre 200 y 299
 
         const userInfo = res.data;
-        console.log(res.data)
+        //console.log(res.data)
         return userInfo
       })
       .catch((err) => { // status >= 300
