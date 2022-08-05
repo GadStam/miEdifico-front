@@ -46,12 +46,6 @@ const CrearEdificio = ({ navigation }) => {
 
   const [Opciones, setOpciones] = useState();
 
-  
-  
-
-
-
- 
 
   useEffect(() => {
     (async () => {
@@ -170,7 +164,7 @@ const CrearEdificio = ({ navigation }) => {
         */}
 
           <View style={{ width: "80%" }}>
-            <SelectList
+            {/*<SelectList
               data={Opciones}
               //renderItem={({ item }) => <EspaciosListItem key={item.tipo_espacio} useOpciones={item} />}
               keyExtractor={Opciones => Opciones.tipo_espacio}
@@ -200,6 +194,7 @@ const CrearEdificio = ({ navigation }) => {
 
               maxHeight={150}
             />
+            */}
           </View>
 
           <BotonOne

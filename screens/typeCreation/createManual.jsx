@@ -22,12 +22,9 @@ const CreateAutomatic = ({ navigation }) => {
   kanitLoaded = useFonts({
     Kanit_200ExtraLight,
   });
-
+  const [departamentosXpiso, setDepartamentosXpiso] = useState([]);
   const [userState, setUserState] = useState({
-
-    cant_pisos: null,
-    departamentosXpiso: null,
-
+    cant_pisos: 0,
   });
 
   const onCreatePress = async (e) => {
@@ -39,11 +36,14 @@ const CreateAutomatic = ({ navigation }) => {
         navigation.navigate('selectAutoManual')
       })
         .catch(() => {
-
           Alert.alert("Datos repetidos")
         });
     }
   }
+
+  useEffect(() => {
+    console.log(departamentosXpiso)
+  }, [departamentosXpiso])
 
   return (
     <ImageBackground source={fondoPag}>
@@ -64,22 +64,28 @@ const CreateAutomatic = ({ navigation }) => {
             placeholder="Ingrese la cantidad de pisos"
             name="cant_pisos"
             value={userState.cant_pisos}
-            onChangeText={number => setUserState({ ...userState, cant_pisos: number })}
+            onChangeText={number => {
+              setUserState({ ...userState, cant_pisos: number ? parseInt(number) : 0 })
+              setDepartamentosXpiso(new Array(userState.cant_pisos).fill(0));
+            }}
             keyboardType="numeric"
           />
-          {/*  var cantPisos = {userState.cant_pisos};
-        
-            for (let i = 0; i < cantPisos; i++){
-              <TextInput
-                style={styles.textInput}
-                placeholder={`Ingrese la cantidad de departamentos del piso ${i+1}`}
-                name="departamentosXpiso"
-                value={userState.departamentosXpiso}
-                onChangeText={number => setUserState({ ...userState, departamentosXpiso: number })}
-                keyboardType="numeric"
-              />
-            }
-          */}
+          {new Array(userState.cant_pisos).fill(0).map((_, i) => <TextInput
+            style={styles.textInput}
+            placeholder={`Ingrese la cantidad de departamentos del piso ${i + 1}`}
+            name="departamentosXpiso"
+            value={departamentosXpiso[i]}
+            onChangeText={(number) => {
+              const copy = [];
+              for (let index = 0; index < departamentosXpiso.length; index++) {
+                copy.push(departamentosXpiso[index]);
+              }
+              copy[i] = number ? parseInt(number) : 0;
+              setDepartamentosXpiso(copy)
+            }}
+            keyboardType="numeric"
+          />)}
+         
 
           <Text style={styles.text}>Elija el tipo de numeración de los departamentos: </Text>
           <BotonRadio />
@@ -101,11 +107,11 @@ export default CreateAutomatic
 const styles = StyleSheet.create({
   logo: {
     width: '70%',
-    height: '22%',
+    height: 198,
     marginTop: 115,
   },
   vista: {
-    height: 900,
+   height: 1500,
     alignItems: 'center',
   },
   titulo: {
@@ -135,14 +141,14 @@ const styles = StyleSheet.create({
   },
   atras: {
     position: 'absolute',
-    top: '7%',
+    top: 63,
     left: '15%',
     color: 'blue',
     textDecorationLine: 'underline'
   },
   flecha: {
     position: 'absolute',
-    top: '7.3%',
+    top: 65.7,
     left: '10%',
     color: "blue"
   },

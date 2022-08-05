@@ -16,6 +16,7 @@ const SelectAutoManual =({navigation})=>{
  kanitLoaded = useFonts({
     Kanit_200ExtraLight,
   });
+  var automatico = 'false';
   return (
 
       <ImageBackground source={fondoPag} style={styles.image}>
@@ -32,13 +33,15 @@ const SelectAutoManual =({navigation})=>{
       <Boton
       text="De forma manual" 
       onPress={ () =>{
-        navigation.navigate('CreateManual')
+        navigation.navigate('createManual')
       }}
       />
      <Boton 
       text="De forma automatica" 
       onPress={ () =>{
-        navigation.navigate('CreateAutomatic')
+        navigation.navigate('createAutomatic')
+        automatico = 'true'
+        console.log(automatico)
       }}
       />
    

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-
 import { MaterialIcons } from '@expo/vector-icons';
+
 
 const Radio = () => {
     const [checked, setChecked] = useState(0);
     var numeracion = ['Numeros', 'Letras'];
+    var seleccion = "false";
+
     return (
         <View>
             {numeracion.map((numeracion, key) => {
@@ -16,13 +18,19 @@ const Radio = () => {
                                 <View style={styles.vista}>
                                     <MaterialIcons name="radio-button-checked" style={styles.boton} size={15} color="black" />
                                     <Text style={styles.texto} >{numeracion}</Text>
+                                    
                                 </View>
                             </TouchableOpacity>
                         ) : (
                             <TouchableOpacity
                                 onPress={() => {
                                     setChecked(key);
+                                    if (checked == 0) {
+                                        seleccion = "true"                                     
+                                    }
+                                    console.log(seleccion) 
                                 }}
+                                
                             >
                                 <View style={styles.vista}>
                                     <MaterialIcons name="radio-button-unchecked" style={styles.boton} size={15} color="black" />
@@ -32,10 +40,13 @@ const Radio = () => {
 
                             </TouchableOpacity>
                         )}
+                       
                     </View>
                 );
             })}
+            
         </View>
+        
     );
 };
 

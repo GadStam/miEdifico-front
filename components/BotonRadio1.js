@@ -6,6 +6,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 const Radio = () => {
     const [checked, setChecked] = useState(0);
     var numeracion = ['Es correlativa (1(1) - 1(2) - 2(3))', 'La numeración es por piso'];
+    var seleccion = "false";
     return (
         <View>
             {numeracion.map((numeracion, key) => {
@@ -20,9 +21,13 @@ const Radio = () => {
                             </TouchableOpacity>
                         ) : (
                             <TouchableOpacity
-                                onPress={() => {
-                                    setChecked(key);
-                                }}
+                            onPress={() => {
+                                setChecked(key);
+                                if (checked == 1) {
+                                    seleccion = "true"                                     
+                                }
+                                console.log(seleccion) 
+                            }}
                             >
                                 <View style={styles.vista}>
                                     <MaterialIcons name="radio-button-unchecked" style={styles.boton} size={15} color="black" />

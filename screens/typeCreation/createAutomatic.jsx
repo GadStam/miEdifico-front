@@ -27,6 +27,8 @@ const CreateAutomatic = ({ navigation }) => {
 
     cant_pisos: null,
     departamentosXpiso: null,
+    numeracion:'',
+    correlativa:'',
 
   });
 
@@ -61,7 +63,7 @@ const CreateAutomatic = ({ navigation }) => {
 
           <TextInput
             style={styles.textInput}
-            placeholder="Ingrese la canstidad de pisos"
+            placeholder="Ingrese la cantidad de pisos"
             name="cant_pisos"
             value={userState.cant_pisos}
             onChangeText={number => setUserState({ ...userState, cant_pisos: number })}
