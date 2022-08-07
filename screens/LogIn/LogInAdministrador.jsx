@@ -56,6 +56,8 @@ const LogInAdministrador =({navigation})=>{
         <Image style={styles.logo} source={miED}></Image>
         
         <Text style={styles.titulo}>Inicio de sesión</Text>
+
+        
         
         <TextInput
             style={styles.textInput}

@@ -15,12 +15,12 @@ const InicioAdmin = ({ navigation }) => {
 
   const [edificio, setEdificio] = useState();
   const [nombreAdmin, setNombreAdmin] = useState("");
-  const [loaded, setLoaded] = useState(false)
+  const [loaded, setLoaded] = useState(true)
 
   const getNombreAdmin = async (e) => {
       setLoaded(true)
     await traerNombre().then((response) => {
-      setLoaded(false)
+      setLoaded(true)
       setNombreAdmin(response);
       console.log("la respuesta es", response)
     }).catch(() => {
@@ -32,7 +32,7 @@ const InicioAdmin = ({ navigation }) => {
   const getEdificioAdmin = async () => {
     setLoaded(true)
     await traerEdficios().then((response) => {
-      setLoaded(false)
+      setLoaded(true)
       setEdificio(response);
     }).catch((error) => {
       console.log("no hay edificios")
@@ -63,6 +63,8 @@ const InicioAdmin = ({ navigation }) => {
 
         <Text style={styles.titulo}>{nombreAdmin && `Bienvenido ${nombreAdmin}`}</Text>
         <Text style={styles.texto}>Entrar a un edificio existente:</Text>
+
+      
 
 
         <FlatList

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, TextInput, Checkbox, Alert, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, TextInput, Alert, FlatList } from 'react-native';
 import miED from "../assets/logoMI.png";
 import Laseleccion from '../components/multiselectespa'
 import SelectBox from 'react-native-multi-selectbox'
@@ -7,7 +7,7 @@ import { xorBy } from 'lodash'
 import fondoPag from "../assets/fondoInicio.jpg"
 import { useNavigation } from '@react-navigation/native';
 import BotonOne from "../components/BotonOne";
-
+import BouncyCheckbox from "react-native-bouncy-checkbox";
 import Teclado from '../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
 import SelectList from 'react-native-dropdown-select-list'
@@ -26,13 +26,11 @@ const CrearEdificio = ({ navigation }) => {
     Kanit_200ExtraLight,
   });
 
-  
+  const [pileta, setPileta] = useState(false);
+  const [terraza, setTarraza] = useState(false);
+  const [cochera, setCochera] = useState(false);
 
-  const prueba = [
-    { key: '1', value: 'Jammu & Kashmir' },
-    { key: '2', value: 'Himachal Pradesh' },
-    { key: '3', value: 'West Bengal' },
-  ];
+  
 
 
   const [userState, setUserState] = useState({
@@ -42,36 +40,45 @@ const CrearEdificio = ({ navigation }) => {
     clave_suterh: null,
     nro_encargado: null,
     nro_emergencia: null,
-    id_espaciocc: [1]
-  });
-
-  const [Opciones, setOpciones] = useState({
-    lista: []
+    id_espaciocc: []
   });
 
   
-  useEffect(() => {
+const click = () =>{
+  if (pileta === true){
+    userState.id_espaciocc.push(1)
+  }
+  if (terraza === true){
+    userState.id_espaciocc.push(2)
+  }
+  if (cochera === true){
+    userState.id_espaciocc.push(3)
+  }
+  Alert.alert("seleccionados" + userState.id_espaciocc)
+}
+  
+  /*useEffect(() => {
     console.log('Opciones', Opciones.lista);
-  }, [Opciones])
+  }, [Opciones])*/
 
 
 
  
 
-  useEffect(() => {
+  /*useEffect(() => {
     (async () => {
       await getEspaciosComunes()
     })()
-  }, [])
+  }, [])*/
 
-  const getEspaciosComunes = async (e) => {
+  /*const getEspaciosComunes = async (e) => {
     await traerEspacios().then((response) => {
       console.log(response)
       setOpciones({lista: response.map(esp => esp.tipo_espacio)});
     }).catch(() => {
       console.log("error en espacios comunes")
     });
-  }
+  }*/
 
   const onCreatePress = async (e) => {
     if (!userState.direccion || !userState.año_construccion || !userState.cuit || !userState.clave_suterh) {
@@ -153,68 +160,19 @@ const CrearEdificio = ({ navigation }) => {
 
         
 
-        
-          {/* 
-          
-      <View style={{ height: 40 }} />
-      <Text style={{ fontSize: 20, paddingBottom: 10 }}>MultiSelect Demo</Text>
-      <SelectBox
-        label="Select multiple"
-        options={K_OPTIONS}
-        selectedValues={selectedTeams}
-        onMultiSelect={onMultiChange()}
-        onTapClose={onMultiChange()}
-        isMulti
-      />
-        */}
-
-          {/*<View style={{ width: "80%" }}>
-            <SelectList
-              data={Opciones}
-              //renderItem={({ item }) => <EspaciosListItem key={item.tipo_espacio} useOpciones={item} />}
-              keyExtractor={Opciones => Opciones.tipo_espacio}
-              setSelected={selected}
-              placeholder="¿Qué espacios comúnes tiene el edificio?"
-              boxStyles={{
-                borderWidth: 1,
-                borderColor: "black",
-                padding: 15,
-                borderRadius: 8,
-                backgroundColor: "white",
-                marginTop: 10,
-                alignItems: "center"
-              }}
-
-              inputStyles={{
-                marginTop: 5,
-                marginBottom: 5
-              }}
-              dropdownStyles={{
-                borderWidth: 1,
-                borderRadius: 8,
-                backgroundColor: "white",
-                marginTop: 10,
-                borderColor: "black",
-              }}
-
-              maxHeight={150}
-            />
-            </View>*/}
-
-        {/*<View style={{ marginTop: 15 }}>
-            <Text style={styles.text}>Elija los dias que abre</Text>
-
-            {dias.map((dia) => (
-              <Checkbox2
-                dia={dia}
-                diasSeleccionados={diasSeleccionados}
-                setDiasSeleccionados={setDiasSeleccionados}
-                key={dia}
-                handleCheck={handleCheck}
-                dataTiming={dataTiming}
-              />
-            ))}
-            </View>*/}
+    
+            <BouncyCheckbox
+                size={25}
+                fillColor="blue"
+                unfillColor="white"
+                text="PILETA"
+                iconStyle={{ borderColor: "red" }}
+                iconInnerStyle={{ borderWidth: 2 }}
+                textStyle={{ fontFamily: "JosefinSans-Regular", color:'white' }}
+                value={pileta}
+                onPress={()=>setPileta(!pileta)}
+                
+          />
 
           <BotonOne
             text="Crear edificio"
