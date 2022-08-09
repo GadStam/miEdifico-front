@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 
-const Radio = () => {
+const Radio = (seleccion) => {
     const [checked, setChecked] = useState(0);
     var numeracion = ['Numeros', 'Letras'];
     var seleccion = "false";

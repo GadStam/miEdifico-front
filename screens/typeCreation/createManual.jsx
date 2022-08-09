@@ -25,6 +25,10 @@ const CreateAutomatic = ({ navigation }) => {
   const [departamentosXpiso, setDepartamentosXpiso] = useState([]);
   const [userState, setUserState] = useState({
     cant_pisos: 0,
+    numeracion: '',
+    correlativa:'',
+    auto:'false',
+    //también hay que pasarle el array de departamentosXPiso
   });
 
   const onCreatePress = async (e) => {
@@ -88,9 +92,13 @@ const CreateAutomatic = ({ navigation }) => {
          
 
           <Text style={styles.text}>Elija el tipo de numeración de los departamentos: </Text>
-          <BotonRadio />
+          <BotonRadio
+          seleccion = {userState.numeracion} //Necesito que reciba la prop de seleccion, no que la pase
+          />
           <Text style={styles.text}>La numeración de los departamentos: </Text>
-          <BotonRadio1 />
+          <BotonRadio1 
+          seleccion = {userState.correlativa} //Necesito que reciba la prop de seleccion, no que la pase
+          />
           <BotonOne
             text="Siguiente"
             onPress={onCreatePress}
