@@ -28,7 +28,7 @@ const CrearEdificio = ({ navigation }) => {
   });
 
   const [pileta, setPileta] = useState(false);
-  const [terraza, setTarraza] = useState(false);
+  const [terraza, setTerraza] = useState(false);
   const [cochera, setCochera] = useState(false);
 
   
@@ -41,11 +41,11 @@ const CrearEdificio = ({ navigation }) => {
     clave_suterh: null,
     nro_encargado: null,
     nro_emergencia: null,
-    id_espaciocc: [1]
+    id_espaciocc: []
   });
 
   
-const click = () =>{
+/*const click = () =>{
   if (pileta === true){
     userState.id_espaciocc.push(1)
   }
@@ -56,7 +56,7 @@ const click = () =>{
     userState.id_espaciocc.push(3)
   }
   Alert.alert("seleccionados" + userState.id_espaciocc)
-}
+}*/
   
   /*useEffect(() => {
     console.log('Opciones', Opciones.lista);
@@ -87,6 +87,18 @@ const click = () =>{
     }
     else {
       console.log(userState)
+      
+      if (pileta === true){
+        userState.id_espaciocc.push(1)
+      }
+      if (terraza === true){
+        userState.id_espaciocc.push(2)
+      }
+      if (cochera === true){
+        userState.id_espaciocc.push(3)
+      }
+      
+    
       await crearEdficiosAdmin(userState).then(() => {
         navigation.navigate('Firstscreendepto')
       })
@@ -175,15 +187,42 @@ const click = () =>{
                 text="PILETA"
                 iconStyle={{ borderColor: "red" }}
                 iconInnerStyle={{ borderWidth: 2 }}
-                textStyle={{ fontFamily: "JosefinSans-Regular", color:'white' }}
+                textStyle={{ color:'white' }}
                 value={pileta}
                 onPress={()=>setPileta(!pileta)}
+                
+          />
+
+            <BouncyCheckbox
+                size={25}
+                fillColor="blue"
+                unfillColor="white"
+                text="TERRAZA"
+                iconStyle={{ borderColor: "red" }}
+                iconInnerStyle={{ borderWidth: 2 }}
+                textStyle={{ color:'white' }}
+                value={terraza}
+                onPress={()=>setTerraza(!terraza)}
+                
+          />
+
+            <BouncyCheckbox
+                size={25}
+                fillColor="blue"
+                unfillColor="white"
+                text="COCHERA"
+                iconStyle={{ borderColor: "red" }}
+                iconInnerStyle={{ borderWidth: 2 }}
+                textStyle={{ color:'white' }}
+                value={cochera}
+                onPress={()=>setCochera(!cochera)}
                 
           />
 
           <BotonOne
             text="Crear edificio"
             onPress={onCreatePress}
+            
           />
         </View>
       </Teclado>

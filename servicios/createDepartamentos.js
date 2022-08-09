@@ -12,10 +12,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const crearDepartamentos = async (userState) => {
     const tokenId = await AsyncStorage.getItem('token') // trae del stoateg e l  token 
-    const id = await AsyncStorage.getItem('id')
+    const idEdificio = await AsyncStorage.getItem('idEdificio')
     console.log(tokenId)
     return AxiosClient
-      .post(`/departamentos/${id}`, {
+      .post(`/departamentos/${idEdificio}`, {
         headers: {'Authorization': 'Bearer ' + tokenId},
         ...userState
       }).then((res) => { // si status code entre 200 y 299

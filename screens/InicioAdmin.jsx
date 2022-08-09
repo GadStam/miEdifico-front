@@ -73,7 +73,7 @@ const InicioAdmin = ({ navigation }) => {
         <BotonOne
           text="Crear nuevo edificio"
           onPress={() => {
-            navigation.navigate('selectAutoManual')
+            navigation.navigate('CrearEdificio')
           }}
         />
       </ImageBackground>
