@@ -70,7 +70,6 @@ const InicioAdmin = ({ navigation }) => {
           keyExtractor={item => item.direccion}
         />
 
-
         <BotonOne
           text="Crear nuevo edificio"
           onPress={() => {
