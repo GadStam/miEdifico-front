@@ -14,6 +14,7 @@ import SelectList from 'react-native-dropdown-select-list'
 import { crearEdficiosAdmin, traerEspacios } from '../servicios/crearEdificioService'
 import MultiSelect from 'react-native-multiple-select';
 import EspaciosListItem from "../components/EspaciosListItem"
+import InicioAdmin from './InicioAdmin';
 import {
   useFonts,
   Kanit_200ExtraLight,
@@ -101,6 +102,12 @@ const click = () =>{
       <Teclado>
         <View style={styles.vista}>
           <AntDesign style={styles.flecha} name="left" size={15} />
+          <Text style={styles.atras}
+          onPress={() => {
+            navigation.navigate('InicioAdmin')
+          }}>
+          Volver atrás
+        </Text>
           <Image style={styles.logo} source={miED}></Image>
           <Text style={styles.titulo}>Nuevo Edificio</Text>
 

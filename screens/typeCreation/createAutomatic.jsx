@@ -54,7 +54,7 @@ const CreateAutomatic = ({ navigation }) => {
           <AntDesign style={styles.flecha} name="left" size={15} />
           <Text style={styles.atras}
             onPress={() => {
-              navigation.navigate('InicioAdmin')
+              navigation.navigate('selectAutoManual')
             }}>
             Volver atrás
           </Text>

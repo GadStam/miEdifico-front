@@ -64,9 +64,6 @@ const InicioAdmin = ({ navigation }) => {
         <Text style={styles.titulo}>{nombreAdmin && `Bienvenido ${nombreAdmin}`}</Text>
         <Text style={styles.texto}>Entrar a un edificio existente:</Text>
 
-      
-
-
         <FlatList
           data={edificio}
           renderItem={({ item }) => <EdificiosListItem key={item.direccion} edificio={item} />}
@@ -77,7 +74,7 @@ const InicioAdmin = ({ navigation }) => {
         <BotonOne
           text="Crear nuevo edificio"
           onPress={() => {
-            navigation.navigate('CrearEdificio')
+            navigation.navigate('selectAutoManual')
           }}
         />
       </ImageBackground>
