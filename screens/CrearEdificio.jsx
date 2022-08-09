@@ -35,12 +35,12 @@ const CrearEdificio = ({ navigation }) => {
 
   const [userState, setUserState] = useState({
     direccion: '',
-    año_construccion: '',
+    año_construccion: null,
     cuit: null,
     clave_suterh: null,
     nro_encargado: null,
     nro_emergencia: null,
-    id_espaciocc: []
+    id_espaciocc: [1]
   });
 
   
@@ -119,7 +119,7 @@ const click = () =>{
             placeholder="Ingrese año de construccion"
             name="año_construccion"
             value={userState.año_construccion}
-            onChangeText={number => setUserState({ ...userState, año_construccion: number })}
+            onChangeText={number => setUserState({ ...userState, año_construccion:  Number(number) })}
             keyboardType="numeric"
           />
 
@@ -128,7 +128,7 @@ const click = () =>{
             placeholder="Ingrese el CUIT"
             name="cuit"
             value={userState.cuit}
-            onChangeText={number => setUserState({ ...userState, cuit: number })}
+            onChangeText={number => setUserState({ ...userState, cuit: Number(number) })}
             keyboardType="numeric"
           />
           <TextInput
@@ -136,7 +136,7 @@ const click = () =>{
             placeholder="Ingrese la clave Suterh"
             name="clave_suterh"
             value={userState.clave_suterh}
-            onChangeText={number => setUserState({ ...userState, clave_suterh: number })}
+            onChangeText={number => setUserState({ ...userState, clave_suterh:  Number(number) })}
             keyboardType="numeric"
           />
 
@@ -145,7 +145,7 @@ const click = () =>{
             placeholder="Ingrese el numero de encargado"
             name="nro_encargado"
             value={userState.nro_encargado}
-            onChangeText={number => setUserState({ ...userState, nro_encargado: number })}
+            onChangeText={number => setUserState({ ...userState, nro_encargado:  Number(number) })}
             keyboardType="numeric"
           />
 
@@ -154,7 +154,7 @@ const click = () =>{
             placeholder="Ingrese el numero de emergencia"
             name="nro_emergencia"
             value={userState.nro_emergencia}
-            onChangeText={number => setUserState({ ...userState, nro_emergencia: number })}
+            onChangeText={number => setUserState({ ...userState, nro_emergencia:  Number(number) })}
             keyboardType="numeric"
           />
 

@@ -45,7 +45,7 @@ const InicioAdmin = ({ navigation }) => {
       await getEdificioAdmin()
       await getNombreAdmin()
     })()
-  }, [edificio])
+  }, [])
 
   return (
     <>

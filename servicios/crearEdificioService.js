@@ -16,9 +16,8 @@ export const crearEdficiosAdmin = async (userState) => {
     console.log(userState)
     return AxiosClient
       .post(`/edificios/${id}`, {
-        headers: {'Authorization': 'Bearer ' + tokenId},
         ...userState
-      }).then((res) => { // si status code entre 200 y 299
+      }, {headers: {'Authorization': 'Bearer ' + tokenId},}).then((res) => { // si status code entre 200 y 299
 
         const userInfo = res.data;
         //console.log(res.data)
