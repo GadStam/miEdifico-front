@@ -3,10 +3,9 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 
-const Radio = (seleccion) => {
+const Radio = (changeSeleccion, seleccion) => {
     const [checked, setChecked] = useState(0);
     var numeracion = ['Numeros', 'Letras'];
-    var seleccion = "false";
 
     return (
         <View>
@@ -26,7 +25,7 @@ const Radio = (seleccion) => {
                                 onPress={() => {
                                     setChecked(key);
                                     if (checked == 0) {
-                                        seleccion = "true"                                     
+                                        changeSeleccion('true')                                 
                                     }
                                     console.log(seleccion) 
                                 }}

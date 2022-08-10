@@ -32,8 +32,6 @@ const CrearEdificio = ({ navigation }) => {
   const [cochera, setCochera] = useState(false);
 
   
-
-
   const [userState, setUserState] = useState({
     direccion: '',
     año_construccion: null,

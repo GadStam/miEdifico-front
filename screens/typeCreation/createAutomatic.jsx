@@ -27,9 +27,9 @@ const CreateAutomatic = ({ navigation }) => {
 
     cant_pisos: null,
     departamentosXpiso: null,
-    numeracion:'',
-    correlativa:'',
-    auto:'true'
+    numeracion: '',
+    correlativa: '',
+    auto: 'true'
 
   });
 
@@ -80,12 +80,14 @@ const CreateAutomatic = ({ navigation }) => {
             keyboardType="numeric"
           />
           <Text style={styles.text}>Elija el tipo de numeración de los departamentos: </Text>
-          <BotonRadio 
-          seleccion = {userState.numeracion}
+          <BotonRadio
+            seleccion={userState.numeracion}
+            changeSeleccion={(value) => { setUserState({ ...userState, numeracion: value }) }}
           />
           <Text style={styles.text}>La numeración de los departamentos: </Text>
-          <BotonRadio1 
-          seleccion = {userState.correlativa}
+          <BotonRadio1
+            seleccion={userState.correlativa}
+            changeSeleccion={(value) => { setUserState({ ...userState, correlativa: value }) }}
           />
           <BotonOne
             text="Siguiente"

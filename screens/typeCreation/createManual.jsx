@@ -22,17 +22,16 @@ const CreateAutomatic = ({ navigation }) => {
   kanitLoaded = useFonts({
     Kanit_200ExtraLight,
   });
-  const [departamentosXpiso, setDepartamentosXpiso] = useState([]);
   const [userState, setUserState] = useState({
+    departamentosPiso: [],
     cant_pisos: 0,
     numeracion: '',
     correlativa:'',
     auto:'false',
-    //también hay que pasarle el array de departamentosXPiso
   });
 
   const onCreatePress = async (e) => {
-    if (!userState.cant_pisos || !userState.departamentosXpiso) {
+    if (!userState.cant_pisos || !userState.departamentosPiso) {
       Alert.alert("Por favor ingresar todos los datos")
     }
     else {
@@ -46,8 +45,8 @@ const CreateAutomatic = ({ navigation }) => {
   }
 
   useEffect(() => {
-    console.log(departamentosXpiso)
-  }, [departamentosXpiso])
+    console.log(userState.departamentosPiso)
+  }, [departamentosPiso])
 
   return (
     <ImageBackground source={fondoPag}>
@@ -69,23 +68,22 @@ const CreateAutomatic = ({ navigation }) => {
             name="cant_pisos"
             value={userState.cant_pisos}
             onChangeText={number => {
-              setUserState({ ...userState, cant_pisos: number ? parseInt(number) : 0 })
-              setDepartamentosXpiso(new Array(userState.cant_pisos).fill(0));
+              setUserState({ ...userState, cant_pisos: number ? parseInt(number) : 0, departamentosPiso:(new Array(userState.cant_pisos).fill(0)) })
             }}
             keyboardType="numeric"
           />
-          {new Array(userState.cant_pisos).fill(0).map((_, i) => <TextInput
+          {userState.departamentosPiso.map((elemento, i) => <TextInput
             style={styles.textInput}
             placeholder={`Ingrese la cantidad de departamentos del piso ${i + 1}`}
-            name="departamentosXpiso"
-            value={departamentosXpiso[i]}
+            name="departamentosPiso"
+            value={elemento}
             onChangeText={(number) => {
               const copy = [];
-              for (let index = 0; index < departamentosXpiso.length; index++) {
-                copy.push(departamentosXpiso[index]);
+              for (let index = 0; index < userState.departamentosPiso.length; index++) {
+                copy.push(userState.departamentosPiso[index]);
               }
               copy[i] = number ? parseInt(number) : 0;
-              setDepartamentosXpiso(copy)
+              setUserState({ ...userState, departamentosPiso: copy })
             }}
             keyboardType="numeric"
           />)}
@@ -93,11 +91,13 @@ const CreateAutomatic = ({ navigation }) => {
 
           <Text style={styles.text}>Elija el tipo de numeración de los departamentos: </Text>
           <BotonRadio
-          seleccion = {userState.numeracion} //Necesito que reciba la prop de seleccion, no que la pase
+            seleccion={userState.numeracion}
+            changeSeleccion={(value) => { setUserState({ ...userState, numeracion: value }) }}
           />
           <Text style={styles.text}>La numeración de los departamentos: </Text>
-          <BotonRadio1 
-          seleccion = {userState.correlativa} //Necesito que reciba la prop de seleccion, no que la pase
+          <BotonRadio1
+            seleccion={userState.correlativa}
+            changeSeleccion={(value) => { setUserState({ ...userState, correlativa: value }) }}
           />
           <BotonOne
             text="Siguiente"
