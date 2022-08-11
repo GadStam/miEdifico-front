@@ -98,7 +98,7 @@ const CrearEdificio = ({ navigation }) => {
       
     
       await crearEdficiosAdmin(userState).then(() => {
-        navigation.navigate('Firstscreendepto')
+        navigation.navigate('selectAutoManual')
       })
         .catch(() => {
 

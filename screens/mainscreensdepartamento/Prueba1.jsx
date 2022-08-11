@@ -5,7 +5,6 @@ import fondoPag from "../../assets/fondoInicio.jpg"
 import MultiSelect from 'react-native-multiple-select';
 import Girador from '../../components/girador'
 import Home from '../Home'
-import Navbarprueba from '../../components/Navbarprueba'
 import Inquilino from '../InicioInquilino'
 import { useNavigation } from '@react-navigation/native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -22,7 +21,7 @@ const Firstscreendepto =({navigation})=>{
     Kanit_200ExtraLight,
   });
 
-  
+  const Tab = createBottomTabNavigator();
 
   return (
 
@@ -32,13 +31,7 @@ const Firstscreendepto =({navigation})=>{
       
      <Girador/>
 
-     <Navbarprueba style={styles.navegador}/>
-
-
-     
-     
-   
-      </View>
+     </View>
 
     
   );
@@ -60,13 +53,10 @@ const styles = StyleSheet.create({
     flex:1
   },
   navegador:{
-    width: '100%',
-    height: 50,
-    backgroundColor: '#EE5407',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute', //Here is the trick
-    bottom: 0, //Here is the trick
-    paddingTop:100
+                  flexDirection: 'column',
+                    alignSelf: 'center',
+                    elevation: 2,
+                    borderTopStartRadius: 5,
+                    borderTopEndRadius: 5,
   }
 });

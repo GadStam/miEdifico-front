@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 import { MaterialIcons } from '@expo/vector-icons';
 
-const Radio = (changeSeleccion, seleccion) => {
+const Radio = ({changeSeleccion, seleccion}) => {
     const [checked, setChecked] = useState(0);
     var numeracion = ['Es correlativa (1(1) - 1(2) - 2(3))', 'La numeración es por piso'];
     return (
@@ -22,10 +22,12 @@ const Radio = (changeSeleccion, seleccion) => {
                             <TouchableOpacity
                             onPress={() => {
                                 setChecked(key);
-                                if (checked == 0) {
+                                if (checked == 1) {
                                     changeSeleccion('true')                                 
                                 }
-                                console.log(seleccion) 
+                                else{
+                                    changeSeleccion('false')
+                                }
                             }}
                             >
                                 <View style={styles.vista}>
