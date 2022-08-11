@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
 import miED from "../assets/logoMI.png";
 import fondoPag from "../assets/fondoInicio.jpg"
-import MultiSelect from 'react-native-multiple-select';
+
 import Boton from "../components/BotonDoble";
 import { useNavigation } from '@react-navigation/native';
 import {

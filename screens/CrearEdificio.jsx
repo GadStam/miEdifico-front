@@ -12,7 +12,6 @@ import Teclado from '../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
 import SelectList from 'react-native-dropdown-select-list'
 import { crearEdficiosAdmin, traerEspacios } from '../servicios/crearEdificioService'
-import MultiSelect from 'react-native-multiple-select';
 import EspaciosListItem from "../components/EspaciosListItem"
 import InicioAdmin from './InicioAdmin';
 import {
@@ -175,46 +174,44 @@ const CrearEdificio = ({ navigation }) => {
             keyboardType="numeric"
           />
 
-        
-
-    
             <BouncyCheckbox
-                size={25}
+                size={23}
                 fillColor="blue"
                 unfillColor="white"
-                text="PILETA"
+                text="Pileta"
                 iconStyle={{ borderColor: "red" }}
                 iconInnerStyle={{ borderWidth: 2 }}
                 textStyle={{ color:'white' }}
                 value={pileta}
                 onPress={()=>setPileta(!pileta)}
-                
+                style={{marginTop:'5%'}}
           />
 
             <BouncyCheckbox
-                size={25}
+                size={23}
                 fillColor="blue"
                 unfillColor="white"
-                text="TERRAZA"
+                text="Terraza"
                 iconStyle={{ borderColor: "red" }}
                 iconInnerStyle={{ borderWidth: 2 }}
                 textStyle={{ color:'white' }}
                 value={terraza}
                 onPress={()=>setTerraza(!terraza)}
+
                 
           />
 
             <BouncyCheckbox
-                size={25}
+                size={23}
                 fillColor="blue"
                 unfillColor="white"
-                text="COCHERA"
+                text="Cochera"
                 iconStyle={{ borderColor: "red" }}
                 iconInnerStyle={{ borderWidth: 2 }}
                 textStyle={{ color:'white' }}
                 value={cochera}
-                onPress={()=>setCochera(!cochera)}
-                
+                onPress={()=>setCochera(!cochera)}    
+                style={{marginBottom:'-4%'}}           
           />
 
           <BotonOne
