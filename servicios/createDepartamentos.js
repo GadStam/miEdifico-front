@@ -15,21 +15,24 @@ export const crearDepartamentos = async (userState) => {
     const idEdificio = await AsyncStorage.getItem('idEdificio')
     console.log(tokenId)
     return AxiosClient
-      .post(`/departamentos/${idEdificio}`, {
-        headers: {'Authorization': 'Bearer ' + tokenId},
-        ...userState
-      }).then((res) => { // si status code entre 200 y 299
-
+    .post(`/edificios/${idEdificio}`, {
+      ...userState
+    }, {headers: {'Authorization': 'Bearer ' + tokenId},}).then((res) => { // si status code entre 200 y 299
+  
         const userInfo = res.data;
-        console.log(res.data)
-        return userInfo
-      })
-      .catch((err) => { // status >= 300
-        console.log(`register error`, err.response);
-       
-        throw err //propagar error
-      }); // => Promise<AxiosResponse>
+          console.log(res.data)
+          return userInfo
+     
+    })
+    .catch((err) => { // status >= 300
+      console.log(`register error`, err.response);
+     
+      throw err //propagar error
+    }); // => Promise<AxiosResponse>
   };
+
+
+ 
 
 
  
