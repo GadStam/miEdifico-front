@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, TextInput, Alert} from 'react-native';
 import miED from "../../assets/logoMI.png";
 import fondoPag from "../../assets/fondoInicio.jpg"
 import chec from "../../assets/fondoInicio.jpg"
@@ -25,8 +25,8 @@ const CreateAutomatic = ({ navigation }) => {
   const [userState, setUserState] = useState({
     departamentosXpiso: [],
     cant_pisos: 0,
-    letra: '',
-    correlativa:'',
+    letra: 'true',
+    correlativa:'true',
     automatico:'false',
   });
 
@@ -39,7 +39,7 @@ const CreateAutomatic = ({ navigation }) => {
         navigation.navigate('selectAutoManual')
       })
         .catch(() => {
-          Alert.alert("Datos repetidos")
+          alert("Datos repetidos")
         });
     }
   }
@@ -77,6 +77,7 @@ const CreateAutomatic = ({ navigation }) => {
             placeholder={`Ingrese la cantidad de departamentos del piso ${i + 1}`}
             name="departamentosXpiso"
             value={elemento}
+            required
             onChangeText={(number) => {
               const copy = [];
               for (let index = 0; index < userState.departamentosXpiso.length; index++) {
@@ -102,6 +103,7 @@ const CreateAutomatic = ({ navigation }) => {
           <BotonOne
             text="Siguiente"
             onPress={onCreatePress}
+
           />
 
         </View>

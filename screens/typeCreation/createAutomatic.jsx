@@ -27,8 +27,8 @@ const CreateAutomatic = ({ navigation }) => {
 
     cant_pisos: null,
     departamentosXpiso: null,
-    letra: '',
-    correlativa: '',
+    letra: 'true',
+    correlativa: 'true',
     automatico: 'true'
 
   });
@@ -105,7 +105,7 @@ export default CreateAutomatic
 const styles = StyleSheet.create({
   logo: {
     width: '70%',
-    height: '22%',
+    height: 198,
     marginTop: 115,
   },
   vista: {
@@ -139,14 +139,14 @@ const styles = StyleSheet.create({
   },
   atras: {
     position: 'absolute',
-    top: '7%',
+    top: 63,
     left: '15%',
     color: 'blue',
     textDecorationLine: 'underline'
   },
   flecha: {
     position: 'absolute',
-    top: '7.3%',
+    top: 65.7,
     left: '10%',
     color: "blue"
   },

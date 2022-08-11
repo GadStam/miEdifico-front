@@ -5,7 +5,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 const Radio = ({changeSeleccion, seleccion}) => {
     const [checked, setChecked] = useState(0);
-    var numeracion = ['Numeros', 'Letras'];
+    var numeracion = [ 'Letras','Numeros'];
 
     return (
         <View>
@@ -24,7 +24,7 @@ const Radio = ({changeSeleccion, seleccion}) => {
                             <TouchableOpacity
                                 onPress={() => {
                                     setChecked(key);
-                                    if (checked == 0) {
+                                    if (checked == 1) {
                                         changeSeleccion('true')                           
                                     }
                                     else{

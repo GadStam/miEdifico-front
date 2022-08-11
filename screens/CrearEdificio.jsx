@@ -173,7 +173,8 @@ const CrearEdificio = ({ navigation }) => {
             onChangeText={number => setUserState({ ...userState, nro_emergencia:  Number(number) })}
             keyboardType="numeric"
           />
-
+          <View style={styles.boxes}>
+          <Text style={styles.text}>Seleccione que espacios comunes desea que tenga el edificio:</Text>
             <BouncyCheckbox
                 size={23}
                 fillColor="blue"
@@ -181,7 +182,7 @@ const CrearEdificio = ({ navigation }) => {
                 text="Pileta"
                 iconStyle={{ borderColor: "red" }}
                 iconInnerStyle={{ borderWidth: 2 }}
-                textStyle={{ color:'white' }}
+                textStyle={{ color:'white', fontFamily: 'Kanit-Regular' }}
                 value={pileta}
                 onPress={()=>setPileta(!pileta)}
                 style={{marginTop:'5%'}}
@@ -192,12 +193,11 @@ const CrearEdificio = ({ navigation }) => {
                 fillColor="blue"
                 unfillColor="white"
                 text="Terraza"
-                iconStyle={{ borderColor: "red" }}
                 iconInnerStyle={{ borderWidth: 2 }}
-                textStyle={{ color:'white' }}
+                textStyle={{ color:'white', fontFamily: 'Kanit-Regular' }}
                 value={terraza}
                 onPress={()=>setTerraza(!terraza)}
-
+                style={{marginTop:'2%'}}    
                 
           />
 
@@ -208,12 +208,12 @@ const CrearEdificio = ({ navigation }) => {
                 text="Cochera"
                 iconStyle={{ borderColor: "red" }}
                 iconInnerStyle={{ borderWidth: 2 }}
-                textStyle={{ color:'white' }}
+                textStyle={{ color:'white', fontFamily: 'Kanit-Regular' }}
                 value={cochera}
                 onPress={()=>setCochera(!cochera)}    
-                style={{marginBottom:'-4%'}}           
+                style={{marginTop:'2%'}}      
           />
-
+        </View>
           <BotonOne
             text="Crear edificio"
             onPress={onCreatePress}
@@ -233,11 +233,12 @@ export default CrearEdificio
 const styles = StyleSheet.create({
   logo: {
     width: '70%',
-    height: '22%',
-    marginTop: 115
+    height: 198,
+    marginTop: 115,
   },
   vista: {
-    height: 1000,
+    minHeight: 900,
+    maxHeight: 1050,
     alignItems: 'center',
   },
   titulo: {
@@ -257,15 +258,30 @@ const styles = StyleSheet.create({
   },
   atras: {
     position: 'absolute',
-    top: '7%',
+    top: 63,
     left: '15%',
     color: 'blue',
     textDecorationLine: 'underline'
   },
   flecha: {
     position: 'absolute',
-    top: '7.3%',
+    top: 65.7,
     left: '10%',
     color: "blue"
+  },
+  boxes:{
+    color: 'white',
+    width: '80%',
+    textAlign: "left",
+    fontFamily: 'Kanit-Regular',
+    marginBottom: '-4%',
+
+  },
+  text: {
+    color: 'white',
+    width: "100%",
+    textAlign: "justify",
+    fontFamily: 'Kanit-Regular',
+    marginTop: '5%'
   },
 });
