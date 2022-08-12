@@ -60,9 +60,6 @@ const CrearEdificio = ({ navigation }) => {
   }, [Opciones])*/
 
 
-
- 
-
   /*useEffect(() => {
     (async () => {
       await getEspaciosComunes()
@@ -134,7 +131,7 @@ const CrearEdificio = ({ navigation }) => {
             style={styles.textInput}
             placeholder="Ingrese año de construccion"
             name="año_construccion"
-            value={userState.año_construccion}
+              value={userState.año_construccion}
             onChangeText={number => setUserState({ ...userState, año_construccion:  Number(number) })}
             keyboardType="numeric"
           />
