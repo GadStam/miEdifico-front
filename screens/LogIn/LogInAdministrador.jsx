@@ -27,17 +27,18 @@ const LogInAdministrador = ({ navigation }) => {
       setDisable(true)
       console.log("hhh")
       Alert.alert("Por favor ingresar todos los datos")
+
     } else {
       setLoaded(true)
       await login(userState).then(() => {
         setLoaded(false)
-        setDisable(false)
         navigation.navigate('InicioAdmin')
+        setDisable(false)
       })
         .catch(() => {
           console.log("no entro")
-          setDisable(false)
           Alert.alert("Datos incorrectos")
+          setDisable(false)
         });
     }
   }
