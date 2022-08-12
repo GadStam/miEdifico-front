@@ -8,7 +8,7 @@ const Girador = () => {
     
         <View style={[styles.container, styles.horizontal]}>
              <ActivityIndicator size="large" />
-                </View>
+        </View>
        
     )
 }
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     horizontal: {
       flexDirection: "row",
       justifyContent: "space-around",
-      padding: 30
+      paddingTop: '22%'
 
     }
   });

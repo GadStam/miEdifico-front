@@ -12,7 +12,6 @@ import Teclado from '../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
 import SelectList from 'react-native-dropdown-select-list'
 import { crearEdficiosAdmin, traerEspacios } from '../servicios/crearEdificioService'
-import EspaciosListItem from "../components/EspaciosListItem"
 import InicioAdmin from './InicioAdmin';
 import {
   useFonts,

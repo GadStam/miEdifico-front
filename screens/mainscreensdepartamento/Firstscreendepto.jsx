@@ -4,7 +4,6 @@ import miED from "../../assets/logoMI.png";
 import fondoPag from "../../assets/fondoInicio.jpg"
 import Girador from '../../components/girador'
 import Home from '../Home'
-import Navbarprueba from '../../components/Navbarprueba'
 import Inquilino from '../InicioInquilino'
 import { useNavigation } from '@react-navigation/native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -30,11 +29,7 @@ const Firstscreendepto =({navigation})=>{
       <Text style={styles.titulo}>PROXIMAMENTE...</Text>
       
      <Girador/>
-
-     {/*<Navbarprueba style={styles.navegador}/>*/}
-
-
-     
+  
      
    
       </View>
