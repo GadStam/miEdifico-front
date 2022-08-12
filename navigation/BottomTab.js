@@ -29,7 +29,7 @@ const BottomTab = () => {
                     <FontAwasome5 name='coins' size ={30} />
                 )}}        
             />
-            <Tab.Screen name="Firstscreendepto" component={Firstscreendepto} options={{
+            <Tab.Screen name="FirstScreendepto" component={Firstscreendepto} options={{
                 tabBarIcon: () =>(
                     <Ionicons name='home-outline' size ={30} />
                 )}}        

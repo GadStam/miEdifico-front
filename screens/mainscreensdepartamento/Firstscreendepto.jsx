@@ -24,15 +24,13 @@ const Firstscreendepto =({navigation})=>{
 
   return (
 
-      <View source={fondoPag}>
+      <View source={fondoPag} style={styles.top} >
       
-      <Text style={styles.titulo}>PROXIMAMENTE...</Text>
+      <Text style={styles.titulo}>Mi Edificio</Text>
+      <Text style={styles.titulo}>Depto:</Text>
       
-     <Girador/>
-  
-     
-   
       </View>
+           
 
     
   );
@@ -42,25 +40,16 @@ export default Firstscreendepto
 
 const styles = StyleSheet.create({
   titulo: {
-    
-    top: '45%',
+    top: '15%',
     color: 'blue',
-    fontSize: 30,
+    fontSize: 20,
     fontFamily: 'Kanit-Regular',
-    
   },
-  fondo:{
-    backgroundColor: 'white',
-    flex:1
-  },
-  navegador:{
-    width: '100%',
-    height: 50,
-    backgroundColor: '#EE5407',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute', //Here is the trick
-    bottom: 0, //Here is the trick
-    paddingTop:100
+  top:{
+    backgroundColor:'white',
+    flexDirection:'row',
+    justifyContent:'space-between',
+    height: '12%',
+    paddingHorizontal: '5%'
   }
 });

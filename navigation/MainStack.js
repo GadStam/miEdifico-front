@@ -12,7 +12,6 @@ import RegistroAdmin from '../screens/LogIn/RegistroAdmin';
 import selectAutoManual from '../screens/selectAutoManual'
 import createManual from '../screens/typeCreation/createManual'
 import createAutomatic from '../screens/typeCreation/createAutomatic'
-import Firstscreendepto from '../screens/Inquilino/Firstscreendepto'
 import EdificiosListItem from '../components/EdificiosListItem'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import BottomTab from './BottomTab';
