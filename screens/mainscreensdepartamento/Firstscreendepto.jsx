@@ -27,11 +27,11 @@ const Firstscreendepto =({navigation})=>{
 
       <View source={fondoPag}>
       
-      <Text style={styles.titulo}>MI EDIFICIO</Text>
+      <Text style={styles.titulo}>PROXIMAMENTE...</Text>
       
      <Girador/>
 
-     <Navbarprueba style={styles.navegador}/>
+     {/*<Navbarprueba style={styles.navegador}/>*/}
 
 
      

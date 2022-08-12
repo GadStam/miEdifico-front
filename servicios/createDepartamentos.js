@@ -15,7 +15,7 @@ export const crearDepartamentos = async (userState) => {
     const idEdificio = await AsyncStorage.getItem('idEdificio')
     console.log(tokenId)
     return AxiosClient
-    .post(`/edificios/${idEdificio}`, {
+    .post(`/departamentos/${idEdificio}`, {
       ...userState
     }, {headers: {'Authorization': 'Bearer ' + tokenId},}).then((res) => { // si status code entre 200 y 299
   

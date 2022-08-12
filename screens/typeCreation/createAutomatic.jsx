@@ -39,7 +39,7 @@ const CreateAutomatic = ({ navigation }) => {
     }
     else {
       await crearDepartamentos(userState).then(() => {
-        navigation.navigate('selectAutoManual')
+        navigation.navigate('Firstscreendepto')
       })
         .catch(() => {
 
