@@ -18,7 +18,7 @@ const InicioAdmin = ({ navigation }) => {
   const [loaded, setLoaded] = useState(true)
 
   const getNombreAdmin = async (e) => {
-      setLoaded(true)
+    setLoaded(true)
     await traerNombre().then((response) => {
       setLoaded(true)
       setNombreAdmin(response);
@@ -49,36 +49,36 @@ const InicioAdmin = ({ navigation }) => {
 
   return (
     <>
-    {!loaded?  <Girador/>:
-    <View>
-      <ImageBackground source={fondoPag} style={styles.image}>
-        <AntDesign style={styles.flecha} name="left" size={15} />
-        <Text style={styles.atras}
-          onPress={() => {
-            navigation.navigate('Home')
-          }}>
-          Volver atrás
-        </Text>
-        <Image style={styles.logo} source={miED}></Image>
+      {!loaded ? <Girador /> :
+        <View>
+          <ImageBackground source={fondoPag} style={styles.image}>
+            <AntDesign style={styles.flecha} name="left" size={15} />
+            <Text style={styles.atras}
+              onPress={() => {
+                navigation.navigate('Home')
+              }}>
+              Volver atrás
+            </Text>
+            <Image style={styles.logo} source={miED}></Image>
 
-        <Text style={styles.titulo}>{nombreAdmin && `Bienvenido ${nombreAdmin}`}</Text>
-        <Text style={styles.texto}>Entrar a un edificio existente:</Text>
+            <Text style={styles.titulo}>{nombreAdmin && `Bienvenido ${nombreAdmin}`}</Text>
+            <Text style={styles.texto}>Entrar a un edificio existente:</Text>
 
-        <FlatList
-          data={edificio}
-          renderItem={({ item }) => <EdificiosListItem key={item.direccion} edificio={item} />}
-          keyExtractor={item => item.direccion}
-        />
+            <FlatList
+              data={edificio}
+              renderItem={({ item }) => <EdificiosListItem key={item.direccion} edificio={item} />}
+              keyExtractor={item => item.direccion}
+            />
 
-        <BotonOne
-          text="Crear nuevo edificio"
-          onPress={() => {
-            navigation.navigate('CrearEdificio')
-          }}
-        />
-      </ImageBackground>
-    </View>
-    }
+            <BotonOne
+              text="Crear nuevo edificio"
+              onPress={() => {
+                navigation.navigate('CrearEdificio')
+              }}
+            />
+          </ImageBackground>
+        </View>
+      }
     </>
 
   );

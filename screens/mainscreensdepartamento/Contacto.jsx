@@ -17,7 +17,7 @@ import {
  
 let kanitLoaded
 
-const Expensas =({navigation})=>{
+const Contacto =({navigation})=>{
  kanitLoaded = useFonts({
     Kanit_200ExtraLight,
   });
@@ -32,16 +32,17 @@ const Expensas =({navigation})=>{
 
       </View>
       <Card
-        title='Expensas'
-        detalle='Fecha de vencimiento: xx/xx/xx'
-        detalle2='Monto a pagar: $...'
+        title='Contacto'
+        detalle='Portero: 1134780914'
+        detalle2='Administrador: 111554217503'
+        detalle3='Emergencia: 1190497612'
       />
       <View style={{alignItems:'center'}}>
       <BotonOne
       
-          text="Descargar detalle expensas"
+          text="Cerrar Sesión"
           onPress={() => {
-            navigation.navigate('')
+            navigation.navigate('Home')
           }}
         />
         </View>
@@ -50,7 +51,7 @@ const Expensas =({navigation})=>{
   );
 }
 
-export default Expensas
+export default Contacto
 
 const styles = StyleSheet.create({
     titulo: {

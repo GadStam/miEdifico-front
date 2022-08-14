@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, SafeAreaView} from 'react-native';
 import miED from "../../assets/logoMI.png";
 import fondoPag from "../../assets/fondoInicio.jpg"
 import Girador from '../../components/girador'
@@ -14,11 +14,11 @@ import {
   useFonts,
   Kanit_200ExtraLight,
 } from '@expo-google-fonts/kanit';
-
+ 
 let kanitLoaded
 
-const Calendario = ({ navigation }) => {
-  kanitLoaded = useFonts({
+const Inconvenientes =({navigation})=>{
+ kanitLoaded = useFonts({
     Kanit_200ExtraLight,
   });
 
@@ -31,26 +31,39 @@ const Calendario = ({ navigation }) => {
         <Text style={styles.titulo}>Depto:</Text>
 
       </View>
-    </View>
+      <Card
+        title='Inconvenientes'
+        detalle='Corte de luz desde las 12:05'
+      />
+      <View style={{alignItems:'center'}}>
+      <BotonOne
+      
+          text="Reportar un problema"
+          onPress={() => {
+            navigation.navigate('')
+          }}
+        />
+        </View>
+        </View>
 
   );
 }
 
-export default Calendario
+export default Inconvenientes
 
 const styles = StyleSheet.create({
-  titulo: {
-    top: 18,
-    color: 'blue',
-    fontSize: 18,
-    fontFamily: 'Kanit-Regular',
-  },
-  top: {
-    backgroundColor: 'white',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    height: 100,
-    alignItems: 'center',
-    paddingHorizontal: '5%'
-  }
+    titulo: {
+        top:18,
+        color: 'blue',
+        fontSize: 18,
+        fontFamily: 'Kanit-Regular',
+      },
+      top: {
+        backgroundColor: 'white',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        height: 100,
+        alignItems: 'center',
+        paddingHorizontal: '5%'
+      }
 });
