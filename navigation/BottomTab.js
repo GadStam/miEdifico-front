@@ -36,7 +36,7 @@ const BottomTab = () => {
                 )
             }}
             />
-            <Tab.Screen name="FirstScreendepto" component={Firstscreendepto} options={{
+             <Tab.Screen name="FirstScreendepto" component={Firstscreendepto} options={{
                 tabBarIcon: () => (
                     <Ionicons name='home-outline' size={30} />
                 )

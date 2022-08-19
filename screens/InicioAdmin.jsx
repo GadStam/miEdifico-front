@@ -32,6 +32,7 @@ const InicioAdmin = ({ navigation }) => {
   const getEdificioAdmin = async () => {
     setLoaded(true)
     await traerEdficios().then((response) => {
+      console.log("aca trae edificios")
       setLoaded(true)
       setEdificio(response);
     }).catch((error) => {

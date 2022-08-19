@@ -17,6 +17,7 @@
     "@react-navigation/bottom-tabs": "^6.3.2",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.7.0",
+    "@rpldy/native-uploady": "^1.0.1",
     "axios": "^0.27.2",
     "expo-cli": "^5.4.12",
     "expo-font": "~10.1.0",
