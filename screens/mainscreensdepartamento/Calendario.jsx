@@ -10,7 +10,7 @@ import Inquilino from '../InicioInquilino'
 import { useNavigation } from '@react-navigation/native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Calendar, CalendarList, Agenda } from 'react-native-calendario';
+import { Calendar, LocaleConfig } from 'react-native-calendars';
 
 
 import {
@@ -18,28 +18,47 @@ import {
   Kanit_200ExtraLight,
 } from '@expo-google-fonts/kanit';
 
-
-
 let kanitLoaded
+
+LocaleConfig.locales['tr']={
+  monthNames: ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
+  monthNamesShort: ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"],
+  dayNames: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"],
+  dayNamesShort: ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]
+}
+LocaleConfig.defaultLocale='tr'
 
 const Calendario = ({ navigation }) => {
   kanitLoaded = useFonts({
     Kanit_200ExtraLight,
   });
 
-  
+
 
   return (
     <View>
       <View source={fondoPag} style={styles.top} >
 
-      <Text style={styles.titulo}>Dirección:</Text>
-      <Text style={styles.titulo}>Depto:</Text>
+        <Text style={styles.titulo}>Dirección:</Text>
+        <Text style={styles.titulo}>Depto:</Text>
       </View>
 
-<Calendar />
+      <Calendar
+      minDate={'2022-08-01'}
 
-</View>
+      />
+<View style={{alignItems:'center'}}>
+      <BotonOne
+      
+          text="Agregar nuevo evento"
+          onPress={() => {
+            navigation.navigate('Reservas')
+          }}
+        />
+        </View>
+      
+
+</View >
 
   );
 }
