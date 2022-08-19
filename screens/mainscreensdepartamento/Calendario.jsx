@@ -10,10 +10,15 @@ import Inquilino from '../InicioInquilino'
 import { useNavigation } from '@react-navigation/native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Calendar, CalendarList, Agenda } from 'react-native-calendario';
+
+
 import {
   useFonts,
   Kanit_200ExtraLight,
 } from '@expo-google-fonts/kanit';
+
+
 
 let kanitLoaded
 
@@ -22,16 +27,19 @@ const Calendario = ({ navigation }) => {
     Kanit_200ExtraLight,
   });
 
-  return (
+  
 
+  return (
     <View>
       <View source={fondoPag} style={styles.top} >
 
-        <Text style={styles.titulo}>Dirección:</Text>
-        <Text style={styles.titulo}>Depto:</Text>
-
+      <Text style={styles.titulo}>Dirección:</Text>
+      <Text style={styles.titulo}>Depto:</Text>
       </View>
-    </View>
+
+<Calendar />
+
+</View>
 
   );
 }
