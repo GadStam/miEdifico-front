@@ -15,6 +15,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export const traerEdficios = async () => {
     const tokenId = await AsyncStorage.getItem('token') // trae del stoateg e l  token 
     const id = await AsyncStorage.getItem('id')
+    console.log("este es el id", id)
     
     return AxiosClient
       .get(`/edificios/${id}`, {

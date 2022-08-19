@@ -28,7 +28,8 @@ const InicioInquilino =({navigation})=>{
     else {
       console.log(userState)
       await departamentologin (userState).then(() => {
-        navigation.navigate('Firstscreendepto')
+        console.log(userState)
+        navigation.navigate('Firstscreendepto', {cod: userState.codigo})
       })
         .catch(() => {
   

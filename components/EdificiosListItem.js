@@ -8,7 +8,7 @@ export default function EdificiosListItem ({edificio}){
     return (
     
     <TouchableOpacity onPress={ () =>{
-        navigation.navigate('Firstscreendepto')
+        navigation.navigate('Expensasadmin')
       }}>
         
     <View>
