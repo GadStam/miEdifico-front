@@ -13,15 +13,20 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AntDesign } from '@expo/vector-icons';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import Teclado from '../../components/Teclado';
+import DatePicker from 'react-native-date-picker';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import BotonFecha from '../../components/BotonFecha';
+import { RadioButton } from 'react-native-paper';
 import {
 
     useFonts,
     Kanit_200ExtraLight,
 } from '@expo-google-fonts/kanit';
+import Boton from '../../components/BotonDoble';
 
 let kanitLoaded
 
-const Expensas = ({ navigation }) => {
+const Reservas = ({ navigation }) => {
     kanitLoaded = useFonts({
         Kanit_200ExtraLight,
     });
@@ -34,17 +39,27 @@ const Expensas = ({ navigation }) => {
         hora_inicio:null,
         hora_final:null
       });
+      const [checked, setChecked] = React.useState('');
+      const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+      const showDatePicker = () => {
+        setDatePickerVisibility(true);
+      };
+    
+      const hideDatePicker = () => {
+        setDatePickerVisibility(false);
+      };
+    
+      const handleConfirm = (date) => {
+        console.warn("La fecha elegida es: ", date);
+        hideDatePicker();
+      };
 
     return (
 
         <Teclado>
             <View >
-            <View source={fondoPag} style={styles.top} >
-
-                <Text style={styles.titulo}>Dirección:</Text>
-                <Text style={styles.titulo}>Depto:</Text>
-
-            </View>
+            <View source={fondoPag} style={styles.top} />
 
             <View style={styles.vista}>
                 <AntDesign style={styles.flecha} name="left" size={15} />
@@ -59,45 +74,30 @@ const Expensas = ({ navigation }) => {
 
                 <View style={styles.boxes}>
                     <Text style={styles.texto}>Seleccione que espacio comun desea reservar:</Text>
-                    <BouncyCheckbox
-                        size={23}
-                        fillColor="blue"
-                        unfillColor="white"
-                        text="Pileta"
-                        iconStyle={{ borderColor: "red" }}
-                        iconInnerStyle={{ borderWidth: 2 }}
-                        textStyle={{ color: 'black', fontFamily: 'Kanit-Regular' }}
-                        value={pileta}
-                        onPress={() => setPileta(!pileta)}
-                        style={{ marginTop: '5%' }}
-                    />
 
-                    <BouncyCheckbox
-                        size={23}
-                        fillColor="blue"
-                        unfillColor="white"
-                        text="Terraza"
-                        iconInnerStyle={{ borderWidth: 2 }}
-                        textStyle={{ color: 'black', fontFamily: 'Kanit-Regular' }}
-                        value={terraza}
-                        onPress={() => setTerraza(!terraza)}
-                        style={{ marginTop: '2%' }}
+                    <RadioButton
+                    
 
-                    />
-
-                    <BouncyCheckbox
-                        size={23}
-                        fillColor="blue"
-                        unfillColor="white"
-                        text="Cochera"
-                        iconStyle={{ borderColor: "red" }}
-                        iconInnerStyle={{ borderWidth: 2 }}
-                        textStyle={{ color: 'black', fontFamily: 'Kanit-Regular' }}
-                        value={cochera}
-                        onPress={() => setCochera(!cochera)}
-                        style={{ marginTop: '2%' }}
-                    />
-
+        status={ checked === 'first' ? 'checked' : 'unchecked' }
+        value={pileta}
+        onPress={()=>setPileta(!pileta)}
+        text="Pileta"
+        color='blue'
+      />
+      <RadioButton
+        status={ checked === 'terraza' ? 'checked' : 'unchecked' }
+        value={terraza}
+        onPress={()=>setChecked('terraza')}
+        color='blue'
+        borderColor='blue'
+      />
+      <RadioButton
+        status={ checked === 'third' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('third')}
+        color='blue'
+        borderColor='blue'
+      />
+                   
                 </View>
                 <TextInput
                     style={styles.textInput}
@@ -107,22 +107,15 @@ const Expensas = ({ navigation }) => {
                     onChangeText={number => setUserState({ ...userState, cant_invitados: Number(number) })}
                     keyboardType="numeric"
                 />
-                <TextInput
-                    style={styles.textInput}
-                    placeholder="Ingrese la fecha"
-                    name="fecha"
-                    value={userState.fecha}
-                    onChangeText={date => setUserState({ ...userState, fecha: Date(date) })}
-                    keyboardType="numeric"
-                />
-                <TextInput
-                    style={styles.textInput}
-                    placeholder="Ingrese la hora"
-                    name="Hora"
-                    value={userState.hora_inicio}
-                    onChangeText={number => setUserState({ ...userState, hora_inicio: Number(number) })}
-                    keyboardType="numeric"
-                />
+  
+                    <BotonFecha text="Ingrese el día y la hora del evento" onPress={showDatePicker} />
+                    <DateTimePickerModal
+                        isVisible={isDatePickerVisible}
+                        mode="datetime"
+                        onConfirm={handleConfirm}
+                        onCancel={hideDatePicker}
+                    />
+
                 </View>
                 <View style={{ alignItems: 'center' }}>
                     <BotonOne
@@ -140,7 +133,7 @@ const Expensas = ({ navigation }) => {
     );
 }
 
-export default Expensas
+export default Reservas
 
 const styles = StyleSheet.create({
     vista:{
@@ -160,6 +153,7 @@ const styles = StyleSheet.create({
         width: "100%",
         textAlign: "justify",
         fontFamily: 'Kanit-Regular',
+        marginBottom:'5%'
     },
     textInput: {
         borderWidth: 1,
@@ -176,11 +170,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Kanit-Regular',
     },
     top: {
-        backgroundColor: 'white',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
         height: 100,
-        alignItems: 'center',
         paddingHorizontal: '5%'
     },
     atras: {

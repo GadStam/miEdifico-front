@@ -20,13 +20,13 @@ import {
 
 let kanitLoaded
 
-LocaleConfig.locales['tr']={
-  monthNames: ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
-  monthNamesShort: ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"],
+LocaleConfig.locales['tr'] = {
+  monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+  monthNamesShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
   dayNames: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"],
   dayNamesShort: ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]
 }
-LocaleConfig.defaultLocale='tr'
+LocaleConfig.defaultLocale = 'tr'
 
 const Calendario = ({ navigation }) => {
   kanitLoaded = useFonts({
@@ -44,21 +44,21 @@ const Calendario = ({ navigation }) => {
       </View>
 
       <Calendar
-      minDate={'2022-08-01'}
+        minDate={'2022-08-01'}
 
       />
-<View style={{alignItems:'center'}}>
-      <BotonOne
-      
+      <View style={{ alignItems: 'center' }}>
+        <BotonOne
+
           text="Agregar nuevo evento"
           onPress={() => {
             navigation.navigate('Reservas')
           }}
         />
-        </View>
-      
+      </View>
 
-</View >
+
+    </View >
 
   );
 }

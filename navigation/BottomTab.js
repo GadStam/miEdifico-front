@@ -55,8 +55,7 @@ const BottomTab = () => {
                 )
             }}
             />
-            <Tab.Screen name="Reservas" component={Reservas} 
-            />
+            
 
 
         </Tab.Navigator>
