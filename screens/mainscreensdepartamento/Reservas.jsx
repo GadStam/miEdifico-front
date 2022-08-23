@@ -34,80 +34,91 @@ const Reservas = ({ navigation }) => {
     const [terraza, setTerraza] = useState(false);
     const [cochera, setCochera] = useState(false);
     const [userState, setUserState] = useState({
-        cant_invitados:null,
+        cant_invitados: null,
         fecha: null,
-        hora_inicio:null,
-        hora_final:null
-      });
-      const [checked, setChecked] = React.useState('');
-      const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+        hora_inicio: null,
+        hora_final: null
+    });
+    const [checked, setChecked] = React.useState('');
+    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
-      const showDatePicker = () => {
+    const showDatePicker = () => {
         setDatePickerVisibility(true);
-      };
-    
-      const hideDatePicker = () => {
+    };
+
+    const hideDatePicker = () => {
         setDatePickerVisibility(false);
-      };
-    
-      const handleConfirm = (date) => {
+    };
+
+    const handleConfirm = (date) => {
         console.warn("La fecha elegida es: ", date);
         hideDatePicker();
-      };
+    };
 
     return (
 
         <Teclado>
             <View >
-            <View source={fondoPag} style={styles.top} />
+                <View source={fondoPag} style={styles.top} />
 
-            <View style={styles.vista}>
-                <AntDesign style={styles.flecha} name="left" size={15} />
-                <Text style={styles.atras}
-                    onPress={() => {
-                        navigation.navigate('Calendario')
-                    }}>
-                    Volver atrás
-                </Text>
-                <Text style={styles.text}>Reservar espacio</Text>
-                
-
-                <View style={styles.boxes}>
+                <View style={styles.vista}>
+                    <AntDesign style={styles.flecha} name="left" size={15} />
+                    <Text style={styles.atras}
+                        onPress={() => {
+                            navigation.navigate('Calendario')
+                        }}>
+                        Volver atrás
+                    </Text>
+                    <Text style={styles.text}>Reservar espacio</Text>
                     <Text style={styles.texto}>Seleccione que espacio comun desea reservar:</Text>
+                    <View style={styles.boxes}>
+                        <RadioButton.Group>
+                            <RadioButton.Item
+                                status={checked === 'pileta' ? 'checked' : 'unchecked'}
+                                value='pileta'
+                                label="Pileta"
+                                onPress={() => {
+                                    setPileta(!pileta); setChecked('pileta')
+                                }
+                                }
+                                text="Pileta"
+                                color='blue'
+                                style={{ flexDirection: 'row-reverse' }}
+                            />
+                            <RadioButton.Item
+                                status={checked === 'terraza' ? 'checked' : 'unchecked'}
+                                value={terraza}
+                                label="Terraza"
+                                onPress={() => {
+                                    setTerraza(!terraza); setChecked('terraza')
+                                }}
+                                color='blue'
+                                borderColor='blue'
+                                style={{ flexDirection: 'row-reverse' }}
+                            />
+                            <RadioButton.Item
+                                status={checked === 'cochera' ? 'checked' : 'unchecked'}
+                                onPress={() => {
+                                    setTerraza(!cochera); setChecked('cochera')
+                                }
+                                }
+                                label="Cochera"
+                                color='blue'
+                                borderColor='blue'
+                                style={{ flexDirection: 'row-reverse' }}
 
-                    <RadioButton
-                    
+                            />
+                        </RadioButton.Group>
+                    </View>
+                    <TextInput
+                        style={styles.textInput}
+                        placeholder="Ingrese la cantidad de invitados"
+                        name="cant_invitados"
+                        value={userState.cant_invitados}
+                        onChangeText={number => setUserState({ ...userState, cant_invitados: Number(number) })}
+                        keyboardType="numeric"
+                    />
 
-        status={ checked === 'first' ? 'checked' : 'unchecked' }
-        value={pileta}
-        onPress={()=>setPileta(!pileta)}
-        text="Pileta"
-        color='blue'
-      />
-      <RadioButton
-        status={ checked === 'terraza' ? 'checked' : 'unchecked' }
-        value={terraza}
-        onPress={()=>setChecked('terraza')}
-        color='blue'
-        borderColor='blue'
-      />
-      <RadioButton
-        status={ checked === 'third' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('third')}
-        color='blue'
-        borderColor='blue'
-      />
-                   
-                </View>
-                <TextInput
-                    style={styles.textInput}
-                    placeholder="Ingrese la cantidad de invitados"
-                    name="cant_invitados"
-                    value={userState.cant_invitados}
-                    onChangeText={number => setUserState({ ...userState, cant_invitados: Number(number) })}
-                    keyboardType="numeric"
-                />
-  
                     <BotonFecha text="Ingrese el día y la hora del evento" onPress={showDatePicker} />
                     <DateTimePickerModal
                         isVisible={isDatePickerVisible}
@@ -126,9 +137,9 @@ const Reservas = ({ navigation }) => {
                     />
                 </View>
 
-                </View>
-            </Teclado>
-            
+            </View>
+        </Teclado>
+
 
     );
 }
@@ -136,8 +147,8 @@ const Reservas = ({ navigation }) => {
 export default Reservas
 
 const styles = StyleSheet.create({
-    vista:{
-        alignItems:'center',
+    vista: {
+        alignItems: 'center',
 
     },
     text: {
@@ -148,12 +159,12 @@ const styles = StyleSheet.create({
         fontFamily: 'Kanit-Regular',
         marginTop: '20%'
     },
-    texto:{
+    texto: {
         color: 'black',
-        width: "100%",
+        width: "80%",
         textAlign: "justify",
         fontFamily: 'Kanit-Regular',
-        marginBottom:'5%'
+        marginBottom: '5%'
     },
     textInput: {
         borderWidth: 1,
@@ -162,7 +173,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         backgroundColor: "white",
         marginTop: 10
-      },
+    },
     titulo: {
         top: 18,
         color: 'blue',
@@ -187,11 +198,9 @@ const styles = StyleSheet.create({
         color: "blue"
     },
     boxes: {
-        marginBottom: 20,
         width: '80%',
         textAlign: "left",
         fontFamily: 'Kanit-Regular',
         marginBottom: '3%',
-
     },
 });
