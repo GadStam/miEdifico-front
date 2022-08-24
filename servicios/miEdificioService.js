@@ -83,6 +83,23 @@ export const traerPiso = async (userState) => {
     });
 };
 
+export const traerEventos = async () => {
+  const id = await AsyncStorage.getItem('id')
+  return AxiosClient
+    .get(`/eventos/${id}}`, {
+
+    }).then((res) => { // si status code entre 200 y 299
+      const eventos = res.data;
+      return eventos
+    })
+    .catch((err) => { // status >= 300
+      console.log(`register error`, err.response);
+     
+      throw err //propagar error
+    }); // => Promise<AxiosResponse>
+};
+
+
 
 
 

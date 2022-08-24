@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useState, useEffect} from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, SafeAreaView } from 'react-native';
 import miED from "../../assets/logoMI.png";
 import fondoPag from "../../assets/fondoInicio.jpg"
@@ -11,14 +11,33 @@ import { useNavigation } from '@react-navigation/native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Calendar, LocaleConfig } from 'react-native-calendars';
-
-
+import { traerEventos } from '../../servicios/miEdificioService';
 import {
   useFonts,
   Kanit_200ExtraLight,
 } from '@expo-google-fonts/kanit';
 
 let kanitLoaded
+const [eventos, setEventos] = useState();
+const [loaded, setLoaded] = useState(true)
+
+const getEventos = async () => {
+  setLoaded(true)
+  await traerEventos().then((response) => {
+    console.log("aca trae eventos")
+    setLoaded(true)
+    setEventos(response);
+  }).catch((error) => {
+    console.log("no hay eventos")
+    console.log(error)
+  });
+}
+
+useEffect(() => {
+  (async () => {
+    await getEventos()
+  })()
+}, [])
 
 LocaleConfig.locales['tr'] = {
   monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
@@ -32,8 +51,6 @@ const Calendario = ({ navigation }) => {
   kanitLoaded = useFonts({
     Kanit_200ExtraLight,
   });
-
-
 
   return (
     <View>
@@ -56,7 +73,11 @@ const Calendario = ({ navigation }) => {
           }}
         />
       </View>
-
+      <FlatList
+        data={edificio}
+        renderItem={({ item }) => <EventosListItem key={item.eventos} edificio={item} />}
+        keyExtractor={item => item.eventos}
+      />
 
     </View >
 

@@ -8,10 +8,8 @@ import axios from 'axios';
 import Teclado from '../../components/Teclado';
 import { AntDesign } from '@expo/vector-icons';
 import Girador from '../../components/girador';
-
 import { register, login } from '../../servicios/miEdificioService.js';
 import { isLoaded } from 'expo-font';
-
 
 const LogInAdministrador = ({ navigation }) => {
   const [loaded, setLoaded] = useState(true)
@@ -42,7 +40,6 @@ const LogInAdministrador = ({ navigation }) => {
         });
     }
   }
-
   return (
     <>
       {!loaded ? <Girador /> :

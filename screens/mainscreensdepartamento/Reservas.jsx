@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, SafeAreaView, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, SafeAreaView, TextInput, Alert } from 'react-native';
 import miED from "../../assets/logoMI.png";
 import fondoPag from "../../assets/fondoInicio.jpg"
 import Girador from '../../components/girador'
@@ -18,7 +18,6 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import BotonFecha from '../../components/BotonFecha';
 import { RadioButton } from 'react-native-paper';
 import {
-
     useFonts,
     Kanit_200ExtraLight,
 } from '@expo-google-fonts/kanit';
@@ -33,11 +32,10 @@ const Reservas = ({ navigation }) => {
     const [pileta, setPileta] = useState(false);
     const [terraza, setTerraza] = useState(false);
     const [cochera, setCochera] = useState(false);
-    const [userState, setUserState] = useState({
+    const [fechaSeleccionada, setFechaSeleccionada] = useState({
         cant_invitados: null,
-        fecha: null,
-        hora_inicio: null,
-        hora_final: null
+        fecha:'',
+        hora_inicio:''
     });
     const [checked, setChecked] = React.useState('');
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -52,6 +50,35 @@ const Reservas = ({ navigation }) => {
 
     const handleConfirm = (date) => {
         console.warn("La fecha elegida es: ", date);
+        const fechar = new Date(date);
+        if((fechar.getMonth()+1) < 10 && fechar.getDate()< 10){
+            setFechaSeleccionada({...fechaSeleccionada,
+            fecha:`${fechar.getFullYear()}-0${fechar.getMonth()+1}-0${fechar.getDate()}`})
+        }
+        else if((fechar.getMonth()+1) < 10){
+            setFechaSeleccionada({...fechaSeleccionada,
+            fecha:`${fechar.getFullYear()}-0${fechar.getMonth()+1}-${fechar.getDate()}`})
+        }
+        else if (fechar.getDate()< 10){
+            setFechaSeleccionada({...fechaSeleccionada,
+            fecha:`${fechar.getFullYear()}-${fechar.getMonth()+1}-0${fechar.getDate()}`})
+        }
+        else{
+            setFechaSeleccionada({...fechaSeleccionada,
+            fecha:`${fechar.getFullYear()}-${fechar.getMonth()}-${fechar.getDate()}`})
+        }
+        if((fechar.getHours()) < 10 && fechar.getMinutes()< 10){
+            setFechaSeleccionada({ ...fechaSeleccionada, hora_inicio:`0${fechar.getHours()}:0${fechar.getMinutes()}`})
+        }
+        else if((fechar.getHours()) < 10){
+            setFechaSeleccionada({ ...fechaSeleccionada, hora_inicio:`0${fechar.getHours()}:${fechar.getMinutes()}`})
+        }
+        else if(fechar.getMinutes()< 10){
+            setFechaSeleccionada({ ...fechaSeleccionada, hora_inicio:`${fechar.getHours()}:0${fechar.getMinutes()}`})
+        }
+        else{
+            setFechaSeleccionada({ ...fechaSeleccionada, hora_inicio:`${fechar.getHours()}:${fechar.getMinutes()}`}) 
+        }
         hideDatePicker();
     };
 
@@ -99,7 +126,7 @@ const Reservas = ({ navigation }) => {
                             <RadioButton.Item
                                 status={checked === 'cochera' ? 'checked' : 'unchecked'}
                                 onPress={() => {
-                                    setTerraza(!cochera); setChecked('cochera')
+                                    setCochera(!cochera); setChecked('cochera')
                                 }
                                 }
                                 label="Cochera"
@@ -114,25 +141,33 @@ const Reservas = ({ navigation }) => {
                         style={styles.textInput}
                         placeholder="Ingrese la cantidad de invitados"
                         name="cant_invitados"
-                        value={userState.cant_invitados}
-                        onChangeText={number => setUserState({ ...userState, cant_invitados: Number(number) })}
+                        value={fechaSeleccionada.cant_invitados}
+                        onChangeText={number => setFechaSeleccionada({ ...fechaSeleccionada, cant_invitados: Number(number) })}
                         keyboardType="numeric"
                     />
 
-                    <BotonFecha text="Ingrese el día y la hora del evento" onPress={showDatePicker} />
+                    <BotonFecha text={fechaSeleccionada.hora_inicio ? (`Día: ${fechaSeleccionada.fecha}, Hora: ${fechaSeleccionada.hora_inicio}`) : 'Ingrese el día y la hora del evento'} onPress={showDatePicker} />
                     <DateTimePickerModal
                         isVisible={isDatePickerVisible}
                         mode="datetime"
                         onConfirm={handleConfirm}
                         onCancel={hideDatePicker}
                     />
-
                 </View>
                 <View style={{ alignItems: 'center' }}>
                     <BotonOne
                         text="Guardar evento"
                         onPress={() => {
-                            navigation.navigate('Calendario')
+                            if(!fechaSeleccionada.cant_invitados || !fechaSeleccionada.fecha || fechaSeleccionada.hora_inicio){
+                                Alert.alert("Por favor ingresar todos los datos")
+                                console.log(fechaSeleccionada.cant_invitados)
+                                console.log(fechaSeleccionada.fecha)
+                                console.log(fechaSeleccionada.hora_inicio)
+                            }
+                            else{
+                                navigation.navigate('Calendario')
+                            }
+                            
                         }}
                     />
                 </View>
