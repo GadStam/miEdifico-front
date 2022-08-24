@@ -1,5 +1,5 @@
 import React,{ useState, useEffect} from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, SafeAreaView, FlatList } from 'react-native';
 import miED from "../../assets/logoMI.png";
 import fondoPag from "../../assets/fondoInicio.jpg"
 import Girador from '../../components/girador'
@@ -18,26 +18,7 @@ import {
 } from '@expo-google-fonts/kanit';
 
 let kanitLoaded
-const [eventos, setEventos] = useState();
-const [loaded, setLoaded] = useState(true)
 
-const getEventos = async () => {
-  setLoaded(true)
-  await traerEventos().then((response) => {
-    console.log("aca trae eventos")
-    setLoaded(true)
-    setEventos(response);
-  }).catch((error) => {
-    console.log("no hay eventos")
-    console.log(error)
-  });
-}
-
-useEffect(() => {
-  (async () => {
-    await getEventos()
-  })()
-}, [])
 
 LocaleConfig.locales['tr'] = {
   monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
@@ -48,6 +29,26 @@ LocaleConfig.locales['tr'] = {
 LocaleConfig.defaultLocale = 'tr'
 
 const Calendario = ({ navigation }) => {
+
+const [eventos, setEventos] = useState();
+const [loaded, setLoaded] = useState(true)
+  
+const getEventos = async () => {
+  setLoaded(true)
+  traerEventos().then((response) => {
+    console.log("aca trae eventos")
+    setLoaded(true)
+    setEventos(response);
+  }).catch((error) => {
+    console.log("no hay eventos")
+    console.log(error)
+  });
+}
+
+  useEffect(async() => {
+  await getEventos()
+}, [])
+
   kanitLoaded = useFonts({
     Kanit_200ExtraLight,
   });
@@ -74,8 +75,8 @@ const Calendario = ({ navigation }) => {
         />
       </View>
       <FlatList
-        data={edificio}
-        renderItem={({ item }) => <EventosListItem key={item.eventos} edificio={item} />}
+        data={eventos}
+        renderItem={({ item }) => <EventosListItem key={item.eventos} eventos={item} />}
         keyExtractor={item => item.eventos}
       />
 

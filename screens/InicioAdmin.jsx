@@ -31,7 +31,7 @@ const InicioAdmin = ({ navigation }) => {
 
   const getEdificioAdmin = async () => {
     setLoaded(true)
-    await traerEdficios().then((response) => {
+    traerEdficios().then((response) => {
       console.log("aca trae edificios")
       setLoaded(true)
       setEdificio(response);
@@ -41,11 +41,9 @@ const InicioAdmin = ({ navigation }) => {
     });
   }
 
-  useEffect(() => {
-    (async () => {
+  useEffect(async() => {
       await getEdificioAdmin()
       await getNombreAdmin()
-    })()
   }, [])
 
   return (

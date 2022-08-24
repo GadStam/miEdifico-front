@@ -83,7 +83,6 @@ const Reservas = ({ navigation }) => {
     };
 
     return (
-
         <Teclado>
             <View >
                 <View source={fondoPag} style={styles.top} />
