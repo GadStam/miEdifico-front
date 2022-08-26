@@ -18,6 +18,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import BottomTab from './BottomTab';
 import Firstscreendepto from '../screens/mainscreensdepartamento/Firstscreendepto';
 import Reservas from '../screens/mainscreensdepartamento/Reservas';
+import MisReservas from '../screens/mainscreensdepartamento/MisReservas';
 
 
 const Stack = createNativeStackNavigator()
@@ -76,6 +77,9 @@ const MainStack = () => {
                 />
                  <Stack.Screen
                  name="Reservas" component={Reservas} 
+                />
+                <Stack.Screen
+                 name="MisReservas" component={MisReservas} 
                 />
                 <Stack.Screen
                     name='EdificiosListItem'

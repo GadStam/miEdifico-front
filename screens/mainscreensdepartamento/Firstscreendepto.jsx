@@ -34,7 +34,7 @@ const Firstscreendepto = ({navigation, route }) => {
 
 
 
-  /*const getDireccion = async (e) => {
+  const getDireccion = async (e) => {
     setLoaded(true)
     await traerDirec().then((response) => {
       setLoaded(true)
@@ -44,7 +44,7 @@ const Firstscreendepto = ({navigation, route }) => {
       console.log("no hay direc")
 
     });
-  }*/
+  }
 
   const getPiso = async (e) => {
     setLoaded(true)
@@ -66,11 +66,9 @@ const Firstscreendepto = ({navigation, route }) => {
   useEffect(() => {
     (async () => {
       await getPiso()
-      //await getDireccion()
+      await getDireccion()
     })()
   }, [])
-
-
 
 
   return (

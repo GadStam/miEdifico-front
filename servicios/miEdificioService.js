@@ -55,8 +55,10 @@ export const departamentologin = async (userState) => {
     .then(async(res) => {
       let departamentoToken = res.data.token; // poner punto (nombe que viene del back)
       let pisoInquilino = res.data.depto
+      let idEdificio = res.data.edificio
       await AsyncStorage.setItem('deptotoke', departamentoToken) // guarda en el storage con el nombre token 
       await AsyncStorage.setItem('pisoInquilino', pisoInquilino) // guarda en el storage con el nombre token 
+      await AsyncStorage.setItem('idEdificio', idEdificio) // guarda en el storage con el nombre token 
       return pisoInquilino
     })
     .catch((e) => {
@@ -66,7 +68,6 @@ export const departamentologin = async (userState) => {
 };
 
 export const traerPiso = async (userState) => {
-  
  
   return AxiosClient
     .get(`/departamentos/${userState}`, {
@@ -85,6 +86,7 @@ export const traerPiso = async (userState) => {
 
 export const traerEventos = async () => {
   const idEdificio = await AsyncStorage.getItem('idEdificio')
+  console.log('idEdificio')
   return AxiosClient
     .get(`/eventos/${idEdificio}`, {
 

@@ -1,19 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, SafeAreaView, TextInput, Alert } from 'react-native';
-import miED from "../../assets/logoMI.png";
 import fondoPag from "../../assets/fondoInicio.jpg"
-import Girador from '../../components/girador'
-import Card from '../../components/Card';
 import BotonOne from '../../components/BotonOne';
-import Home from '../Home'
-import Inquilino from '../InicioInquilino'
-import { useNavigation } from '@react-navigation/native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AntDesign } from '@expo/vector-icons';
-import BouncyCheckbox from "react-native-bouncy-checkbox";
 import Teclado from '../../components/Teclado';
-import DatePicker from 'react-native-date-picker';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import BotonFecha from '../../components/BotonFecha';
 import { RadioButton } from 'react-native-paper';
@@ -21,7 +11,6 @@ import {
     useFonts,
     Kanit_200ExtraLight,
 } from '@expo-google-fonts/kanit';
-import Boton from '../../components/BotonDoble';
 
 let kanitLoaded
 
@@ -34,6 +23,7 @@ const Reservas = ({ navigation }) => {
     const [cochera, setCochera] = useState(false);
     const [fechaSeleccionada, setFechaSeleccionada] = useState({
         cant_invitados: null,
+        horas: null,
         fecha:'',
         hora_inicio:''
     });
@@ -84,7 +74,15 @@ const Reservas = ({ navigation }) => {
         console.log(fechaAModificar)
         setFechaSeleccionada(fechaAModificar)
     };
-
+    const horasValidas =(number)=>{
+        if(number<=5){
+            setFechaSeleccionada({ ...fechaSeleccionada, horas: Number(number) })
+        }
+        else{
+            Alert.alert("El evento no puede durar más de 5 horas")
+            setFechaSeleccionada({ ...fechaSeleccionada, horas: '' })
+        }
+    }
     return (
         <Teclado>
             <View >
@@ -155,17 +153,23 @@ const Reservas = ({ navigation }) => {
                         onConfirm={handleConfirm}
                         onCancel={hideDatePicker}
                     />
+                    <TextInput
+                        style={styles.textInput}
+                        placeholder="¿Cuantas horas va a durar el evento?"
+                        name="horas"
+                        value={fechaSeleccionada.horas}
+                        onChangeText={number => horasValidas(number) }
+                        keyboardType="numeric"
+                    />
                 </View>
                 <View style={{ alignItems: 'center' }}>
                     <BotonOne
                         text="Guardar evento"
                         onPress={() => {
                             
-                            if(fechaSeleccionada.cant_invitados===null || fechaSeleccionada.fecha==='' || fechaSeleccionada.hora_inicio===''){
+                            if(fechaSeleccionada.cant_invitados===null || fechaSeleccionada.horas===null || fechaSeleccionada.fecha==='' || fechaSeleccionada.hora_inicio===''){
                                 Alert.alert("Por favor ingresar todos los datos")
-                                console.log(fechaSeleccionada.cant_invitados)
-                                console.log(fechaSeleccionada.fecha)
-                                console.log(fechaSeleccionada.hora_inicio)
+                                console.log(fechaSeleccionada)
                             }
                             else{
                                 navigation.navigate('Schedule')

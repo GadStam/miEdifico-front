@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Alert, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Agenda, DateData, AgendaEntry, AgendaSchedule } from 'react-native-calendars';
 import { Avatar, Card } from 'react-native-paper';
-import BotonOne from '../../components/BotonOne';
+import Boton from '../../components/BotonDoble';
 import { traerEventos } from '../../servicios/miEdificioService';
 import { useNavigation } from '@react-navigation/native';
 
@@ -83,7 +83,9 @@ const Schedule: React.FC = () => {
           <Card.Content>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
               <Text>{item.name}</Text>
-              <Avatar.Text label='J' />
+              {/* <Text>{item.Fecha}</Text>
+              <Text>{item.IdEspacioComun}</Text> */}
+              <Avatar.Text label='1' /*poner id edificio*/ />
             </View>
           </Card.Content>
         </Card>
@@ -91,13 +93,12 @@ const Schedule: React.FC = () => {
     )
   }
   return (
-    <View style={{ marginTop: '7%' }}>
+    <View>
       <View  style={styles.top} >
-
         <Text style={styles.titulo}>Dirección:</Text>
         <Text style={styles.titulo}>Depto:</Text>
       </View>
-      <View style={{ height: '79%' }}>
+      <View style={styles.agenda}>
         <Agenda
           items={items}
           loadItemsForMonth={loadItems}
@@ -105,13 +106,20 @@ const Schedule: React.FC = () => {
           renderItem={renderItem}
         />
       </View>
-      <View style={{ alignItems: 'center' }}>
-        <BotonOne
-          text="Agregar nuevo evento"
-          onPress={() => {
-            navigation.navigate('Reservas')
-          }}
-        />
+      <View style={{ alignItems: 'center', marginTop: '-15%' }}>
+
+      <Boton
+      text="Agregar nuevo evento"
+      onPress={() => {
+        navigation.navigate('Reservas')
+      }}
+      />
+      <Boton
+      text="Ver mis reservas" 
+      onPress={ () =>{
+        navigation.navigate('MisReservas')
+      }}
+      />
       </View>
     </View>
   )
@@ -131,8 +139,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: 100,
+    height: 80,
     alignItems: 'center',
     paddingHorizontal: '5%'
+  },
+  agenda:{
+    height: 560 
   }
 });
