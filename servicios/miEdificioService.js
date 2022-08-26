@@ -84,9 +84,9 @@ export const traerPiso = async (userState) => {
 };
 
 export const traerEventos = async () => {
-  const id = await AsyncStorage.getItem('id')
+  const idEdificio = await AsyncStorage.getItem('idEdificio')
   return AxiosClient
-    .get(`/eventos/${id}}`, {
+    .get(`/eventos/${idEdificio}`, {
 
     }).then((res) => { // si status code entre 200 y 299
       const eventos = res.data;

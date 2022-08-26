@@ -10,12 +10,13 @@ import Inquilino from '../InicioInquilino'
 import { useNavigation } from '@react-navigation/native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Calendar, LocaleConfig } from 'react-native-calendars';
+import { Calendar, LocaleConfig, Agenda } from 'react-native-calendars';
 import { traerEventos } from '../../servicios/miEdificioService';
 import {
   useFonts,
   Kanit_200ExtraLight,
 } from '@expo-google-fonts/kanit';
+
 
 let kanitLoaded
 
@@ -45,8 +46,10 @@ const getEventos = async () => {
   });
 }
 
-  useEffect(async() => {
-  await getEventos()
+useEffect(() => {
+  (async () => {
+    await getEventos()
+  })()
 }, [])
 
   kanitLoaded = useFonts({
@@ -61,10 +64,12 @@ const getEventos = async () => {
         <Text style={styles.titulo}>Depto:</Text>
       </View>
 
-      <Calendar
+      {/*<Calendar
         minDate={'2022-08-01'}
 
-      />
+      />*/}
+      <Schedule />
+
       <View style={{ alignItems: 'center' }}>
         <BotonOne
 

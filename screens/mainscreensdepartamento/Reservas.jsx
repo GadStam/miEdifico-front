@@ -41,7 +41,11 @@ const Reservas = ({ navigation }) => {
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
     const showDatePicker = () => {
-        setDatePickerVisibility(true);
+        if(!pileta&&!cochera&&!terraza){
+            Alert.alert("Seleccione un espacio común para reservar")
+        }else{
+            setDatePickerVisibility(true);
+        }
     };
 
     const hideDatePicker = () => {
@@ -49,37 +53,36 @@ const Reservas = ({ navigation }) => {
     };
 
     const handleConfirm = (date) => {
-        console.warn("La fecha elegida es: ", date);
         const fechar = new Date(date);
+        const fechaAModificar=fechaSeleccionada
+        
         if((fechar.getMonth()+1) < 10 && fechar.getDate()< 10){
-            setFechaSeleccionada({...fechaSeleccionada,
-            fecha:`${fechar.getFullYear()}-0${fechar.getMonth()+1}-0${fechar.getDate()}`})
+            fechaAModificar.fecha=`${fechar.getFullYear()}-0${fechar.getMonth()+1}-0${fechar.getDate()}`
         }
         else if((fechar.getMonth()+1) < 10){
-            setFechaSeleccionada({...fechaSeleccionada,
-            fecha:`${fechar.getFullYear()}-0${fechar.getMonth()+1}-${fechar.getDate()}`})
+            fechaAModificar.fecha=`${fechar.getFullYear()}-0${fechar.getMonth()+1}-${fechar.getDate()}`
         }
         else if (fechar.getDate()< 10){
-            setFechaSeleccionada({...fechaSeleccionada,
-            fecha:`${fechar.getFullYear()}-${fechar.getMonth()+1}-0${fechar.getDate()}`})
+            fechaAModificar.fecha=`${fechar.getFullYear()}-${fechar.getMonth()+1}-0${fechar.getDate()}`
         }
         else{
-            setFechaSeleccionada({...fechaSeleccionada,
-            fecha:`${fechar.getFullYear()}-${fechar.getMonth()}-${fechar.getDate()}`})
+            fechaAModificar.fecha=`${fechar.getFullYear()}-${fechar.getMonth()}-${fechar.getDate()}`
         }
         if((fechar.getHours()) < 10 && fechar.getMinutes()< 10){
-            setFechaSeleccionada({ ...fechaSeleccionada, hora_inicio:`0${fechar.getHours()}:0${fechar.getMinutes()}`})
+            fechaAModificar.hora_inicio=`0${fechar.getHours()}:0${fechar.getMinutes()}`
         }
         else if((fechar.getHours()) < 10){
-            setFechaSeleccionada({ ...fechaSeleccionada, hora_inicio:`0${fechar.getHours()}:${fechar.getMinutes()}`})
+            fechaAModificar.hora_inicio=`0${fechar.getHours()}:${fechar.getMinutes()}`
         }
         else if(fechar.getMinutes()< 10){
-            setFechaSeleccionada({ ...fechaSeleccionada, hora_inicio:`${fechar.getHours()}:0${fechar.getMinutes()}`})
+            fechaAModificar.hora_inicio=`${fechar.getHours()}:0${fechar.getMinutes()}`
         }
         else{
-            setFechaSeleccionada({ ...fechaSeleccionada, hora_inicio:`${fechar.getHours()}:${fechar.getMinutes()}`}) 
+            fechaAModificar.hora_inicio=`${fechar.getHours()}:${fechar.getMinutes()}`
         }
         hideDatePicker();
+        console.log(fechaAModificar)
+        setFechaSeleccionada(fechaAModificar)
     };
 
     return (
@@ -91,7 +94,7 @@ const Reservas = ({ navigation }) => {
                     <AntDesign style={styles.flecha} name="left" size={15} />
                     <Text style={styles.atras}
                         onPress={() => {
-                            navigation.navigate('Calendario')
+                            navigation.navigate('Schedule')
                         }}>
                         Volver atrás
                     </Text>
@@ -157,14 +160,15 @@ const Reservas = ({ navigation }) => {
                     <BotonOne
                         text="Guardar evento"
                         onPress={() => {
-                            if(!fechaSeleccionada.cant_invitados || !fechaSeleccionada.fecha || fechaSeleccionada.hora_inicio){
+                            
+                            if(fechaSeleccionada.cant_invitados===null || fechaSeleccionada.fecha==='' || fechaSeleccionada.hora_inicio===''){
                                 Alert.alert("Por favor ingresar todos los datos")
                                 console.log(fechaSeleccionada.cant_invitados)
                                 console.log(fechaSeleccionada.fecha)
                                 console.log(fechaSeleccionada.hora_inicio)
                             }
                             else{
-                                navigation.navigate('Calendario')
+                                navigation.navigate('Schedule')
                             }
                             
                         }}

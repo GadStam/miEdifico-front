@@ -41,9 +41,11 @@ const InicioAdmin = ({ navigation }) => {
     });
   }
 
-  useEffect(async() => {
+  useEffect(() => {
+    (async () => {
       await getEdificioAdmin()
       await getNombreAdmin()
+    })()
   }, [])
 
   return (

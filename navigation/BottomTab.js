@@ -10,6 +10,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwasome5 from 'react-native-vector-icons/FontAwesome5'
 import Reservas from '../screens/mainscreensdepartamento/Reservas';
+import Schedule from '../screens/mainscreensdepartamento/Agenda';
 
 const Tab = createBottomTabNavigator()
 
@@ -43,7 +44,7 @@ const BottomTab = () => {
                 )
             }}
             />
-            <Tab.Screen name="Calendario" component={Calendario} options={{
+            <Tab.Screen name="Schedule" component={Schedule} options={{
                 tabBarIcon: () => (
                     <Ionicons name='calendar-outline' size={30} />
                 )
