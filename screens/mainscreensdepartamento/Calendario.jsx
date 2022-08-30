@@ -16,6 +16,7 @@ import {
   useFonts,
   Kanit_200ExtraLight,
 } from '@expo-google-fonts/kanit';
+import LoggedLayout from '../../components/LoggedLayout';
 
 
 let kanitLoaded
@@ -57,12 +58,8 @@ useEffect(() => {
   });
 
   return (
+    <LoggedLayout>
     <View>
-      <View source={fondoPag} style={styles.top} >
-
-        <Text style={styles.titulo}>Dirección:</Text>
-        <Text style={styles.titulo}>Depto:</Text>
-      </View>
 
       {/*<Calendar
         minDate={'2022-08-01'}
@@ -86,7 +83,7 @@ useEffect(() => {
       />
 
     </View >
-
+    </LoggedLayout>
   );
 }
 

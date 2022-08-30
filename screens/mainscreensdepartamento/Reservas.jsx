@@ -11,6 +11,7 @@ import {
     useFonts,
     Kanit_200ExtraLight,
 } from '@expo-google-fonts/kanit';
+import LoggedLayout from '../../components/LoggedLayout';
 
 let kanitLoaded
 
@@ -59,16 +60,16 @@ const Reservas = ({ navigation }) => {
             fechaAModificar.fecha=`${fechar.getFullYear()}-${fechar.getMonth()}-${fechar.getDate()}`
         }
         if((fechar.getHours()) < 10 && fechar.getMinutes()< 10){
-            fechaAModificar.hora_inicio=`0${fechar.getHours()}:0${fechar.getMinutes()}`
+            fechaAModificar.hora_inicio=`0${fechar.getHours()}.0${fechar.getMinutes()}`
         }
         else if((fechar.getHours()) < 10){
-            fechaAModificar.hora_inicio=`0${fechar.getHours()}:${fechar.getMinutes()}`
+            fechaAModificar.hora_inicio=`0${fechar.getHours()}.${fechar.getMinutes()}`
         }
         else if(fechar.getMinutes()< 10){
-            fechaAModificar.hora_inicio=`${fechar.getHours()}:0${fechar.getMinutes()}`
+            fechaAModificar.hora_inicio=`${fechar.getHours()}.0${fechar.getMinutes()}`
         }
         else{
-            fechaAModificar.hora_inicio=`${fechar.getHours()}:${fechar.getMinutes()}`
+            fechaAModificar.hora_inicio=`${fechar.getHours()}.${fechar.getMinutes()}`
         }
         hideDatePicker();
         console.log(fechaAModificar)
@@ -84,6 +85,7 @@ const Reservas = ({ navigation }) => {
         }
     }
     return (
+        <LoggedLayout>
         <Teclado>
             <View >
                 <View source={fondoPag} style={styles.top} />
@@ -181,7 +183,7 @@ const Reservas = ({ navigation }) => {
 
             </View>
         </Teclado>
-
+        </LoggedLayout>
 
     );
 }

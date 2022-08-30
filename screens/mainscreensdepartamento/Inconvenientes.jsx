@@ -14,6 +14,7 @@ import {
   useFonts,
   Kanit_200ExtraLight,
 } from '@expo-google-fonts/kanit';
+import LoggedLayout from '../../components/LoggedLayout';
  
 let kanitLoaded
 
@@ -23,14 +24,8 @@ const Inconvenientes =({navigation})=>{
   });
 
   return (
-
+    <LoggedLayout>
     <View>
-      <View source={fondoPag} style={styles.top} >
-
-        <Text style={styles.titulo}>Dirección:</Text>
-        <Text style={styles.titulo}>Depto:</Text>
-
-      </View>
       <Card
         title='Inconvenientes'
         detalle='Corte de luz desde las 12:05'
@@ -45,7 +40,7 @@ const Inconvenientes =({navigation})=>{
         />
         </View>
         </View>
-
+        </LoggedLayout>
   );
 }
 

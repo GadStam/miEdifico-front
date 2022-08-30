@@ -10,6 +10,7 @@ import {
     Kanit_200ExtraLight,
 } from '@expo-google-fonts/kanit';
 import Boton from '../../components/BotonDoble';
+import LoggedLayout from '../../components/LoggedLayout';
 
 let kanitLoaded
 
@@ -74,6 +75,7 @@ const MisReservas = ({ navigation }) => {
     };
 
     return (
+        <LoggedLayout>
         <Teclado>
             <View >
                 <View source={fondoPag} style={styles.top} />
@@ -101,7 +103,7 @@ const MisReservas = ({ navigation }) => {
                 </View>
             </View>
         </Teclado>
-
+        </LoggedLayout>
 
     );
 }

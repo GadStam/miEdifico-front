@@ -19,6 +19,10 @@ import BottomTab from './BottomTab';
 import Firstscreendepto from '../screens/mainscreensdepartamento/Firstscreendepto';
 import Reservas from '../screens/mainscreensdepartamento/Reservas';
 import MisReservas from '../screens/mainscreensdepartamento/MisReservas';
+import Expensas from '../screens/mainscreensdepartamento/Expensas';
+import Inconvenientes from '../screens/mainscreensdepartamento/Inconvenientes';
+import Schedule from '../screens/mainscreensdepartamento/Agenda';
+import Contacto from '../screens/mainscreensdepartamento/Contacto';
 
 
 const Stack = createNativeStackNavigator()
@@ -72,14 +76,35 @@ const MainStack = () => {
                 />
 
                 <Stack.Screen
-                    name="Firstscreendepto" component={BottomTab}
-                    
-                />
-                 <Stack.Screen
-                 name="Reservas" component={Reservas} 
+                    name="Firstscreendepto"
+                    component={Firstscreendepto}
+
                 />
                 <Stack.Screen
-                 name="MisReservas" component={MisReservas} 
+                    name="Expensas"
+                    component={Expensas}
+
+                />
+                <Stack.Screen
+                    name="Inconvenientes"
+                    component={Inconvenientes}
+
+                />
+                <Stack.Screen
+                    name="Schedule"
+                    component={Schedule}
+
+                />
+                <Stack.Screen
+                    name="Contacto"
+                    component={Contacto}
+
+                />
+                <Stack.Screen
+                    name="Reservas" component={Reservas}
+                />
+                <Stack.Screen
+                    name="MisReservas" component={MisReservas}
                 />
                 <Stack.Screen
                     name='EdificiosListItem'

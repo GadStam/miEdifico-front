@@ -10,6 +10,7 @@ import {
   useFonts,
   Kanit_200ExtraLight,
 } from '@expo-google-fonts/kanit';
+import LoggedLayout from '../../components/LoggedLayout';
 
 
 let kanitLoaded
@@ -93,11 +94,8 @@ const Schedule: React.FC = () => {
     )
   }
   return (
+    <LoggedLayout>
     <View>
-      <View  style={styles.top} >
-        <Text style={styles.titulo}>Dirección:</Text>
-        <Text style={styles.titulo}>Depto:</Text>
-      </View>
       <View style={styles.agenda}>
         <Agenda
           items={items}
@@ -122,6 +120,7 @@ const Schedule: React.FC = () => {
       />
       </View>
     </View>
+    </LoggedLayout>
   )
 
 
@@ -144,6 +143,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: '5%'
   },
   agenda:{
-    height: 560 
+    height: 540 
   }
 });

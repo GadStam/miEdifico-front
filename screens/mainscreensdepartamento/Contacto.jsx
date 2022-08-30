@@ -14,6 +14,7 @@ import {
   useFonts,
   Kanit_200ExtraLight,
 } from '@expo-google-fonts/kanit';
+import LoggedLayout from '../../components/LoggedLayout';
  
 let kanitLoaded
 
@@ -23,14 +24,8 @@ const Contacto =({navigation})=>{
   });
 
   return (
-
+    <LoggedLayout>
     <View>
-      <View source={fondoPag} style={styles.top} >
-
-        <Text style={styles.titulo}>Dirección:</Text>
-        <Text style={styles.titulo}>Depto:</Text>
-
-      </View>
       <Card
         title='Contacto'
         detalle='Portero: 1134780914'
@@ -47,7 +42,7 @@ const Contacto =({navigation})=>{
         />
         </View>
         </View>
-
+</LoggedLayout>
   );
 }
 

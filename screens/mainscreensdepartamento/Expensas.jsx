@@ -10,10 +10,12 @@ import Inquilino from '../InicioInquilino'
 import { useNavigation } from '@react-navigation/native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import BottomTab from '../../navigation/BottomTab';
 import {
   useFonts,
   Kanit_200ExtraLight,
 } from '@expo-google-fonts/kanit';
+import LoggedLayout from '../../components/LoggedLayout';
  
 let kanitLoaded
 
@@ -23,14 +25,8 @@ const Expensas =({navigation})=>{
   });
 
   return (
-
+    <LoggedLayout>
     <View>
-      <View source={fondoPag} style={styles.top} >
-
-        <Text style={styles.titulo}>Dirección:</Text>
-        <Text style={styles.titulo}>Depto:</Text>
-
-      </View>
       <Card
         title='Expensas'
         detalle='Fecha de vencimiento: xx/xx/xx'
@@ -45,8 +41,8 @@ const Expensas =({navigation})=>{
           }}
         />
         </View>
-        </View>
-
+      </View>
+      </LoggedLayout>
   );
 }
 
