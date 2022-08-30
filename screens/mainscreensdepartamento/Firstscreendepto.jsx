@@ -22,44 +22,7 @@ const Firstscreendepto = ({ navigation, route }) => {
     Kanit_200ExtraLight,
   });
 
-  const [direccionInquilino, setDirec] = useState("");
-  const [Piso, setPiso] = useState("");
-  const [loaded, setLoaded] = useState(true)
-
-  const getDireccion = async (e) => {
-    setLoaded(true)
-    await traerDirec().then((response) => {
-      setLoaded(true)
-      setDirec(response);
-      console.log("la respuesta es", response)
-    }).catch(() => {
-      console.log("no hay direc")
-
-    });
-  }
-
-  const getPiso = async (e) => {
-    setLoaded(true)
-    console.log(route.params.cod)
-    console.log("este es", { codigo: route.params.cod })
-
-    await traerPiso(route.params.cod).then((response) => {
-      setLoaded(true)
-      setPiso(response);
-      console.log("la respuesta es", response)
-    }).catch(() => {
-      console.log("no hay direc")
-
-    });
-  }
-
-  useEffect(() => {
-    (async () => {
-      await getPiso()
-      await getDireccion()
-    })()
-  }, [])
-
+  
   return (
     <LoggedLayout>
       <View>

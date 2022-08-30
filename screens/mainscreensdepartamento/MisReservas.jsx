@@ -18,61 +18,6 @@ const MisReservas = ({ navigation }) => {
     kanitLoaded = useFonts({
         Kanit_200ExtraLight,
     });
-    const [pileta, setPileta] = useState(false);
-    const [terraza, setTerraza] = useState(false);
-    const [cochera, setCochera] = useState(false);
-    const [fechaSeleccionada, setFechaSeleccionada] = useState({
-        cant_invitados: null,
-        fecha: '',
-        hora_inicio: ''
-    });
-    const [checked, setChecked] = React.useState('');
-    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-
-    const showDatePicker = () => {
-        if (!pileta && !cochera && !terraza) {
-            Alert.alert("Seleccione un espacio común para reservar")
-        } else {
-            setDatePickerVisibility(true);
-        }
-    };
-
-    const hideDatePicker = () => {
-        setDatePickerVisibility(false);
-    };
-
-    const handleConfirm = (date) => {
-        const fechar = new Date(date);
-        const fechaAModificar = fechaSeleccionada
-
-        if ((fechar.getMonth() + 1) < 10 && fechar.getDate() < 10) {
-            fechaAModificar.fecha = `${fechar.getFullYear()}-0${fechar.getMonth() + 1}-0${fechar.getDate()}`
-        }
-        else if ((fechar.getMonth() + 1) < 10) {
-            fechaAModificar.fecha = `${fechar.getFullYear()}-0${fechar.getMonth() + 1}-${fechar.getDate()}`
-        }
-        else if (fechar.getDate() < 10) {
-            fechaAModificar.fecha = `${fechar.getFullYear()}-${fechar.getMonth() + 1}-0${fechar.getDate()}`
-        }
-        else {
-            fechaAModificar.fecha = `${fechar.getFullYear()}-${fechar.getMonth()}-${fechar.getDate()}`
-        }
-        if ((fechar.getHours()) < 10 && fechar.getMinutes() < 10) {
-            fechaAModificar.hora_inicio = `0${fechar.getHours()}:0${fechar.getMinutes()}`
-        }
-        else if ((fechar.getHours()) < 10) {
-            fechaAModificar.hora_inicio = `0${fechar.getHours()}:${fechar.getMinutes()}`
-        }
-        else if (fechar.getMinutes() < 10) {
-            fechaAModificar.hora_inicio = `${fechar.getHours()}:0${fechar.getMinutes()}`
-        }
-        else {
-            fechaAModificar.hora_inicio = `${fechar.getHours()}:${fechar.getMinutes()}`
-        }
-        hideDatePicker();
-        console.log(fechaAModificar)
-        setFechaSeleccionada(fechaAModificar)
-    };
 
     return (
         <LoggedLayout>
@@ -93,7 +38,7 @@ const MisReservas = ({ navigation }) => {
                         <Card>
                             <Card.Content>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                                    <Text>Aca se deberían mostrar las reservas del depto</Text>
+                                    <Text>Aca se deberían mostrar las reservas del depto y poder eliminarlas</Text>
                                     
                                 </View>
                             </Card.Content>
