@@ -18,7 +18,7 @@ import LoggedLayout from '../../components/LoggedLayout';
  
 let kanitLoaded
 
-const Contacto =({navigation})=>{
+const Contacto =({ navigation, route })=>{
  kanitLoaded = useFonts({
     Kanit_200ExtraLight,
   });

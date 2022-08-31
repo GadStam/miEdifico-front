@@ -18,7 +18,7 @@ import LoggedLayout from '../../components/LoggedLayout';
  
 let kanitLoaded
 
-const Inconvenientes =({navigation})=>{
+const Inconvenientes =({ navigation, route })=>{
  kanitLoaded = useFonts({
     Kanit_200ExtraLight,
   });

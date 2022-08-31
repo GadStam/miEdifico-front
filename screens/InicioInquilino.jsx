@@ -7,19 +7,15 @@ import BotonOne from "../components/BotonOne";
 import { AntDesign } from '@expo/vector-icons';
 import Teclado from '../components/Teclado';
 import {departamentologin} from '../servicios/miEdificioService'
+import { actionTypes, useContextState } from '../contextState.js';
 
 
-const InicioInquilino =({navigation})=>{
+const InicioInquilino =({navigation, route})=>{
   
-
-
-
   const [userState, setUserState] = useState({
-  
     codigo: '',
-   
   });
-  
+  const { contextState, setContextState } = useContextState();
   
   const onEnterPress = async (e) => {
     if (!userState.codigo) {
@@ -29,7 +25,12 @@ const InicioInquilino =({navigation})=>{
       console.log(userState)
       await departamentologin (userState).then(() => {
         console.log(userState)
-        navigation.navigate('Firstscreendepto', {cod: userState.codigo})
+        
+        setContextState({
+          type: actionTypes.SetCodigo,
+          value: userState.codigo
+        })
+      navigation.navigate('Firstscreendepto')
       })
         .catch(() => {
   

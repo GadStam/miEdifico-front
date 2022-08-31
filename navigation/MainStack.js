@@ -101,10 +101,12 @@ const MainStack = () => {
 
                 />
                 <Stack.Screen
-                    name="Reservas" component={Reservas}
+                    name="Reservas" 
+                    component={Reservas}
                 />
                 <Stack.Screen
-                    name="MisReservas" component={MisReservas}
+                    name="MisReservas" 
+                    component={MisReservas}
                 />
                 <Stack.Screen
                     name='EdificiosListItem'

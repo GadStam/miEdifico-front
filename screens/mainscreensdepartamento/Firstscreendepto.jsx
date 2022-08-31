@@ -26,7 +26,6 @@ const Firstscreendepto = ({ navigation, route }) => {
   return (
     <LoggedLayout>
       <View>
-        
         <Card
           title='Notificaciones'
           detalle='Arreglos en el piso 4 durante el día'

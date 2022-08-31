@@ -4,7 +4,6 @@ import fondoPag from "../../assets/fondoInicio.jpg"
 import { AntDesign } from '@expo/vector-icons';
 import Teclado from '../../components/Teclado';
 import { Avatar, Card } from 'react-native-paper';
-
 import {
     useFonts,
     Kanit_200ExtraLight,
@@ -14,7 +13,7 @@ import LoggedLayout from '../../components/LoggedLayout';
 
 let kanitLoaded
 
-const MisReservas = ({ navigation }) => {
+const MisReservas = ({ navigation, route }) => {
     kanitLoaded = useFonts({
         Kanit_200ExtraLight,
     });
@@ -23,7 +22,7 @@ const MisReservas = ({ navigation }) => {
         <LoggedLayout>
         <Teclado>
             <View >
-                <View source={fondoPag} style={styles.top} />
+                <View style={styles.top} />
 
                 <View style={styles.vista}>
                     <AntDesign style={styles.flecha} name="left" size={15} />
@@ -90,7 +89,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Kanit-Regular',
     },
     top: {
-        height: 100,
+        height: 40,
         paddingHorizontal: '5%'
     },
     atras: {

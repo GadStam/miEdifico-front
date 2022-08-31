@@ -19,7 +19,7 @@ import LoggedLayout from '../../components/LoggedLayout';
  
 let kanitLoaded
 
-const Expensas =({navigation})=>{
+const Expensas =({ navigation, route })=>{
  kanitLoaded = useFonts({
     Kanit_200ExtraLight,
   });

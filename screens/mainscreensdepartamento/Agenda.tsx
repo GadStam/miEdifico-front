@@ -1,30 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Agenda, DateData, AgendaEntry, AgendaSchedule } from 'react-native-calendars';
 import { Avatar, Card } from 'react-native-paper';
 import Boton from '../../components/BotonDoble';
 import { traerEventos } from '../../servicios/miEdificioService';
 import { useNavigation } from '@react-navigation/native';
-
 import {
   useFonts,
   Kanit_200ExtraLight,
 } from '@expo-google-fonts/kanit';
 import LoggedLayout from '../../components/LoggedLayout';
 
-
 let kanitLoaded
 
 const timeToString = (time) => {
   const date = new Date(time);
   return date.toISOString().split('T')[0];
-};
-
+}
 
 const Schedule: React.FC = () => {
 
   const [eventos, setEventos] = useState();
-  const [loaded, setLoaded] = useState(true)
+  const [loaded, setLoaded] = useState(true);
+  let diaActual = new Date().toLocaleString()
+  let diaString = diaActual.toString()
 
   const getEventos = async () => {
     setLoaded(true)
@@ -63,8 +62,8 @@ const Schedule: React.FC = () => {
           const numItems = Math.floor(Math.random() * 3 + 1);
           for (let j = 0; j < numItems; j++) {
             items[strTime].push({
-              name: 'Item for ' + strTime + ' #' + j,
-              height: Math.max(50, Math.floor(Math.random() * 150)),
+              name: 'Aca mostrar el nombre del evento',
+              height: 1,
               day: strTime
             });
           }
@@ -84,9 +83,9 @@ const Schedule: React.FC = () => {
           <Card.Content>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
               <Text>{item.name}</Text>
-              {/* <Text>{item.Fecha}</Text>
+              {/*
               <Text>{item.IdEspacioComun}</Text> */}
-              <Avatar.Text label='1' /*poner id edificio*/ />
+              <Avatar.Text label='1' size={30}/*poner id edificio*/ />
             </View>
           </Card.Content>
         </Card>
@@ -100,7 +99,7 @@ const Schedule: React.FC = () => {
         <Agenda
           items={items}
           loadItemsForMonth={loadItems}
-          selected={'2017-05-16'}
+          selected={diaString}
           renderItem={renderItem}
         />
       </View>

@@ -30,7 +30,7 @@ LocaleConfig.locales['tr'] = {
 }
 LocaleConfig.defaultLocale = 'tr'
 
-const Calendario = ({ navigation }) => {
+const Calendario = ({ navigation, route }) => {
 
 const [eventos, setEventos] = useState();
 const [loaded, setLoaded] = useState(true)

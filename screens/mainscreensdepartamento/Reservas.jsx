@@ -15,7 +15,7 @@ import LoggedLayout from '../../components/LoggedLayout';
 
 let kanitLoaded
 
-const Reservas = ({ navigation }) => {
+const Reservas = ({ navigation, route }) => {
     kanitLoaded = useFonts({
         Kanit_200ExtraLight,
     });
@@ -88,7 +88,7 @@ const Reservas = ({ navigation }) => {
         <LoggedLayout>
         <Teclado>
             <View >
-                <View source={fondoPag} style={styles.top} />
+                <View style={styles.top} />
 
                 <View style={styles.vista}>
                     <AntDesign style={styles.flecha} name="left" size={15} />
@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Kanit-Regular',
     },
     top: {
-        height: 100,
+        height: 40,
         paddingHorizontal: '5%'
     },
     atras: {
