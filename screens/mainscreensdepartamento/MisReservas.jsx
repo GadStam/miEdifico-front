@@ -10,6 +10,9 @@ import {
 } from '@expo-google-fonts/kanit';
 import Boton from '../../components/BotonDoble';
 import LoggedLayout from '../../components/LoggedLayout';
+import { traerEventosPorDepto } from '../../servicios/miEdificioService';
+import EventosListItem from '../../components/EventosListItem';
+
 
 let kanitLoaded
 
@@ -17,13 +20,32 @@ const MisReservas = ({ navigation, route }) => {
     kanitLoaded = useFonts({
         Kanit_200ExtraLight,
     });
+    const [loaded, setLoaded] = useState(true)
+    const [Eventos, setEventos] = useState("");
+
+    const getEventosPorDepto = async (e) => {
+        setLoaded(true)
+    
+        await traerEventosPorDepto().then((response) => {
+          setLoaded(true)
+          setEventos(response);
+          console.log("Los eventos son", response)
+        }).catch(() => {
+          console.log("aaaaa")
+    
+        });
+      }
+    
+      useEffect(() => {
+        (async () => {
+          await getEventosPorDepto()
+        })()
+      }, [])
 
     return (
         <LoggedLayout>
         <Teclado>
             <View >
-                <View style={styles.top} />
-
                 <View style={styles.vista}>
                     <AntDesign style={styles.flecha} name="left" size={15} />
                     <Text style={styles.atras}
@@ -33,16 +55,7 @@ const MisReservas = ({ navigation, route }) => {
                         Volver atrás
                     </Text>
                     <Text style={styles.text}>Mis Reservas</Text>
-                    <TouchableOpacity>
-                        <Card>
-                            <Card.Content>
-                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                                    <Text>Aca se deberían mostrar las reservas del depto y poder eliminarlas</Text>
-                                    
-                                </View>
-                            </Card.Content>
-                        </Card>
-                    </TouchableOpacity>
+                    <EventosListItem />
 
                 </View>
             </View>

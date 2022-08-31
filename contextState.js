@@ -3,10 +3,12 @@ import React from "react";
 
 export const initialState = {
     codigo: '',
-    direccion: 'aa',
+    piso: '',
+    direccion: '',
 };
 export const actionTypes = {
     SetCodigo: 'SET_CODIGO',
+    SetPiso: 'SET_PISO',
     SetDireccion: 'SET_DIRECCION'
 };
 export const reducer = (state = {}, action) => {
@@ -15,6 +17,11 @@ export const reducer = (state = {}, action) => {
             return {
                 ...state,
                 codigo: action.value
+            };
+        case actionTypes.SetPiso:
+            return {
+                ...state,
+                piso: action.value
             };
         case actionTypes.SetDireccion:
             return {

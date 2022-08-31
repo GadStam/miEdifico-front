@@ -13,7 +13,6 @@ const Header = () => {
   
   const { contextState, setContextState } = useContextState();
   const [direccionInquilino, setDirec] = useState("");
-  const [Piso, setPiso] = useState("");
   const [loaded, setLoaded] = useState(true)
 
   const getDireccion = async (e) => {
@@ -35,7 +34,10 @@ const Header = () => {
 
     await traerPiso(contextState.codigo).then((response) => {
       setLoaded(true)
-      setPiso(response);
+      setContextState({
+        type: actionTypes.SetPiso,
+        value: response
+      })
       console.log("El piso es", response)
     }).catch(() => {
       console.log("no hay piso")
@@ -55,7 +57,7 @@ const Header = () => {
         <View style={styles.top} >
 
           <Text style={styles.titulo}>Dirección: {direccionInquilino}</Text>
-          <Text style={styles.titulo}>Depto: {Piso}</Text>
+          <Text style={styles.titulo}>Depto: {contextState.piso}</Text>
 
         </View>
     )

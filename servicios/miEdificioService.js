@@ -9,7 +9,7 @@ import {
 } from 'react-native-web/dist/cjs/modules/AssetRegistry';
 import Spinner from 'react-native-loading-spinner-overlay/lib';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { actionTypes, useContextState } from '../contextState.js';
 
 export const register = async (userState) => {
   console.log(userState);
@@ -101,6 +101,23 @@ export const traerEventos = async () => {
     }); // => Promise<AxiosResponse>
 };
 
+export const traerEventosPorDepto = async () => {
+  const { contextState, setContextState } = useContextState();
+  const id_departamento = contextState.codigo
+  console.log(id_departamento)
+  return AxiosClient
+    .get(`/eventos/departamentos/${id_departamento}`, {
+
+    }).then((res) => { // si status code entre 200 y 299
+      const eventos = res.data;
+      return eventos
+    })
+    .catch((err) => { // status >= 300
+      console.log(`register error`, err.response);
+     
+      throw err //propagar error
+    }); // => Promise<AxiosResponse>
+};
 
 
 
