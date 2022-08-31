@@ -25,18 +25,3 @@ export default function EventosListItem() {
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    lista: {
-        color: 'white',
-        justifyContent: 'center',
-        fontFamily: 'Kanit-Regular',
-        borderWidth: 1,
-        borderColor: "lightblue",
-        padding: 10,
-        backgroundColor: "#5207f2",
-        marginTop: 15,
-        marginBottom: -5,
-        width: 250
-    }
-});

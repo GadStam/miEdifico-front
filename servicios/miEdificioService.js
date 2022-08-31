@@ -74,9 +74,24 @@ export const traerPiso = async (userState) => {
      
     })
     .then(async(res) => {
-     
       let pisoInquilino = res.data.depto
-      return pisoInquilino
+      return res.data
+    })
+    .catch((e) => {
+      console.log(`register error`, e.response);
+      throw "error" //propagar error
+    });
+};
+
+export const traerDirec = async (id, token) => {
+ 
+  return AxiosClient
+    .get(`/edificios/edificio/${id}`, {
+
+    },{headers: {'Authorization': 'Bearer ' + token},})
+    .then(async(res) => {
+      console.log(res.data)
+      return res.data
     })
     .catch((e) => {
       console.log(`register error`, e.response);

@@ -70,7 +70,6 @@ export default MisReservas
 const styles = StyleSheet.create({
     vista: {
         alignItems: 'center',
-
     },
     text: {
         textAlign: 'center',
@@ -100,10 +99,6 @@ const styles = StyleSheet.create({
         color: 'blue',
         fontSize: 18,
         fontFamily: 'Kanit-Regular',
-    },
-    top: {
-        height: 40,
-        paddingHorizontal: '5%'
     },
     atras: {
         position: 'absolute',

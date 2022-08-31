@@ -1,7 +1,7 @@
 import { View, StyleSheet, ActivityIndicator, Text } from 'react-native';
 import BottomTab from '../navigation/BottomTab';
 import React, { useState, useEffect, useCallback } from 'react';
-import { traerPiso } from '../servicios/miEdificioService';
+import { traerPiso, traerDirec } from '../servicios/miEdificioService';
 import fondoPag from "../assets/fondoInicio.jpg"
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { actionTypes, useContextState } from '../contextState.js';
@@ -12,32 +12,29 @@ const Header = () => {
   const route = useRoute();
   
   const { contextState, setContextState } = useContextState();
-  const [direccionInquilino, setDirec] = useState("");
   const [loaded, setLoaded] = useState(true)
 
-  const getDireccion = async (e) => {
-    setLoaded(true)
-    console.log("Direccion:", contextState.direccion)
-    await traerDirec(contextState.direccion).then((response) => {
-      setLoaded(true)
-      setDirec(response);
-      console.log("La direccion es", response)
-    }).catch(() => {
-      console.log("no hay direc")
-
-    });
-  }
-
-  const getPiso = async (e) => {
+  const getPisoYDirec = async (e) => {
     setLoaded(true)
     console.log("Codigo:", contextState.codigo)
 
-    await traerPiso(contextState.codigo).then((response) => {
+    await traerPiso(contextState.codigo).then((responseDpto) => {
       setLoaded(true)
       setContextState({
         type: actionTypes.SetPiso,
-        value: response
+        value: responseDpto.depto,
       })
+      traerDirec(responseDpto.edificio, responseDpto.token).then((responseEdificio) => {
+        setLoaded(true)
+        setContextState({
+          type: actionTypes.SetDireccion,
+          value: responseEdificio.direccion,
+        })
+        console.log("La direccion es", responseEdificio)
+      }).catch((e) => {
+        console.log(e)
+  
+      });
       console.log("El piso es", response)
     }).catch(() => {
       console.log("no hay piso")
@@ -47,8 +44,7 @@ const Header = () => {
 
   useEffect(() => {
     (async () => {
-      await getPiso()
-      await getDireccion()
+      await getPisoYDirec()
     })()
   }, [])
 
@@ -56,7 +52,7 @@ const Header = () => {
     return (
         <View style={styles.top} >
 
-          <Text style={styles.titulo}>Dirección: {direccionInquilino}</Text>
+          <Text style={styles.titulo}>Dirección: {contextState.direccion}</Text>
           <Text style={styles.titulo}>Depto: {contextState.piso}</Text>
 
         </View>

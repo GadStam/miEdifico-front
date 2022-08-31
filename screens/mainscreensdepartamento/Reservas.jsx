@@ -88,8 +88,6 @@ const Reservas = ({ navigation, route }) => {
         <LoggedLayout>
         <Teclado>
             <View >
-                <View style={styles.top} />
-
                 <View style={styles.vista}>
                     <AntDesign style={styles.flecha} name="left" size={15} />
                     <Text style={styles.atras}
@@ -223,10 +221,6 @@ const styles = StyleSheet.create({
         color: 'blue',
         fontSize: 18,
         fontFamily: 'Kanit-Regular',
-    },
-    top: {
-        height: 40,
-        paddingHorizontal: '5%'
     },
     atras: {
         position: 'absolute',
