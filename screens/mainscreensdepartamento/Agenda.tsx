@@ -10,6 +10,7 @@ import {
   Kanit_200ExtraLight,
 } from '@expo-google-fonts/kanit';
 import LoggedLayout from '../../components/LoggedLayout';
+import Teclado from '../../components/Teclado';
 
 let kanitLoaded
 
@@ -94,35 +95,30 @@ const Schedule: React.FC = () => {
   }
   return (
     <LoggedLayout>
-    <View>
-      <View style={styles.agenda}>
-        <Agenda
-          items={items}
-          loadItemsForMonth={loadItems}
-          selected={diaString}
-          renderItem={renderItem}
-        />
-      </View>
-      <View style={{ alignItems: 'center', marginTop: '-15%' }}>
-
-      <Boton
-      text="Agregar nuevo evento"
-      onPress={() => {
-        navigation.navigate('Reservas')
-      }}
-      />
-      <Boton
-      text="Ver mis reservas" 
-      onPress={ () =>{
-        navigation.navigate('MisReservas')
-      }}
-      />
-      </View>
-    </View>
+        <View style={styles.agenda}>
+          <Agenda
+            items={items}
+            loadItemsForMonth={loadItems}
+            selected={diaString}
+            renderItem={renderItem}
+          />
+        </View>
+        <View style={{ alignItems: 'center', marginTop:'-15%'}}>
+          <Boton
+            text="Agregar nuevo evento"
+            onPress={() => {
+              navigation.navigate('Reservas')
+            }}
+          />
+          <Boton
+            text="Ver mis reservas"
+            onPress={() => {
+              navigation.navigate('MisReservas')
+            }}
+          />
+        </View>
     </LoggedLayout>
   )
-
-
 };
 export default Schedule
 
@@ -141,7 +137,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: '5%'
   },
-  agenda:{
-    height: 540 
+  agenda: {
+    height: '71%'
   }
 });

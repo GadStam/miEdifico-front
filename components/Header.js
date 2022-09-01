@@ -28,9 +28,8 @@ const Header = () => {
         setLoaded(true)
         setContextState({
           type: actionTypes.SetDireccion,
-          value: responseEdificio.direccion,
+          value: responseEdificio[0].direccion,
         })
-        console.log("La direccion es", responseEdificio)
       }).catch((e) => {
         console.log(e)
   

@@ -15,6 +15,7 @@ import {
   Kanit_200ExtraLight,
 } from '@expo-google-fonts/kanit';
 import LoggedLayout from '../../components/LoggedLayout';
+import { actionTypes, useContextState } from '../../contextState.js';
  
 let kanitLoaded
 
@@ -22,6 +23,7 @@ const Contacto =({ navigation, route })=>{
  kanitLoaded = useFonts({
     Kanit_200ExtraLight,
   });
+  const { contextState, setContextState } = useContextState();
 
   return (
     <LoggedLayout>
@@ -38,6 +40,18 @@ const Contacto =({ navigation, route })=>{
           text="Cerrar Sesión"
           onPress={() => {
             navigation.navigate('Home')
+            setContextState({
+              type: actionTypes.SetDireccion,
+              value: '',
+            })
+            setContextState({
+              type: actionTypes.SetCodigo,
+              value: '',
+            })
+            setContextState({
+              type: actionTypes.SetPiso,
+              value: '',
+            })
           }}
         />
         </View>

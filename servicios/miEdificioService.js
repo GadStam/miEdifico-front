@@ -84,11 +84,10 @@ export const traerPiso = async (userState) => {
 };
 
 export const traerDirec = async (id, token) => {
- 
   return AxiosClient
     .get(`/edificios/edificio/${id}`, {
-
-    },{headers: {'Authorization': 'Bearer ' + token},})
+      headers: {'Authorization': 'Bearer ' + token}
+    })
     .then(async(res) => {
       console.log(res.data)
       return res.data
