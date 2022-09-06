@@ -21,7 +21,7 @@ export const crearEdficiosAdmin = async (userState) => {
         const idEdificio = res.data[0].id_edificio;
         console.log("este es el", idEdificio)
         const idEdificioValue = JSON.stringify(idEdificio) // lo pasa a string 
-        AsyncStorage.setItem('idEdificio', idEdificioValue) // guarda en el storage con el nombre id
+        AsyncStorage.setItem('idEdificio', idEdificio) // guarda en el storage con el nombre id
        
       })
       .catch((err) => { // status >= 300

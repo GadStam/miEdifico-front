@@ -6,6 +6,9 @@ import { AntDesign } from '@expo/vector-icons';
 import Teclado from '../../components/Teclado';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import BotonFecha from '../../components/BotonFecha';
+
+import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { crearEvento } from '../../servicios/eventoService';
 import { RadioButton } from 'react-native-paper';
 import {
     useFonts,
@@ -22,13 +25,16 @@ const Reservas = ({ navigation, route }) => {
     const [pileta, setPileta] = useState(false);
     const [terraza, setTerraza] = useState(false);
     const [cochera, setCochera] = useState(false);
+
+
     const [fechaSeleccionada, setFechaSeleccionada] = useState({
         cant_invitados: null,
         horas: null,
         fecha:'',
-        hora_inicio:''
+        hora_inicio:'',
+        id_espaciocc: null
     });
-    const [checked, setChecked] = React.useState('');
+   
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
     const showDatePicker = () => {
@@ -84,6 +90,38 @@ const Reservas = ({ navigation, route }) => {
             setFechaSeleccionada({ ...fechaSeleccionada, horas: '' })
         }
     }
+
+
+
+    const onCreateEvento = async (e) => {
+        if(fechaSeleccionada.cant_invitados===null || fechaSeleccionada.horas===null || fechaSeleccionada.fecha==='' || fechaSeleccionada.hora_inicio===''){
+            Alert.alert("Por favor ingresar todos los datos")
+            console.log(fechaSeleccionada)
+        }
+        else {
+          console.log(fechaSeleccionada)
+          
+          if (pileta === true){
+            fechaSeleccionada.id_espaciocc=1;
+          }
+          if (terraza === true){
+            fechaSeleccionada.id_espaciocc=2;
+          }
+          if (cochera === true){
+            fechaSeleccionada.id_espaciocc=3;
+          }
+          
+        
+          await crearEvento(fechaSeleccionada).then(() => {
+            navigation.navigate('Schedule')
+          })
+            .catch(() => {
+    
+              Alert.alert("Datos repetidos")
+            });
+        }
+      }
+
     return (
         <LoggedLayout>
         <Teclado>
@@ -99,43 +137,44 @@ const Reservas = ({ navigation, route }) => {
                     <Text style={styles.text}>Reservar espacio</Text>
                     <Text style={styles.texto}>Seleccione que espacio comun desea reservar:</Text>
                     <View style={styles.boxes}>
-                        <RadioButton.Group>
-                            <RadioButton.Item
-                                status={checked === 'pileta' ? 'checked' : 'unchecked'}
-                                value='pileta'
-                                label="Pileta"
-                                onPress={() => {
-                                    setPileta(!pileta); setChecked('pileta')
-                                }
-                                }
-                                text="Pileta"
-                                color='blue'
-                                style={{ flexDirection: 'row-reverse' }}
-                            />
-                            <RadioButton.Item
-                                status={checked === 'terraza' ? 'checked' : 'unchecked'}
-                                value={terraza}
-                                label="Terraza"
-                                onPress={() => {
-                                    setTerraza(!terraza); setChecked('terraza')
-                                }}
-                                color='blue'
-                                borderColor='blue'
-                                style={{ flexDirection: 'row-reverse' }}
-                            />
-                            <RadioButton.Item
-                                status={checked === 'cochera' ? 'checked' : 'unchecked'}
-                                onPress={() => {
-                                    setCochera(!cochera); setChecked('cochera')
-                                }
-                                }
-                                label="Cochera"
-                                color='blue'
-                                borderColor='blue'
-                                style={{ flexDirection: 'row-reverse' }}
+                       <BouncyCheckbox
+                size={23}
+                fillColor="blue"
+                unfillColor="white"
+                text="Pileta"
+                iconStyle={{ borderColor: "red" }}
+                iconInnerStyle={{ borderWidth: 2 }}
+                textStyle={{ color:'white', fontFamily: 'Kanit-Regular' }}
+                value={pileta}
+                onPress={()=>setPileta(!pileta)}
+                style={{marginTop:'5%'}}
+          />
 
-                            />
-                        </RadioButton.Group>
+            <BouncyCheckbox
+                size={23}
+                fillColor="blue"
+                unfillColor="white"
+                text="Terraza"
+                iconInnerStyle={{ borderWidth: 2 }}
+                textStyle={{ color:'white', fontFamily: 'Kanit-Regular' }}
+                value={terraza}
+                onPress={()=>setTerraza(!terraza)}
+                style={{marginTop:'2%'}}    
+                
+          />
+
+            <BouncyCheckbox
+                size={23}
+                fillColor="blue"
+                unfillColor="white"
+                text="Cochera"
+                iconStyle={{ borderColor: "red" }}
+                iconInnerStyle={{ borderWidth: 2 }}
+                textStyle={{ color:'white', fontFamily: 'Kanit-Regular' }}
+                value={cochera}
+                onPress={()=>setCochera(!cochera)}    
+                style={{marginTop:'2%'}}      
+          />
                     </View>
                     <TextInput
                         style={styles.textInput}
@@ -165,17 +204,7 @@ const Reservas = ({ navigation, route }) => {
                 <View style={{ alignItems: 'center' }}>
                     <BotonOne
                         text="Guardar evento"
-                        onPress={() => {
-                            
-                            if(fechaSeleccionada.cant_invitados===null || fechaSeleccionada.horas===null || fechaSeleccionada.fecha==='' || fechaSeleccionada.hora_inicio===''){
-                                Alert.alert("Por favor ingresar todos los datos")
-                                console.log(fechaSeleccionada)
-                            }
-                            else{
-                                navigation.navigate('Schedule')
-                            }
-                            
-                        }}
+                        onPress={onCreateEvento}
                     />
                 </View>
 

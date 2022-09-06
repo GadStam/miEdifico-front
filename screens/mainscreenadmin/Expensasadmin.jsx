@@ -10,6 +10,7 @@ import Inquilino from '../InicioInquilino'
 import { useNavigation } from '@react-navigation/native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {launchImageLibrary} from 'react-native-image-picker';
 import {
   useFonts,
   Kanit_200ExtraLight,
@@ -22,12 +23,29 @@ const Contacto = ({ navigation }) => {
     Kanit_200ExtraLight,
   });
 
+const options={
+  title: 'Select Image',
+  type: 'library',
+  options: {
+    selectionLimit: 1,
+    mediaType: 'photo',
+    includeBase64: false,
+    
+  },
+}
+  const openGallery=async()=>{
+    const images = await launchImageLibrary(options);
+    console.log(images)
+    }
+  
+
+  
   return (
 
     <View>
       <View style={styles.top} >
 
-        <Text style={styles.titulo}>Edificio:</Text>
+        <Text style={styles.titulo}>Edificio: </Text>
 
       </View>
 
@@ -37,9 +55,7 @@ const Contacto = ({ navigation }) => {
         <BotonOne
 
           text="Cambiar de edificio"
-          onPress={() => {
-            navigation.navigate('InicioAdmin')
-          }}
+          onPress={openGallery}
         />
       </View>
     </View>
