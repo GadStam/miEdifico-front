@@ -24,7 +24,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/logoMI.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "miEdificio.com"
     },
     "web": {
       "favicon": "./assets/logoMI.png"

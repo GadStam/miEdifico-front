@@ -24,18 +24,15 @@ const Contacto = ({ navigation }) => {
   });
 
 const options={
-  title: 'Select Image',
-  type: 'library',
-  options: {
-    selectionLimit: 1,
     mediaType: 'photo',
-    includeBase64: false,
+    includeBase64: true,
     
-  },
+  
 }
   const openGallery=async()=>{
-    const images = await launchImageLibrary(options);
-    console.log(images)
+  console.log(launchImageLibrary)
+    const images = launchImageLibrary(options, console.log);
+    console.log("images",images)
     }
   
 
