@@ -99,20 +99,10 @@ const Reservas = ({ navigation, route }) => {
             console.log(fechaSeleccionada)
         }
         else {
-          console.log(fechaSeleccionada)
           
-          if (pileta === true){
-            fechaSeleccionada.id_espaciocc=1;
-          }
-          if (terraza === true){
-            fechaSeleccionada.id_espaciocc=2;
-          }
-          if (cochera === true){
-            fechaSeleccionada.id_espaciocc=3;
-          }
           
         
-          await crearEvento(fechaSeleccionada).then(() => {
+          await crearEvento({...fechaSeleccionada, id_espaciocc: pileta?1:terraza?2:cochera?3:null}).then(() => {
             navigation.navigate('Schedule')
           })
             .catch(() => {

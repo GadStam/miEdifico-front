@@ -13,7 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export const crearExpensa = async (userState) => {
     const tokenId = await AsyncStorage.getItem('token') // trae del stoateg e l  token 
     const id = await AsyncStorage.getItem('id')
-    console.log(userState)
+    console.log("API PARAMTER", userState)
     return AxiosClient
       .post(`/expensas/${id}`, {
         ...userState

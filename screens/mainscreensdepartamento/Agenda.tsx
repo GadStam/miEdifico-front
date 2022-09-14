@@ -99,7 +99,7 @@ const Schedule: React.FC = () => {
           <Agenda
             items={items}
             loadItemsForMonth={loadItems}
-            selected={diaString}
+            selected={'2022-09-09'}
             renderItem={renderItem}
           />
         </View>

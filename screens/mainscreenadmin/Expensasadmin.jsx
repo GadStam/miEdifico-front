@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, SafeAreaView, Platform } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, SafeAreaView, Platform, Alert } from 'react-native';
 import miED from "../../assets/logoMI.png";
 import fondoPag from "../../assets/fondoInicio.jpg"
 import Girador from '../../components/girador'
@@ -7,7 +7,7 @@ import Card from '../../components/Card';
 import BotonOne from '../../components/BotonOne';
 
 import * as ImagePicker from 'expo-image-picker';
-
+import { crearExpensa } from '../../servicios/expensasService';
 import Home from '../Home'
 import Inquilino from '../InicioInquilino'
 import { useNavigation } from '@react-navigation/native';
@@ -26,7 +26,7 @@ const Contacto = ({ navigation }) => {
     Kanit_200ExtraLight,
   });
 
-const [codImage, setCodIMage] = useState(null);
+const [codImage, setCodIMage] = useState("");
   
   const [image, setImage] = useState(null);
 
@@ -40,13 +40,33 @@ const [codImage, setCodIMage] = useState(null);
       base64:true,
     });
 
-    console.log(result);
+    
+
+    setCodIMage(result.base64)
+
+    
 
     if (!result.cancelled) {
       setImage(result.uri);
     }
   };
   
+
+  const subirArchivo = async (e) => {
+  
+      await crearExpensa(codImage).then(() => {
+        Alert.alert("Su Expensa se subio correctamente")
+      })
+        .catch(() => {
+
+          Alert.alert("ERROR SUBIENDO ARCHIVOS")
+        });
+    }
+  
+
+
+
+
 
   
   return (
@@ -61,9 +81,16 @@ const [codImage, setCodIMage] = useState(null);
       <View>
         
       <Button title="Pick an image from camera roll" onPress={pickImage}/>
-      {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+      
     </View>
+    <Text>{codImage.length}</Text>
+    <BotonOne
+            text="Crear edificio"
+            onPress={subirArchivo}
+            
+          /> 
     </View>
+
 
   );
 }
