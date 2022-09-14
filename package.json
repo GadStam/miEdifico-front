@@ -24,6 +24,7 @@
     "expo": "^46.0.9",
     "expo-cli": "^5.5.1",
     "expo-font": "~10.2.0",
+    "expo-splash-screen": "~0.16.2",
     "expo-status-bar": "~1.4.0",
     "jwt-decode": "^3.1.2",
     "lodash.range": "^3.2.0",
@@ -38,7 +39,6 @@
     "react-native-date-picker": "^4.2.5",
     "react-native-document-picker": "^8.1.1",
     "react-native-dropdown-select-list": "^1.0.16",
-    "react-native-image-picker": "3.3.2",
     "react-native-ionicons": "^4.6.5",
     "react-native-linear-gradient": "^2.5.6",
     "react-native-loading-spinner-overlay": "^3.0.0",
@@ -54,7 +54,7 @@
     "react-native-web": "~0.18.7",
     "webpack-dev-server": "~3.11.0",
     "yarn": "^1.22.19",
-    "expo-splash-screen": "~0.16.2"
+    "expo-image-picker": "~13.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
