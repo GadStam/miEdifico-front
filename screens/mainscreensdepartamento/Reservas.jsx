@@ -134,7 +134,7 @@ const Reservas = ({ navigation, route }) => {
                 text="Pileta"
                 iconStyle={{ borderColor: "red" }}
                 iconInnerStyle={{ borderWidth: 2 }}
-                textStyle={{ color:'white', fontFamily: 'Kanit-Regular' }}
+                textStyle={{ color:'black', fontFamily: 'Kanit-Regular' }}
                 value={pileta}
                 onPress={()=>setPileta(!pileta)}
                 style={{marginTop:'5%'}}
@@ -146,7 +146,7 @@ const Reservas = ({ navigation, route }) => {
                 unfillColor="white"
                 text="Terraza"
                 iconInnerStyle={{ borderWidth: 2 }}
-                textStyle={{ color:'white', fontFamily: 'Kanit-Regular' }}
+                textStyle={{ color:'black', fontFamily: 'Kanit-Regular' }}
                 value={terraza}
                 onPress={()=>setTerraza(!terraza)}
                 style={{marginTop:'2%'}}    
@@ -160,7 +160,7 @@ const Reservas = ({ navigation, route }) => {
                 text="Cochera"
                 iconStyle={{ borderColor: "red" }}
                 iconInnerStyle={{ borderWidth: 2 }}
-                textStyle={{ color:'white', fontFamily: 'Kanit-Regular' }}
+                textStyle={{ color:'black', fontFamily: 'Kanit-Regular' }}
                 value={cochera}
                 onPress={()=>setCochera(!cochera)}    
                 style={{marginTop:'2%'}}      
