@@ -5,7 +5,7 @@ import fondoPag from "../../assets/fondoInicio.jpg"
 import Girador from '../../components/girador'
 import Card from '../../components/Card';
 import BotonOne from '../../components/BotonOne';
-
+import { traerNombre} from '../../servicios/misDepartamentosService.js';
 import * as ImagePicker from 'expo-image-picker';
 import { crearExpensa } from '../../servicios/expensasService';
 import Home from '../Home'
@@ -29,6 +29,7 @@ const Contacto = ({ navigation }) => {
 const [codImage, setCodIMage] = useState("");
   
   const [image, setImage] = useState(null);
+  const [nombreAdmin, setNombreAdmin] = useState("");
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -63,7 +64,24 @@ const [codImage, setCodIMage] = useState("");
         });
     }
   
+    const getNombreAdmin = async (e) => {
+     
+      await traerNombre().then((response) => {
+       
+        setNombreAdmin(response);
+        console.log("la respuesta es", response)
+      }).catch(() => {
+        console.log("no hay nombre")
+  
+      });
+    }
 
+    useEffect(() => {
+      (async () => {
+       
+        await getNombreAdmin()
+      })()
+    }, [])
 
 
 
@@ -74,18 +92,18 @@ const [codImage, setCodIMage] = useState("");
     <View>
       <View style={styles.top} >
 
-        <Text style={styles.titulo}>Edificio: </Text>
+      <Text style={styles.titulo}>{nombreAdmin && `Usuario ${nombreAdmin}`}</Text>
 
       </View>
 
       <View>
         
-      <Button title="Pick an image from camera roll" onPress={pickImage}/>
+      <Button title="Seleccione la imagen de la expensa" onPress={pickImage}/>
       
     </View>
-    <Text>{codImage.length}</Text>
+    <Text>NUMERO DE CARACTERES:{codImage.length}</Text>
     <BotonOne
-            text="Crear edificio"
+            text="SUBIR EXPENSA"
             onPress={subirArchivo}
             
           /> 
