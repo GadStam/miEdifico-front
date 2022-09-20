@@ -61,6 +61,7 @@ const Contacto = ({ navigation }) => {
       .catch(() => {
 
         Alert.alert("ERROR SUBIENDO ARCHIVOS")
+        
       });
   }
 

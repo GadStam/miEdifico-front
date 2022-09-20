@@ -6,7 +6,7 @@ import { AntDesign } from '@expo/vector-icons';
 import Teclado from '../../components/Teclado';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import BotonFecha from '../../components/BotonFecha';
-
+import { useContextState } from '../../contextState';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { crearEvento } from '../../servicios/eventoService';
 import { RadioButton } from 'react-native-paper';
@@ -25,16 +25,18 @@ const Reservas = ({ navigation, route }) => {
     const [pileta, setPileta] = useState(false);
     const [terraza, setTerraza] = useState(false);
     const [cochera, setCochera] = useState(false);
-
+    const {contextState, setContextState} = useContextState();
 
     const [fechaSeleccionada, setFechaSeleccionada] = useState({
         cant_invitados: null,
         horas: null,
         fecha:'',
         hora_inicio:'',
-        id_espaciocc: null
+        id_espaciocc: null,
+        direccion: contextState.direccion
     });
-   
+    
+    console.log(contextState.direccion)
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
     const showDatePicker = () => {
