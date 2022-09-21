@@ -21,7 +21,7 @@ const InicioAdmin = ({ navigation }) => {
     setLoaded(true)
     await traerNombre().then((response) => {
       setLoaded(true)
-      setNombreAdmin(response);
+      setNombreAdmin(response.nombre);
       console.log("la respuesta es", response)
     }).catch(() => {
       console.log("no hay nombre")

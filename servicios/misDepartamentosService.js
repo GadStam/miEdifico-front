@@ -56,8 +56,8 @@ export const traerEdficios = async () => {
         headers: {'Authorization': 'Bearer ' + tokenId}
       })
       .then((res) => {
-        const userInfo = res.data[0].nombre;
-        console.log("hola",res.data[0].nombre)
+        const userInfo = res.data[0];
+        console.log("hola este es",res.data[0].nombre)
         console.log(res.data)
         return userInfo
       })
