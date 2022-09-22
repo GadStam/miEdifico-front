@@ -26,17 +26,26 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "miEdificio.com"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/logoMI.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "miEdificio.com"
+      "package": "miEdificio.com",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/logoMI.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "50556deb-ab7b-4850-b82e-4091add5f37e"
+      }
     }
   }
 }

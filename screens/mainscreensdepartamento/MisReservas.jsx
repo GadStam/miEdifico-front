@@ -24,17 +24,17 @@ const MisReservas = ({ navigation, route }) => {
     const [Eventos, setEventos] = useState("");
     
 
-    
-
     const getEventosPorDepto = async (e) => {
         setLoaded(true)
-    
+        
         await traerEventosPorDepto().then((response) => {
           setLoaded(true)
           setEventos(response);
+          console.log("la can de eventos es:", Eventos.length)
           console.log("Los eventos son", response)
         }).catch(() => {
-          console.log("aaaaa")
+          console.log("este error es el de traer eventos")
+          
     
         });
       }
@@ -66,7 +66,15 @@ const MisReservas = ({ navigation, route }) => {
                     keyExtractor={item => item.nombre_evento}
                     />
                     :
-                    <Text style={styles.text}>No hay eventos</Text>
+
+                <Card style={styles.noEvento}>
+                    <Card.Content style={{ alignItems:'center'}}>
+                    <Text >Aún no hay eventos</Text>
+                       
+                    </Card.Content>
+                </Card>
+
+                    
                     }
                     
                     
@@ -132,4 +140,10 @@ const styles = StyleSheet.create({
         fontFamily: 'Kanit-Regular',
         marginBottom: '3%',
     },
+    noEvento:{
+        height: '30%',
+        marginTop: '5%',
+        width: '80%',
+        paddingVertical: '3%'
+    }
 });

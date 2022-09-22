@@ -22,24 +22,27 @@ export const crearEvento = async (userState) => {
         
         const idEvento = res.data.id_evento;
         console.log("este es el", idEvento)
-        const idEventoValue = JSON.stringify(idEdificio) // lo pasa a string 
+        const idEventoValue = JSON.stringify(idEvento) // lo pasa a string 
         AsyncStorage.setItem('idEvento', idEvento) // guarda en el storage con el nombre id
        
       })
       .catch((err) => { // status >= 300
-        console.log(`register error`, err.response);
+        console.log(`register error`, err.res);
        
         throw err //propagar error
       }); // => Promise<AxiosResponse>
   };
 
+
+
+  
   export const traerEventosPorDepto = async () => {
     const { contextState, setContextState } = useContextState();
     const tokenId = await AsyncStorage.getItem('token') // trae del stoateg e l  token 
     const id_departamento = contextState.codigo
     console.log(id_departamento)
     return AxiosClient
-      .get(`/eventos/departamentos/${id_departamento}`, {
+      .get(`/eventos/departamento/${id_departamento}`, {
   
       },{headers: {'Authorization': 'Bearer ' + tokenId},}).then((res) => { // si status code entre 200 y 299
         const eventos = res.data;
@@ -53,6 +56,9 @@ export const crearEvento = async (userState) => {
       }); // => Promise<AxiosResponse>
   };
 
+
+
+
   export const EliminarDepto = async () => {
     const { contextState, setContextState } = useContextState();
     const tokenId = await AsyncStorage.getItem('token') // trae del stoateg e l  token 
@@ -60,7 +66,7 @@ export const crearEvento = async (userState) => {
     const idEvento = await AsyncStorage.getItem('idEvento') // trae del stoateg e l  token 
     console.log(id_departamento)
     return AxiosClient
-      .delete(`/eventos/departamentos/${id_departamento}/${idEvento}`, { //url de eliminar evento
+      .delete(`/eventos/${idEvento}`, { //url de eliminar evento
   
       },{headers: {'Authorization': 'Bearer ' + tokenId},}).then((res) => {
        
