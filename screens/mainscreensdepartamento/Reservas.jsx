@@ -25,6 +25,7 @@ const Reservas = ({ navigation, route }) => {
     const [pileta, setPileta] = useState(false);
     const [terraza, setTerraza] = useState(false);
     const [cochera, setCochera] = useState(false);
+
     const {contextState, setContextState} = useContextState();
 
     const [fechaSeleccionada, setFechaSeleccionada] = useState({
@@ -33,7 +34,9 @@ const Reservas = ({ navigation, route }) => {
         fecha:'',
         hora_inicio:'',
         id_espaciocc: null,
-        direccion: contextState.direccion
+        direccion: contextState.direccion,
+        depto: contextState.piso,
+        nombre_evento:''
     });
     
     console.log(contextState.direccion)
@@ -96,7 +99,7 @@ const Reservas = ({ navigation, route }) => {
 
 
     const onCreateEvento = async (e) => {
-        if(fechaSeleccionada.cant_invitados===null || fechaSeleccionada.horas===null || fechaSeleccionada.fecha==='' || fechaSeleccionada.hora_inicio===''){
+        if(fechaSeleccionada.cant_invitados===null || fechaSeleccionada.horas===null || fechaSeleccionada.fecha==='' || fechaSeleccionada.hora_inicio==='' || fechaSeleccionada.nombre_evento===''){
             Alert.alert("Por favor ingresar todos los datos")
             console.log(fechaSeleccionada)
         }
@@ -109,7 +112,7 @@ const Reservas = ({ navigation, route }) => {
           })
             .catch(() => {
     
-              Alert.alert("Datos repetidos")
+              Alert.alert("ERROR EN LA CREACION")
             });
         }
       }
@@ -168,6 +171,20 @@ const Reservas = ({ navigation, route }) => {
                 style={{marginTop:'2%'}}      
           />
                     </View>
+
+                    <TextInput
+                        style={styles.textInput}
+                        placeholder="Ingrese el nombre del evento"
+                        name="nombre"
+                        value={fechaSeleccionada.nombre_evento}
+                        onChangeText={text => setFechaSeleccionada({ ...fechaSeleccionada, nombre_evento: text })}
+                       
+                    />
+
+
+
+
+
                     <TextInput
                         style={styles.textInput}
                         placeholder="Ingrese la cantidad de invitados"

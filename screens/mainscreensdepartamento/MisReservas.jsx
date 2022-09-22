@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, SafeAreaView, TextInput, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, SafeAreaView, TextInput, Alert, FlatList } from 'react-native';
 import fondoPag from "../../assets/fondoInicio.jpg"
 import { AntDesign } from '@expo/vector-icons';
 import Teclado from '../../components/Teclado';
@@ -10,7 +10,7 @@ import {
 } from '@expo-google-fonts/kanit';
 import Boton from '../../components/BotonDoble';
 import LoggedLayout from '../../components/LoggedLayout';
-import { traerEventosPorDepto } from '../../servicios/miEdificioService';
+import { traerEventosPorDepto } from '../../servicios/eventoService';
 import EventosListItem from '../../components/EventosListItem';
 
 
@@ -22,6 +22,9 @@ const MisReservas = ({ navigation, route }) => {
     });
     const [loaded, setLoaded] = useState(true)
     const [Eventos, setEventos] = useState("");
+    
+
+    
 
     const getEventosPorDepto = async (e) => {
         setLoaded(true)
@@ -44,7 +47,6 @@ const MisReservas = ({ navigation, route }) => {
 
     return (
         <LoggedLayout>
-        <Teclado>
             <View >
                 <View style={styles.vista}>
                     <AntDesign style={styles.flecha} name="left" size={15} />
@@ -55,11 +57,22 @@ const MisReservas = ({ navigation, route }) => {
                         Volver atrás
                     </Text>
                     <Text style={styles.text}>Mis Reservas</Text>
-                    <EventosListItem />
+                    {
+                        Eventos.length > 1
+                    ? 
+                    <FlatList
+                    data={Eventos}
+                    renderItem={({ item }) => <EventosListItem key={item.nombre_evento} Eventos={item} />}
+                    keyExtractor={item => item.nombre_evento}
+                    />
+                    :
+                    <Text style={styles.text}>No hay eventos</Text>
+                    }
+                    
+                    
 
                 </View>
             </View>
-        </Teclado>
         </LoggedLayout>
 
     );

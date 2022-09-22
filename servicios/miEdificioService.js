@@ -115,23 +115,6 @@ export const traerEventos = async () => {
     }); // => Promise<AxiosResponse>
 };
 
-export const traerEventosPorDepto = async () => {
-  const { contextState, setContextState } = useContextState();
-  const id_departamento = contextState.codigo
-  console.log(id_departamento)
-  return AxiosClient
-    .get(`/eventos/departamentos/${id_departamento}`, {
-
-    }).then((res) => { // si status code entre 200 y 299
-      const eventos = res.data;
-      return eventos
-    })
-    .catch((err) => { // status >= 300
-      console.log(`register error`, err.response);
-     
-      throw err //propagar error
-    }); // => Promise<AxiosResponse>
-};
 
 
 
