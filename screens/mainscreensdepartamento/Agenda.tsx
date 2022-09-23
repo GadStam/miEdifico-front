@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Agenda, DateData, AgendaEntry, AgendaSchedule } from 'react-native-calendars';
 import { Avatar, Card } from 'react-native-paper';
 import Boton from '../../components/BotonDoble';
-import { traerEventos } from '../../servicios/miEdificioService';
+//import { traerEventos } from '../../servicios/miEdificioService';
 import { useNavigation } from '@react-navigation/native';
 import {
   useFonts,
@@ -25,7 +25,7 @@ const Schedule: React.FC = () => {
   const [loaded, setLoaded] = useState(true);
   let diaActual = new Date().toLocaleString()
   let diaString = diaActual.toString()
-
+{/* 
   const getEventos = async () => {
     setLoaded(true)
     traerEventos().then((response) => {
@@ -37,13 +37,13 @@ const Schedule: React.FC = () => {
       console.log(error)
     });
   }
-
-  useEffect(() => {
+*/}  
+{/*useEffect(() => {
     (async () => {
       await getEventos()
     })()
   }, [])
-
+*/}
   kanitLoaded = useFonts({
     Kanit_200ExtraLight,
   });

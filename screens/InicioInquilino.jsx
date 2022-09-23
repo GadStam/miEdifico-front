@@ -24,16 +24,16 @@ const InicioInquilino =({navigation, route})=>{
     else {
       console.log(userState)
       await departamentologin (userState).then(() => {
-        console.log(userState)
+        console.log("aaa", userState)
         
         setContextState({
           type: actionTypes.SetCodigo,
           value: userState.codigo
         })
-      navigation.navigate('Firstscreendepto')
+        navigation.navigate('Firstscreendepto')
       })
-        .catch(() => {
-  
+        .catch((err) => {
+          console.error(err)
           Alert.alert("Su departamento no existe")
         });
     }

@@ -1,11 +1,8 @@
 import { View, StyleSheet, ActivityIndicator, Text } from 'react-native';
-import BottomTab from '../navigation/BottomTab';
 import React, { useState, useEffect, useCallback } from 'react';
 import { traerPiso, traerDirec } from '../servicios/miEdificioService';
-import fondoPag from "../assets/fondoInicio.jpg"
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { actionTypes, useContextState } from '../contextState.js';
-
 
 const Header = () => {
   const navigation = useNavigation();
@@ -24,7 +21,7 @@ const Header = () => {
         type: actionTypes.SetPiso,
         value: responseDpto.depto,
       })
-      traerDirec(responseDpto.edificio, responseDpto.token).then((responseEdificio) => {
+      traerDirec(responseDpto.id_edificio, responseDpto.token).then((responseEdificio) => {
         setLoaded(true)
         setContextState({
           type: actionTypes.SetDireccion,

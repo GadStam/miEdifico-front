@@ -49,7 +49,7 @@ export const traerEdficios = async () => {
 
 
   export const traerNombre = async () => {
-    const tokenId = await AsyncStorage.getItem('token') // trae del stoateg e l  token 
+    const tokenId = await AsyncStorage.getItem('deptotoke') // trae del stoateg e l  token 
     const id = await AsyncStorage.getItem('id')
     return AxiosClient
       .get(`/administradores/${id}`, {

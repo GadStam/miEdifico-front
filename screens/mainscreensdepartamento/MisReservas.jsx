@@ -12,6 +12,7 @@ import Boton from '../../components/BotonDoble';
 import LoggedLayout from '../../components/LoggedLayout';
 import { traerEventosPorDepto } from '../../servicios/eventoService';
 import EventosListItem from '../../components/EventosListItem';
+import { useContextState } from '../../contextState'
 
 
 let kanitLoaded
@@ -21,34 +22,37 @@ const MisReservas = ({ navigation, route }) => {
         Kanit_200ExtraLight,
     });
     const [loaded, setLoaded] = useState(true)
-    const [Eventos, setEventos] = useState("");
-    
+    const [Eventos, setEventos] = useState();
+    const { contextState, setContextState } = useContextState();
 
-    const getEventosPorDepto = async (e) => {
-        setLoaded(true)
-        
-        await traerEventosPorDepto().then((response) => {
-          setLoaded(true)
-          setEventos(response);
-          console.log("la can de eventos es:", Eventos.length)
-          console.log("Los eventos son", response)
-        }).catch(() => {
-          console.log("este error es el de traer eventos")
-          
-    
+    let codigoMandar = contextState.codigo
+
+    const getEventosPorDepto = async () => {
+
+        console.log("entro a la funcion traer eventos")
+
+        await traerEventosPorDepto(codigoMandar).then((response) => {
+
+            setEventos(response);
+
+            console.log("Los eventos son", response)
+        }).catch((err) => {
+            
+            console.log("este error es el de traer eventos")
+
+
         });
-      }
-    
-      useEffect(() => {
+    }
+
+    useEffect(() => {
         (async () => {
-          await getEventosPorDepto()
+            await getEventosPorDepto()
         })()
-      }, [])
+    }, [])
 
     return (
         <LoggedLayout>
             <View >
-                <View style={styles.vista}>
                     <AntDesign style={styles.flecha} name="left" size={15} />
                     <Text style={styles.atras}
                         onPress={() => {
@@ -58,28 +62,24 @@ const MisReservas = ({ navigation, route }) => {
                     </Text>
                     <Text style={styles.text}>Mis Reservas</Text>
                     {
-                        Eventos.length > 1
-                    ? 
-                    <FlatList
-                    data={Eventos}
-                    renderItem={({ item }) => <EventosListItem key={item.nombre_evento} Eventos={item} />}
-                    keyExtractor={item => item.nombre_evento}
-                    />
-                    :
+                        Eventos
+                            ?
+                            <FlatList
+                                data={Eventos}
+                                renderItem={({ item }) => <EventosListItem key={item.nombre_evento} Eventos={item} />}
+                                keyExtractor={item => item.nombre_evento}
+                            />
+                            :
+                    <View style={styles.vista}>
+                            <Card style={styles.noEvento}>
+                                <Card.Content style={{ alignItems: 'center' }}>
+                                    <Text >Aún no hay eventos</Text>
 
-                <Card style={styles.noEvento}>
-                    <Card.Content style={{ alignItems:'center'}}>
-                    <Text >Aún no hay eventos</Text>
-                       
-                    </Card.Content>
-                </Card>
+                                </Card.Content>
+                            </Card>
+                            </View>
 
-                    
-                    }
-                    
-                    
-
-                </View>
+                    }   
             </View>
         </LoggedLayout>
 
@@ -91,6 +91,7 @@ export default MisReservas
 const styles = StyleSheet.create({
     vista: {
         alignItems: 'center',
+        height: 250
     },
     text: {
         textAlign: 'center',
@@ -140,7 +141,8 @@ const styles = StyleSheet.create({
         fontFamily: 'Kanit-Regular',
         marginBottom: '3%',
     },
-    noEvento:{
+    noEvento: {
+        
         height: '30%',
         marginTop: '5%',
         width: '80%',

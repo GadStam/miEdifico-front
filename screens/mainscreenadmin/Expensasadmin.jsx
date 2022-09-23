@@ -69,7 +69,7 @@ const Contacto = ({ navigation }) => {
 
     await traerNombre().then((response) => {
 
-      setNombreAdmin(response);
+      setNombreAdmin(response.nombre);
       console.log("la respuesta es", response)
     }).catch(() => {
       console.log("no hay nombre")

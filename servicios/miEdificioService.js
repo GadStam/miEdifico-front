@@ -55,14 +55,16 @@ export const departamentologin = async (userState) => {
     .then(async(res) => {
       let departamentoToken = res.data.token; // poner punto (nombe que viene del back)
       let pisoInquilino = res.data.depto
-      let idEdificio = res.data.edificio
+      let idEdificio = res.data.id_edificio
+      console.log("este es el token:",departamentoToken)
       await AsyncStorage.setItem('deptotoke', departamentoToken) // guarda en el storage con el nombre token 
       await AsyncStorage.setItem('pisoInquilino', pisoInquilino) // guarda en el storage con el nombre token 
       await AsyncStorage.setItem('idEdificio', idEdificio) // guarda en el storage con el nombre token 
       return pisoInquilino
     })
     .catch((e) => {
-      console.log(`register error`, e.response);
+      console.error(e)
+      console.log(`register error`, e.res);
       throw "error" //propagar error
     });
 };
@@ -98,22 +100,6 @@ export const traerDirec = async (id, token) => {
     });
 };
 
-export const traerEventos = async () => {
-  const idEdificio = await AsyncStorage.getItem('idEdificio')
-  console.log('idEdificio')
-  return AxiosClient
-    .get(`/eventos/${idEdificio}`, {
-
-    }).then((res) => { // si status code entre 200 y 299
-      const eventos = res.data;
-      return eventos
-    })
-    .catch((err) => { // status >= 300
-      console.log(`register error`, err.response);
-     
-      throw err //propagar error
-    }); // => Promise<AxiosResponse>
-};
 
 
 

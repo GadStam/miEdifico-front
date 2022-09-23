@@ -1,16 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import Firstscreendepto from '../screens/mainscreensdepartamento/Firstscreendepto';
-import Home from '../screens/Home';
-import Expensas from '../screens/mainscreensdepartamento/Expensas';
-import Calendario from '../screens/mainscreensdepartamento/Calendario'
-import Inconvenientes from '../screens/mainscreensdepartamento/Inconvenientes';
-import Contacto from '../screens/mainscreensdepartamento/Contacto';
-import { NavigationContainer } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwasome5 from 'react-native-vector-icons/FontAwesome5'
-import Reservas from '../screens/mainscreensdepartamento/Reservas';
-import Schedule from '../screens/mainscreensdepartamento/Agenda';
 import { View, StyleSheet } from 'react-native';
 import { Link } from '@react-navigation/native';
 

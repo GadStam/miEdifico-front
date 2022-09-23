@@ -12,7 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useContextState } from '../contextState';
 
 export const crearEvento = async (userState) => {
-    const tokenId = await AsyncStorage.getItem('token') // trae del stoateg e l  token 
+    const tokenId = await AsyncStorage.getItem('deptotoke') // trae del stoateg e l  token 
     
     console.log(userState)
     return AxiosClient
@@ -36,20 +36,26 @@ export const crearEvento = async (userState) => {
 
 
   
-  export const traerEventosPorDepto = async () => {
-    const { contextState, setContextState } = useContextState();
-    const tokenId = await AsyncStorage.getItem('token') // trae del stoateg e l  token 
-    const id_departamento = contextState.codigo
-    console.log(id_departamento)
+  export const traerEventosPorDepto = async (cod) => {
+    console.log("entre a traer los eveeentos")
+    console.log(cod)
+    
+    const tokenId = await AsyncStorage.getItem('deptotoke') // trae del stoateg e l  token 
+    console.log(tokenId)
+    
+    
     return AxiosClient
-      .get(`/eventos/departamento/${id_departamento}`, {
-  
-      },{headers: {'Authorization': 'Bearer ' + tokenId},}).then((res) => { // si status code entre 200 y 299
+      .get(`/eventos/departamento/${cod}`, {
+        
+      }).then((res) => { // si status code entre 200 y 299
+        console.log("exito")
         const eventos = res.data;
+        console.log("los eventos del service son:",eventos)
         return eventos
+        
       })
-
       .catch((err) => { // status >= 300
+        console.error(err)
         console.log(`register error`, err.response);
        
         throw err //propagar error
@@ -59,21 +65,19 @@ export const crearEvento = async (userState) => {
 
 
 
-  export const EliminarDepto = async () => {
-    const { contextState, setContextState } = useContextState();
-    const tokenId = await AsyncStorage.getItem('token') // trae del stoateg e l  token 
-    const id_departamento = contextState.codigo
-    const idEvento = await AsyncStorage.getItem('idEvento') // trae del stoateg e l  token 
-    console.log(id_departamento)
+  export const EliminarDepto = async (id) => {
+   
+    const tokenId = await AsyncStorage.getItem('deptotoke') // trae del stoateg e l  token 
+    console.log(tokenId)
     return AxiosClient
-      .delete(`/eventos/${idEvento}`, { //url de eliminar evento
+      .delete(`/eventos/${id}`, { //url de eliminar evento
   
-      },{headers: {'Authorization': 'Bearer ' + tokenId},}).then((res) => {
+      }).then((res) => {
        
       })
       .catch((err) => { 
         console.log(`register error`, err.response);
-       
+       console.error(err)
         throw err 
       }); 
   };
