@@ -89,9 +89,10 @@ export default InicioAdmin
 
 const styles = StyleSheet.create({
   logo: {
-    width: '70%',
-    height: '22%',
-    marginTop: 200
+    width: '40%',
+    height: '10%',
+    marginTop: 130,
+    marginBottom: 15
   },
   image: {
     alignItems: 'center',

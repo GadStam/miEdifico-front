@@ -77,6 +77,14 @@ const MisReservas = ({ navigation, route }) => {
 
                                 </Card.Content>
                             </Card>
+
+                                <Boton
+                                    text="Agregar nuevo evento"
+                                    onPress={() => {
+                                    navigation.navigate('Reservas')
+                                    }}
+                                />
+         
                             </View>
 
                     }   
@@ -142,9 +150,9 @@ const styles = StyleSheet.create({
         marginBottom: '3%',
     },
     noEvento: {
-        
         height: '30%',
         marginTop: '5%',
+        marginBottom: '-9%',
         width: '80%',
         paddingVertical: '3%'
     }

@@ -104,9 +104,10 @@ export default CreateAutomatic
 
 const styles = StyleSheet.create({
   logo: {
-    width: '70%',
-    height: 198,
-    marginTop: 115,
+    width: '40%',
+    height: '10%',
+    marginTop: 130,
+    marginBottom: 15
   },
   vista: {
     height: 900,

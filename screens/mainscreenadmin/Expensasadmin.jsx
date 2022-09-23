@@ -32,14 +32,11 @@ const Expensasadmin = ({ navigation }) => {
   const [image, setImage] = useState(null);
   const [nombreAdmin, setNombreAdmin] = useState("");
 
-
   const [userState, setUserState] = useState({
     monto: '',
     fecha: '',
-    depto:'',
-
+    depto: '',
   });
-
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -53,30 +50,26 @@ const Expensasadmin = ({ navigation }) => {
 
     setCodIMage(result.base64)
 
-
-
     if (!result.cancelled) {
       setImage(result.uri);
     }
   };
-
 
   const subirArchivo = async (e) => {
     if (!userState.monto || !userState.fecha || !userState.depto) {
       Alert.alert("Por favor ingresar todos los datos")
     }
     else {
-    await crearExpensa(userState).then(() => {
-      Alert.alert("Su Expensa se subio correctamente")
-    })
-      .catch(() => {
+      await crearExpensa(userState).then(() => {
+        Alert.alert("Su Expensa se subio correctamente")
+      })
+        .catch(() => {
 
-        Alert.alert("ERROR SUBIENDO ARCHIVOS")
-        
-      });
+          Alert.alert("ERROR SUBIENDO ARCHIVOS")
+
+        });
+    }
   }
-}
-
   const getNombreAdmin = async (e) => {
 
     await traerNombre().then((response) => {
@@ -92,7 +85,7 @@ const Expensasadmin = ({ navigation }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
   const showDatePicker = () => {
-      setDatePickerVisibility(true);
+    setDatePickerVisibility(true);
   };
 
   const hideDatePicker = () => {
@@ -104,25 +97,21 @@ const Expensasadmin = ({ navigation }) => {
     const fechaAModificar = userState;
 
     if (fechar.getMonth() + 1 < 10 && fechar.getDate() < 10) {
-      fechaAModificar.fecha = `${fechar.getFullYear()}-0${
-        fechar.getMonth() + 1
-      }-0${fechar.getDate()}`;
+      fechaAModificar.fecha = `${fechar.getFullYear()}-0${fechar.getMonth() + 1
+        }-0${fechar.getDate()}`;
     } else if (fechar.getMonth() + 1 < 10) {
-      fechaAModificar.fecha = `${fechar.getFullYear()}-0${
-        fechar.getMonth() + 1
-      }-${fechar.getDate()}`;
+      fechaAModificar.fecha = `${fechar.getFullYear()}-0${fechar.getMonth() + 1
+        }-${fechar.getDate()}`;
     } else if (fechar.getDate() < 10) {
-      fechaAModificar.fecha = `${fechar.getFullYear()}-${
-        fechar.getMonth() + 1
-      }-0${fechar.getDate()}`;
+      fechaAModificar.fecha = `${fechar.getFullYear()}-${fechar.getMonth() + 1
+        }-0${fechar.getDate()}`;
     } else {
       fechaAModificar.fecha = `${fechar.getFullYear()}-${fechar.getMonth()}-${fechar.getDate()}`;
     }
-    
+
     hideDatePicker();
     setUserState(fechaAModificar);
   };
-  
 
   useEffect(() => {
     (async () => {
@@ -130,74 +119,63 @@ const Expensasadmin = ({ navigation }) => {
     })()
   }, [])
 
-
   return (
-
     <View>
       <View style={styles.top} >
+        <Text style={styles.titulo}>Dirección: { }</Text>
         <Text style={styles.titulo}>{nombreAdmin && `Usuario: ${nombreAdmin}`}</Text>
-        <View style={styles.boton} >
-          <Button title="cerrar sesion" onPress={() => { navigation.navigate('Home') }}/>
-        </View>
       </View>
-
       <View style={styles.content}>
-      <Text style={styles.titulo}>Ingrese la imagen de la expensa:</Text>
-      <View style={styles.archivo}>
-        <Button title="Seleccionar archivo" onPress={pickImage} />
-        
+        <Text style={styles.titulo}>Ingrese la imagen de la expensa:</Text>
+        <View style={styles.archivo}>
+          <Button title="Seleccionar archivo" onPress={pickImage} />
         </View>
-        <Text style={{marginTop:"3%", marginBottom: '4%'}}>NUMERO DE CARACTERES:{codImage.length}</Text>
-        
+        <Text style={{ marginTop: "3%", marginBottom: '4%' }}>NUMERO DE CARACTERES:{codImage.length}</Text>
 
         <TextInput
-                style={styles.textInput}
-                placeholder="Ingrese el departamento"
-                name="depto"
-                value={userState.depto}
-                onChangeText={text => setUserState({ ...userState, depto: text })}
-              />
+          style={styles.textInput}
+          placeholder="Ingrese el departamento"
+          name="depto"
+          value={userState.depto}
+          onChangeText={text => setUserState({ ...userState, depto: text })}
+        />
 
         <TextInput
-                style={styles.textInput}
+          style={styles.textInput}
+          placeholder="Ingrese el monto $"
+          name="monto"
+          value={userState.monto}
+          onChangeText={number => setUserState({ ...userState, monto: Number(number) })}
+          keyboardType="numeric"
+        />
+        <BotonFecha
+          text={
+            userState.fecha
+              ? `Fecha: ${userState.fecha},`
+              : "Ingrese el día del evento"
+          }
+          onPress={showDatePicker}
+        />
+        <DateTimePickerModal
+          isVisible={isDatePickerVisible}
+          mode="date"
+          onConfirm={handleConfirm}
+          onCancel={hideDatePicker}
+        />
 
-                placeholder="Ingrese el monto $"
-                name="monto"
-                value={userState.monto}
-                onChangeText={number => setUserState({ ...userState, monto: Number(number) })}
-                keyboardType="numeric"
-
-              />
-
-          <BotonFecha
-              text={
-                userState.fecha
-                  ? `Fecha: ${userState.fecha},`
-                  : "Ingrese el día del evento"
-              }
-              onPress={showDatePicker}
-            />
-            <DateTimePickerModal
-              isVisible={isDatePickerVisible}
-              mode="date"
-              onConfirm={handleConfirm}
-              onCancel={hideDatePicker}
-            />
-
-      <BotonOne
+        <BotonOne
           text="Subir Expensa"
           onPress={subirArchivo}
 
         />
-
-
-
-
+        <View style={styles.boton} >
+          <Button title="cerrar sesion" onPress={() => { navigation.navigate('Home') }} />
+        </View>
       </View>
     </View>
 
   );
-  }
+}
 
 export default Expensasadmin
 
@@ -236,10 +214,10 @@ const styles = StyleSheet.create({
     marginTop: "10%"
   },
   boton: {
-    top: 18,
+    marginTop: '-15%'
   },
-  archivo:{
-    marginTop:"10%"
+  archivo: {
+    marginTop: "10%"
   }
 
 });

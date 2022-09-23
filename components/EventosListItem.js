@@ -14,7 +14,7 @@ export default function EventosListItem({Eventos}) {
     const eliminarEvento = async(e) => {
         await EliminarDepto(idMandar).then((response) => {
            
-            Alert.alert("se borro correctamente")
+            Alert.alert("El evento se borro correctamente")
             navigation.navigate("Schedule")
           }).catch((e) => {
             console.log("error borrando")

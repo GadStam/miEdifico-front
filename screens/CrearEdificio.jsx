@@ -213,28 +213,24 @@ const CrearEdificio = ({ navigation }) => {
           <BotonOne
             text="Crear edificio"
             onPress={onCreatePress}
-            
           />
         </View>
       </Teclado>
     </ImageBackground>
   );
-
-  
-  
 }
 
 export default CrearEdificio
 
 const styles = StyleSheet.create({
   logo: {
-    width: '70%',
-    height: 198,
-    marginTop: 115,
+    width: '40%',
+    height: '10%',
+    marginTop: 130,
   },
   vista: {
     minHeight: 900,
-    maxHeight: 1050,
+    maxHeight: 1000,
     alignItems: 'center',
   },
   titulo: {
