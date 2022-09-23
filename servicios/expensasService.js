@@ -11,12 +11,12 @@ import Spinner from 'react-native-loading-spinner-overlay/lib';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const crearExpensa = async (userState) => {
-    const tokenId = await AsyncStorage.getItem('token') // trae del stoateg e l  token 
-    const id = await AsyncStorage.getItem('id')
+    const tokenId = await AsyncStorage.getItem('deptotoke') // trae del stoateg e l  token 
+    const id = await AsyncStorage.getItem('idEdificio')
     const codigo= await AsyncStorage.getItem('codigodepto') // guarda en el storage con el nombre token 
     console.log("API PARAMTER", userState)
     return AxiosClient
-      .post(`/expensas`, {
+      .post(`/expensas/${id}`, {
         ...userState
       }, {headers: {'Authorization': 'Bearer ' + tokenId},}).then((res) => { // si status code entre 200 y 299
         

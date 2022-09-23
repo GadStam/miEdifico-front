@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, SafeAreaView, Platform, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, SafeAreaView, Platform, Alert, TextInput } from 'react-native';
 import miED from "../../assets/logoMI.png";
 import fondoPag from "../../assets/fondoInicio.jpg"
 import Girador from '../../components/girador'
@@ -13,6 +13,8 @@ import Inquilino from '../InicioInquilino'
 import { useNavigation } from '@react-navigation/native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import BotonFecha from '../../components/BotonFecha';
 
 import {
   useFonts,
@@ -21,15 +23,23 @@ import {
 
 let kanitLoaded
 
-const Contacto = ({ navigation }) => {
+const Expensasadmin = ({ navigation }) => {
   kanitLoaded = useFonts({
     Kanit_200ExtraLight,
   });
 
   const [codImage, setCodIMage] = useState("");
-
   const [image, setImage] = useState(null);
   const [nombreAdmin, setNombreAdmin] = useState("");
+
+
+  const [userState, setUserState] = useState({
+    monto: '',
+    fecha: '',
+    depto:'',
+
+  });
+
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -40,8 +50,6 @@ const Contacto = ({ navigation }) => {
       quality: 1,
       base64: true,
     });
-
-
 
     setCodIMage(result.base64)
 
@@ -54,8 +62,11 @@ const Contacto = ({ navigation }) => {
 
 
   const subirArchivo = async (e) => {
-
-    await crearExpensa(codImage).then(() => {
+    if (!userState.monto || !userState.fecha || !userState.depto) {
+      Alert.alert("Por favor ingresar todos los datos")
+    }
+    else {
+    await crearExpensa(userState).then(() => {
       Alert.alert("Su Expensa se subio correctamente")
     })
       .catch(() => {
@@ -64,6 +75,7 @@ const Contacto = ({ navigation }) => {
         
       });
   }
+}
 
   const getNombreAdmin = async (e) => {
 
@@ -76,6 +88,41 @@ const Contacto = ({ navigation }) => {
 
     });
   }
+
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+  const showDatePicker = () => {
+      setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = (date) => {
+    const fechar = new Date(date);
+    const fechaAModificar = userState;
+
+    if (fechar.getMonth() + 1 < 10 && fechar.getDate() < 10) {
+      fechaAModificar.fecha = `${fechar.getFullYear()}-0${
+        fechar.getMonth() + 1
+      }-0${fechar.getDate()}`;
+    } else if (fechar.getMonth() + 1 < 10) {
+      fechaAModificar.fecha = `${fechar.getFullYear()}-0${
+        fechar.getMonth() + 1
+      }-${fechar.getDate()}`;
+    } else if (fechar.getDate() < 10) {
+      fechaAModificar.fecha = `${fechar.getFullYear()}-${
+        fechar.getMonth() + 1
+      }-0${fechar.getDate()}`;
+    } else {
+      fechaAModificar.fecha = `${fechar.getFullYear()}-${fechar.getMonth()}-${fechar.getDate()}`;
+    }
+    
+    hideDatePicker();
+    setUserState(fechaAModificar);
+  };
+  
 
   useEffect(() => {
     (async () => {
@@ -98,20 +145,61 @@ const Contacto = ({ navigation }) => {
       <Text style={styles.titulo}>Ingrese la imagen de la expensa:</Text>
       <View style={styles.archivo}>
         <Button title="Seleccionar archivo" onPress={pickImage} />
+        
         </View>
-        <Text style={{marginTop:"3%"}}>NUMERO DE CARACTERES:{codImage.length}</Text>
-        <BotonOne
+        <Text style={{marginTop:"3%", marginBottom: '4%'}}>NUMERO DE CARACTERES:{codImage.length}</Text>
+        
+
+        <TextInput
+                style={styles.textInput}
+                placeholder="Ingrese el departamento"
+                name="depto"
+                value={userState.depto}
+                onChangeText={text => setUserState({ ...userState, depto: text })}
+              />
+
+        <TextInput
+                style={styles.textInput}
+
+                placeholder="Ingrese el monto $"
+                name="monto"
+                value={userState.monto}
+                onChangeText={number => setUserState({ ...userState, monto: Number(number) })}
+                keyboardType="numeric"
+
+              />
+
+          <BotonFecha
+              text={
+                userState.fecha
+                  ? `Fecha: ${userState.fecha},`
+                  : "Ingrese el día del evento"
+              }
+              onPress={showDatePicker}
+            />
+            <DateTimePickerModal
+              isVisible={isDatePickerVisible}
+              mode="date"
+              onConfirm={handleConfirm}
+              onCancel={hideDatePicker}
+            />
+
+      <BotonOne
           text="Subir Expensa"
           onPress={subirArchivo}
 
         />
+
+
+
+
       </View>
     </View>
 
   );
-}
+  }
 
-export default Contacto
+export default Expensasadmin
 
 const styles = StyleSheet.create({
   titulo: {
@@ -127,6 +215,15 @@ const styles = StyleSheet.create({
     height: 100,
     alignItems: 'center',
     paddingHorizontal: '5%'
+  },
+  textInput: {
+    borderWidth: 1,
+    padding: 15,
+    width: "80%",
+    borderRadius: 8,
+    backgroundColor: "#fff",
+    marginTop: 15,
+    marginBottom: -5
   },
   text: {
     fontSize: 25,
@@ -146,10 +243,6 @@ const styles = StyleSheet.create({
   }
 
 });
-
-
-
-
 
 
 

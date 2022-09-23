@@ -138,6 +138,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: '5%'
   },
   agenda: {
-    height: '71%'
+    height: '70%'
   }
 });

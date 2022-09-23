@@ -201,13 +201,14 @@ const Reservas = ({ navigation, route }) => {
               placeholder="Ingrese la cantidad de invitados"
               name="cant_invitados"
               value={fechaSeleccionada.cant_invitados}
+              keyboardType="numeric"
               onChangeText={(number) =>
                 setFechaSeleccionada({
                   ...fechaSeleccionada,
                   cant_invitados: Number(number),
                 })
               }
-              keyboardType="numeric"
+              
             />
 
             <BotonFecha
