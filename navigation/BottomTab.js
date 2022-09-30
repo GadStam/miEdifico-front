@@ -16,7 +16,7 @@ const BottomTab = () => {
             
             <Link to={"/Expensas"}>
 
-                <FontAwasome5 name='coins' size={30} />
+                <Ionicons name='cash-outline' size={30} />
             </Link>
 
             <Link to={"/Firstscreendepto"}>
@@ -31,7 +31,7 @@ const BottomTab = () => {
 
             <Link to={"/Contacto"}>
 
-                <Ionicons name='people' size={30} />
+                <Ionicons name='people-outline' size={30} />
             </Link>
         </View>
     )

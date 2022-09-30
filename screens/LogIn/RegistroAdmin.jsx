@@ -36,7 +36,7 @@ const RegistroAdmin = (props) => {
     else {
       console.log(userState)
       await register(userState).then(() => {
-        navigation.navigate('LogInAdministrador')
+        navigation.navigate('InicioAdmin')
       })
         .catch(() => {
 
@@ -90,7 +90,7 @@ const RegistroAdmin = (props) => {
           />
           <TextInput
             style={styles.textInput}
-            placeholder="Ingrese su telefono"
+            placeholder="Ingrese su teléfono"
             name="Telefono"
             value={userState.telefono}
             keyboardType="numeric"
@@ -119,14 +119,7 @@ const RegistroAdmin = (props) => {
             title="register"
             onPress={onRegisterPress}
           />
-          <BotonOne
-            text="Registrarse"
-            title="register"
-
-            onPress={() => {
-              navigation.navigate('CrearEdificio')
-            }}
-          />
+          
         </View>
       </Teclado>
     </ImageBackground>
@@ -137,9 +130,10 @@ export default RegistroAdmin
 
 const styles = StyleSheet.create({
   logo: {
-    width: '70%',
-    height: '22%',
-    marginTop: 115
+    width: '40%',
+    height: '10%',
+    marginTop: 130,
+    marginBottom: 15
   },
   vista:{
     height:900,

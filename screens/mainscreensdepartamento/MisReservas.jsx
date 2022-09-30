@@ -52,7 +52,7 @@ const MisReservas = ({ navigation, route }) => {
 
     return (
         <LoggedLayout>
-            <View >
+            <View style={styles.vista}>
                     <AntDesign style={styles.flecha} name="left" size={15} />
                     <Text style={styles.atras}
                         onPress={() => {
@@ -70,7 +70,7 @@ const MisReservas = ({ navigation, route }) => {
                                 keyExtractor={item => item.nombre_evento}
                             />
                             :
-                    <View style={styles.vista}>
+                    <View style={styles.card}>
                             <Card style={styles.noEvento}>
                                 <Card.Content style={{ alignItems: 'center' }}>
                                     <Text >Aún no hay eventos</Text>
@@ -90,7 +90,6 @@ const MisReservas = ({ navigation, route }) => {
                     }   
             </View>
         </LoggedLayout>
-
     );
 }
 
@@ -99,7 +98,11 @@ export default MisReservas
 const styles = StyleSheet.create({
     vista: {
         alignItems: 'center',
-        height: 250
+        height: 1000
+    },
+    card: {
+        alignItems: 'center',
+        minheight: 250
     },
     text: {
         textAlign: 'center',

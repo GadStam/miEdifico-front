@@ -25,7 +25,7 @@ export default function EventosListItem({Eventos}) {
     
     return (
 
-        <View style={{alignItems: 'center'}}>
+        <View style={{alignItems: 'center', marginVertical: '1%',}}>
                 <Card style={styles.card}>
                     <Card.Content style ={{marginTop: '5%',}}>
                             <Text>
@@ -42,7 +42,7 @@ export default function EventosListItem({Eventos}) {
                     </Text>
                     <View style={{marginTop:'3%', marginBottom:'-30%', width: 280}}>
                     <BotonOne 
-                            text="Eliminar reseva"
+                            text="Eliminar reserva"
                             onPress={eliminarEvento}/>
                     </View>
                         

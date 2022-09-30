@@ -60,7 +60,7 @@ const CreateAutomatic = ({ navigation }) => {
             Volver atrás
           </Text>
           <Image style={styles.logo} source={miED}></Image>
-          <Text style={styles.titulo}>Crear edificio manual</Text>
+          <Text style={styles.titulo}>Crear departamentos de forma manual</Text>
 
           <TextInput
             style={styles.textInput}
@@ -132,7 +132,8 @@ const styles = StyleSheet.create({
     color: 'blue',
     fontSize: 25,
     fontFamily: 'Kanit-Regular',
-    marginBottom: 20
+    marginBottom: 20,
+    width: '80%'
   },
   text: {
     width: "75%",

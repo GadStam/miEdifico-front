@@ -120,7 +120,7 @@ const CrearEdificio = ({ navigation }) => {
 
           <TextInput
             style={styles.textInput}
-            placeholder="Ingrese la direccion"
+            placeholder="Ingrese la dirección"
             name="direccion"
             value={userState.direccion}
             onChangeText={text => setUserState({ ...userState, direccion: text })}
@@ -128,7 +128,7 @@ const CrearEdificio = ({ navigation }) => {
 
           <TextInput
             style={styles.textInput}
-            placeholder="Ingrese año de construccion"
+            placeholder="Ingrese año de construcción"
             name="año_construccion"
               value={userState.año_construccion}
             onChangeText={number => setUserState({ ...userState, año_construccion:  Number(number) })}
@@ -154,7 +154,7 @@ const CrearEdificio = ({ navigation }) => {
 
           <TextInput
             style={styles.textInput}
-            placeholder="Ingrese el numero de encargado"
+            placeholder="Ingrese el número de encargado"
             name="nro_encargado"
             value={userState.nro_encargado}
             onChangeText={number => setUserState({ ...userState, nro_encargado:  Number(number) })}
@@ -163,7 +163,7 @@ const CrearEdificio = ({ navigation }) => {
 
           <TextInput
             style={styles.textInput}
-            placeholder="Ingrese el numero de emergencia"
+            placeholder="Ingrese el número de emergencia"
             name="nro_emergencia"
             value={userState.nro_emergencia}
             onChangeText={number => setUserState({ ...userState, nro_emergencia:  Number(number) })}
@@ -211,7 +211,7 @@ const CrearEdificio = ({ navigation }) => {
           />
         </View>
           <BotonOne
-            text="Crear edificio"
+            text="Continuar"
             onPress={onCreatePress}
           />
         </View>

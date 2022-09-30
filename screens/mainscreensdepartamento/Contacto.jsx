@@ -61,7 +61,7 @@ const Contacto =({ navigation, route })=>{
       <View style={{alignItems:'center'}}>
       <BotonOne
       
-          text="Cerrar Sesión"
+          text="Cerrar sesión"
           onPress={() => {
             navigation.navigate('Home')
             setContextState({

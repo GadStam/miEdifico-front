@@ -28,7 +28,7 @@ const SelectAutoManual =({navigation})=>{
           Volver atrás
         </Text>
       <Image style={styles.logo} source={miED}></Image>
-      <Text style={styles.titulo}>Crear el edificio:</Text>
+      <Text style={styles.titulo}>Crear los departamentos:</Text>
       
       <Boton
       text="De forma manual" 

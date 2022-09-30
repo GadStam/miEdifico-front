@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, Button, TouchableOpacity, TextInput, Alert } from 'react-native';
 import miED from "../../assets/logoMI.png";
 import fondoPag from "../../assets/fondoInicio.jpg"
 import chec from "../../assets/fondoInicio.jpg"
@@ -60,7 +60,7 @@ const CreateAutomatic = ({ navigation }) => {
             Volver atrás
           </Text>
           <Image style={styles.logo} source={miED}></Image>
-          <Text style={styles.titulo}>Crear edificio automatico</Text>
+          <Text style={styles.titulo}>Crear edificio automaticamente</Text>
 
           <TextInput
             style={styles.textInput}

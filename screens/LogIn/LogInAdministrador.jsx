@@ -71,7 +71,7 @@ const LogInAdministrador = ({ navigation }) => {
 
               <TextInput
                 style={styles.textInput}
-                placeholder="Ingrese su Contraseña"
+                placeholder="Ingrese su contraseña"
                 name="contrasena"
                 value={userState.contraseña}
                 secureTextEntry={true}
@@ -80,8 +80,8 @@ const LogInAdministrador = ({ navigation }) => {
               {
                 !disable ?
           <BotonOne
-            text="Iniciar Sesion"
-            title="Iniciar Sesion"
+            text="Iniciar sesión"
+            title="Iniciar sesion"
             disable={ disable }
             onPress={onLogInPress}
             /> :
@@ -93,7 +93,7 @@ const LogInAdministrador = ({ navigation }) => {
                   navigation.navigate('RegistroAdmin')
 
                 }}
-              >No tenes una cuenta? Registrate</Text>
+              >¿No tenes una cuenta? Registrate</Text>
 
             </View>
           </Teclado>

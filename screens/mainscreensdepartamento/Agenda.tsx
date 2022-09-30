@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
 import { Agenda, DateData, AgendaEntry, AgendaSchedule } from 'react-native-calendars';
 import { Avatar, Card } from 'react-native-paper';
 import Boton from '../../components/BotonDoble';
@@ -25,7 +25,7 @@ const Schedule: React.FC = () => {
   const [loaded, setLoaded] = useState(true);
   let diaActual = new Date().toLocaleString()
   let diaString = diaActual.toString()
-{/* 
+  {/* 
   const getEventos = async () => {
     setLoaded(true)
     traerEventos().then((response) => {
@@ -37,8 +37,8 @@ const Schedule: React.FC = () => {
       console.log(error)
     });
   }
-*/}  
-{/*useEffect(() => {
+*/}
+  {/*useEffect(() => {
     (async () => {
       await getEventos()
     })()
@@ -95,28 +95,27 @@ const Schedule: React.FC = () => {
   }
   return (
     <LoggedLayout>
-        <View style={styles.agenda}>
-          <Agenda
-            items={items}
-            loadItemsForMonth={loadItems}
-            selected={'2022-09-09'}
-            renderItem={renderItem}
-          />
-        </View>
-        <View style={{ alignItems: 'center', marginTop:'-15%'}}>
+      <View style={styles.agenda}>
+        <Agenda
+          items={items}
+          loadItemsForMonth={loadItems}
+          selected={'2022-09-09'}
+          renderItem={renderItem}
+        />
+      </View>
+      <View style={{ alignItems: 'center', marginTop: '-15%' }}>
+        <Boton
+          text="Agregar nueva reserva"
+          onPress={() => {
+            navigation.navigate('Reservas')
+          }}/>
           <Boton
-            text="Agregar nuevo evento"
-            onPress={() => {
-              navigation.navigate('Reservas')
-            }}
-          />
-          <Boton
-            text="Ver mis reservas"
-            onPress={() => {
-              navigation.navigate('MisReservas')
-            }}
-          />
-        </View>
+          text="Ver mis reservas"
+          onPress={() => {
+            navigation.navigate('MisReservas')
+          }}
+        />
+      </View>
     </LoggedLayout>
   )
 };

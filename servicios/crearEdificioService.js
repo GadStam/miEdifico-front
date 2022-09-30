@@ -20,7 +20,7 @@ export const crearEdficiosAdmin = async (userState) => {
       }, {headers: {'Authorization': 'Bearer ' + tokenId},}).then((res) => { // si status code entre 200 y 299
         const idEdificio = res.data[0].id_edificio;
         console.log("este es el", idEdificio)
-        const idEdificioValue = JSON.stringify(idEdificio) // lo pasa a string 
+
         AsyncStorage.setItem('idEdificio', idEdificio) // guarda en el storage con el nombre id
        
       })

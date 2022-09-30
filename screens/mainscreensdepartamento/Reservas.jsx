@@ -118,6 +118,8 @@ const Reservas = ({ navigation, route }) => {
       })
         .then(() => {
           console.log("se creo el evento")
+          
+    Alert.alert("Se reservó correctamente")
           navigation.navigate('Schedule')
         })
         .catch((err) => {
@@ -235,7 +237,7 @@ const Reservas = ({ navigation, route }) => {
             />
           </View>
           <View style={{ alignItems: "center", marginBottom: '3.7%' }}>
-            <BotonOne text="Guardar evento" onPress={onCreateEvento} />
+            <BotonOne text="Reservar" onPress={onCreateEvento} />
           </View>
         </View>
       </LoggedLayout>
